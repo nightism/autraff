@@ -97,4 +97,6 @@ if __name__ == "__main__":
         'arguments': {'ports': [22]},
         'target': '127.0.0.1'
     }
-    print(execute(args))
+    # print(execute(args))
+    func = 'execute'
+    print(func(args))
