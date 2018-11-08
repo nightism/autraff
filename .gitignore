@@ -1,2 +1,9 @@
-slave/slaveenv
-dependency.txt
+.idea*
+
+*.pyc
+*__pycache__*
+
+client/clientenv
+client/dependency.txt
+
+
