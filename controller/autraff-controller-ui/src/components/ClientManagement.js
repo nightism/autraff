@@ -1,9 +1,12 @@
 import React from 'react'
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
-import 'antd/dist/antd.css';
 import MenuItem from 'antd/lib/menu/MenuItem';
+import 'antd/dist/antd.css';
+
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+import ClientDashboard from './client_page_components/ClientDashboard'
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -15,46 +18,49 @@ const ClientManagement = () => {
         <Breadcrumb.Item>Home</Breadcrumb.Item>
         <Breadcrumb.Item>Client Management</Breadcrumb.Item>
       </Breadcrumb>
-      <Layout style={{ padding: '24px 0', background: '#fff'}}>
-        <Sider width={200} style={{ background: '#fff'}}>
-          <Menu
-            mode="inline"
-            defaultSelectedKeys={['dashboard']}
-            defaultOpenKeys={['sub1']}
-            style={{ height: '100%'}}
-          >
+      <Router>
+        <Layout style={{ padding: '24px 0', background: '#fff'}}>
+          <Sider width={200} style={{ background: '#fff'}}>
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={['dashboard']}
+              defaultOpenKeys={['sub1']}
+              style={{ height: '100%'}}
+            >
 
-            <MenuItem key="dashboard">
-              <Icon type="pie-chart"/>
-              <span>Dashboard</span>
-            </MenuItem>
-            
-            <SubMenu key="clients" title={<span><Icon type="laptop"/>All Clients</span>}>
-              <Menu.Item key="10.0.0.4">10.0.0.4</Menu.Item>
-              <Menu.Item key="10.0.0.5">10.0.0.5</Menu.Item>
-              <Menu.Item key="10.0.0.6">10.0.0.6</Menu.Item>
-              <Menu.Item key="10.0.0.7">10.0.0.7</Menu.Item>
-            </SubMenu>
+              <MenuItem key="dashboard">
+                <Icon type="pie-chart"/>
+                <span>Dashboard</span>
+                <Link to="/task-management/dashboard"/>
+              </MenuItem>
 
-            <SubMenu key="control" title={<span><Icon type="laptop" />Remote Control</span>}>
-              <Menu.Item key="10.0.0.4.control">10.0.0.4</Menu.Item>
-              <Menu.Item key="10.0.0.5.control">10.0.0.5</Menu.Item>
-              <Menu.Item key="10.0.0.6.control">10.0.0.6</Menu.Item>
-              <Menu.Item key="10.0.0.7.control">10.0.0.7</Menu.Item>
-              <Menu.Item key="any.control">customised</Menu.Item>
-            </SubMenu>
+              <SubMenu key="clients" title={<span><Icon type="laptop"/>All Clients</span>}>
+                <Menu.Item key="10.0.0.4">10.0.0.4</Menu.Item>
+                <Menu.Item key="10.0.0.5">10.0.0.5</Menu.Item>
+                <Menu.Item key="10.0.0.6">10.0.0.6</Menu.Item>
+                <Menu.Item key="10.0.0.7">10.0.0.7</Menu.Item>
+              </SubMenu>
 
-            <MenuItem key="addclient">
-              <Icon type="plus"/>
-              <span>Add New Clients</span>
-            </MenuItem>
+              <SubMenu key="control" title={<span><Icon type="laptop" />Remote Control</span>}>
+                <Menu.Item key="10.0.0.4.control">10.0.0.4</Menu.Item>
+                <Menu.Item key="10.0.0.5.control">10.0.0.5</Menu.Item>
+                <Menu.Item key="10.0.0.6.control">10.0.0.6</Menu.Item>
+                <Menu.Item key="10.0.0.7.control">10.0.0.7</Menu.Item>
+                <Menu.Item key="any.control">customised</Menu.Item>
+              </SubMenu>
 
-          </Menu>
-        </Sider>
-        <Content style={{ padding: '0 24px', minHeight: '100%' }}>
-          Content
-        </Content>
-      </Layout>
+              <MenuItem key="addclient">
+                <Icon type="plus"/>
+                <span>Add New Clients</span>
+              </MenuItem>
+
+            </Menu>
+          </Sider>
+          <Content style={{ padding: '0 24px', minHeight: '100%' }}>
+            <Route exact path='/task-management/dashboard' component={ClientDashboard} />
+          </Content>
+        </Layout>
+      </Router>
     </Content>
   );
 }
