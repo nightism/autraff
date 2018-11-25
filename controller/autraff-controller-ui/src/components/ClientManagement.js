@@ -29,7 +29,7 @@ const ClientManagement = () => {
               <span>Dashboard</span>
             </MenuItem>
             
-            <SubMenu key="clients" title={<span><Icon type="laptop"/> All Clients </span>}>
+            <SubMenu key="clients" title={<span><Icon type="laptop"/>All Clients</span>}>
               <Menu.Item key="10.0.0.4">10.0.0.4</Menu.Item>
               <Menu.Item key="10.0.0.5">10.0.0.5</Menu.Item>
               <Menu.Item key="10.0.0.6">10.0.0.6</Menu.Item>
@@ -43,6 +43,11 @@ const ClientManagement = () => {
               <Menu.Item key="10.0.0.7.control">10.0.0.7</Menu.Item>
               <Menu.Item key="any.control">customised</Menu.Item>
             </SubMenu>
+
+            <MenuItem key="addclient">
+              <Icon type="plus"/>
+              <span>Add New Clients</span>
+            </MenuItem>
 
           </Menu>
         </Sider>
