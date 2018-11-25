@@ -4,7 +4,7 @@ import { Layout, Menu } from 'antd';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import 'antd/dist/antd.css';
-import ClientManagement from './ClientMangement';
+import ClientManagement from './ClientManagement';
 
 const { Header, Footer } = Layout;
 
