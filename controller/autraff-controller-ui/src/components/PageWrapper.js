@@ -20,8 +20,8 @@ const PageWrapper = () => {
           style={{ lineHeight: '64px' }}
         >
           <Menu.Item key="1">
-            <span>Home</span>
-            <Link to="/" />
+            <span>Homeeee</span>
+            {/* <Link to="/" /> */}
           </Menu.Item>
 
           <Menu.Item key="2">
@@ -31,17 +31,17 @@ const PageWrapper = () => {
 
           <Menu.Item key="3">
             <span>Task Management</span>
-            <Link to="/task-management" />
+            {/* <Link to="/task-management" /> */}
           </Menu.Item>
 
           <Menu.Item key="4">
             <span>Database Management</span>
-            <Link to="/database-management" />
+            {/* <Link to="/database-management" /> */}
           </Menu.Item>
 
           <Menu.Item key="5">
             <span>Upload</span>
-            <Link to="/uoload" />
+            {/* <Link to="/uoload" /> */}
           </Menu.Item>
 
         </Menu>

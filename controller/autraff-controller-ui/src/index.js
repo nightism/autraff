@@ -5,9 +5,6 @@ import * as serviceWorker from './serviceWorker';
 
 import PageWrapper from './components/PageWrapper'
 
-import App from './App'
-
-
 ReactDOM.render(<PageWrapper />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
