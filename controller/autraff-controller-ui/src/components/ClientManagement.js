@@ -31,7 +31,7 @@ const ClientManagement = () => {
               <MenuItem key="dashboard">
                 <Icon type="pie-chart"/>
                 <span>Dashboard</span>
-                <Link to="/task-management/dashboard"/>
+                <Link to="/client-management/dashboard"/>
               </MenuItem>
 
               <SubMenu key="clients" title={<span><Icon type="laptop"/>All Clients</span>}>
@@ -57,7 +57,7 @@ const ClientManagement = () => {
             </Menu>
           </Sider>
           <Content style={{ padding: '0 24px', minHeight: '100%' }}>
-            <Route exact path='/task-management/dashboard' component={ClientDashboard} />
+            <Route exact path='/client-management/dashboard' component={ClientDashboard} />
           </Content>
         </Layout>
       </Router>
