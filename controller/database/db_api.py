@@ -2,7 +2,7 @@ from flask import Flask, request, Response, jsonify
 import os
 
 
-from db_schema import Client, ClientSchema
+from db_schema import app, Client, ClientSchema
 
 
 client_schema = ClientSchema()
@@ -67,5 +67,9 @@ def client_detail(ip):
 #     return user_schema.jsonify(user)
 
 
-if __name__ == '__main__':
+def run():
     app.run(debug=True)
+
+
+if __name__ == '__main__':
+    run()
