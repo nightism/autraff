@@ -6,6 +6,7 @@
 """
 
 from selenium import webdriver
+import time
 
 
 def execute(args, driver=None):
@@ -22,9 +23,13 @@ def execute(args, driver=None):
     if driver is None:
         driver = webdriver.Firefox(executable_path='./geckodriver-v0.23.0-linux64/geckodriver')
 
+    print('test')
+
     try:
         driver.get(args['url'])
         res = driver.page_source
+        time.sleep(1)
+        driver.close()
         return res
 
     except Exception as e:

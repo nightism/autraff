@@ -43,7 +43,7 @@ def execute(args, driver=None):
             search_field.send_keys(u'\ue007')
 
             # TODO logic need to be refined
-            time.sleep(2)
+            time.sleep(5)
 
             # TODO to be removed, these code will click a result link
             # # searches for elements with class g (google's search results) or other search result classes or ids
@@ -54,6 +54,8 @@ def execute(args, driver=None):
             # return driver.current_url
 
             res = driver.page_source
+
+            driver.close()
             return res
 
         except Exception as e:
