@@ -6,47 +6,23 @@ class ClientDashboard extends Component {
   state = {
     overallStates: [{
       title: 'Number of Clients',
-      value: '4'
+      value: '5'
     }, {
       title: 'Number of Active Clients',
-      value: '3'
+      value: '1'
     }, {
       title: 'Last Modification on',
-      value: '25 Nov 2018 18:59'
+      value: '7 Feb 2019 18:59'
     }, {
       title: 'Number of Scheduled Tasks',
       value: '13'
     }],
-    clientInfo: [{
-      key: '10.0.0.4',
-      name: '10.0.0.4',
-      active: 'true',
-      tasks: 4,
-      os: 'Linux',
-    }, {
-      key: '10.0.0.5',
-      name: '10.0.0.5',
-      active: 'false',
-      tasks: 0,
-      os: 'Linux',
-    }, {
-      key: '10.0.0.6',
-      name: '10.0.0.6',
-      active: 'true',
-      tasks: 6,
-      os: 'Windows',
-    }, {
-      key: '10.0.0.7',
-      name: '10.0.0.7',
-      active: 'true',
-      tasks: 4,
-      os: 'MacOS',
-    }]
+    clientInfo: []
   };
 
   clientInfoColumns = [{
     title: 'IP address',
-    dataIndex: 'name',
+    dataIndex: 'key',
   }, {
     title: 'Active',
     dataIndex: 'active',
@@ -56,12 +32,36 @@ class ClientDashboard extends Component {
   }, {
     title: 'Operating System',
     dataIndex: 'os',
-  },];
+  }, {
+    title: 'System Version',
+    dataIndex: 'version'
+  }];
+
+  componentDidMount() {
+    fetch('http://localhost:5000/client', {
+      method: "GET",
+    }).then(results => {
+      return results.json()
+    }).then(data => {
+      var clientList = data.map((client) => {
+        var newDict = {}
+        newDict['key'] = client.ip
+        newDict['active'] = 'unknown'
+        newDict['tasks'] = 'unknown'
+        newDict['os'] = client.system
+        newDict['version'] = client.version
+        return newDict
+      })
+      this.setState({clientInfo: clientList})
+      console.log(this.state.clientInfo)
+      console.log(clientList)
+    })
+  }
 
   render() {
     return (
       <div>
-        <h1>Dashboardd</h1>
+        <h1>Dashboard</h1>
         <hr></hr>
 
         <List

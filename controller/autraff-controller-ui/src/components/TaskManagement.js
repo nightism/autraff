@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import TaskDashboard from './task_page_components/TaskDashboard'
+import TaskListPage from './task_page_components/TaskListPage'
 
 const { Content, Sider } = Layout;
 
@@ -35,6 +36,7 @@ const TaskManagement = () => {
               <MenuItem key="tasklist">
                 <Icon type="align-left"/>
                 <span>Task List</span>
+                <Link to="/task-management/task-list-page"/>
               </MenuItem>
 
               <MenuItem key="addtask">
@@ -47,6 +49,7 @@ const TaskManagement = () => {
 
           <Content style={{ padding: '0 24px', minHeight: '100px' }}>
             <Route exact path='/task-management/dashboard' component={TaskDashboard} />
+            <Route exact path='/task-management/task-list-page' component={TaskListPage} />
           </Content>
         </Layout>
       </Router>
