@@ -6,7 +6,7 @@ import 'antd/dist/antd.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import ClientManagement from './ClientManagement';
-import TaskManagement from './TaskManagement';
+import JobManagement from './JobManagement';
 import PersonaManagement from './PersonaManagement'
 import HomePage from './Home'
 
@@ -31,42 +31,42 @@ const PageWrapper = () => {
 
             <Menu.Item key="2">
               <span>Client Management</span>
-              <Link to="/client-management" />
+              <Link to="/client-management/dashboard" />
             </Menu.Item>
 
             <Menu.Item key="3">
-              <span>Task Management</span>
-              <Link to="/task-management" />
+              <span>Job Management</span>
+              <Link to="/job-management/dashboard" />
             </Menu.Item>
 
             <Menu.Item key="4">
               <span>Persona Management</span>
-              <Link to="/persona-management" />
+              <Link to="/persona-management/dashboard" />
             </Menu.Item>
 
-            <Menu.Item key="5">
+            {/* <Menu.Item key="5">
               <span>Database</span>
               <Link to="/database" />
             </Menu.Item>
 
             <Menu.Item key="6">
-              <span>Uploaddd</span>
+              <span>Upload</span>
               <Link to="/uoload" />
-            </Menu.Item>
+            </Menu.Item> */}
 
           </Menu>
         </Header>
 
         <Route exact path='/' component={HomePage} />
-        <Route exact path='/client-management' component={ClientManagement} />
-        <Route exact path='/task-management' component={TaskManagement} />
-        <Route exact path='/persona-management' component={PersonaManagement} />
+        <Route exact path='/client-management/dashboard' component={ClientManagement} />
+        <Route exact path='/job-management/dashboard' component={JobManagement} />
+        <Route exact path='/persona-management/dashboard' component={PersonaManagement} />
 
 
-        <Footer style={{ textAlign: 'center' }}>
+        {/* <Footer style={{ textAlign: 'center' }}>
           {/* Ant Design ©2018 Created by Ant UED */}
-          Autraff ©2018
-        </Footer>
+          {/* Autraff ©2018
+        </Footer> */}
       </Layout>
     
     

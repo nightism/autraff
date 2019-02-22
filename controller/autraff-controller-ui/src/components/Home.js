@@ -24,8 +24,21 @@ class HomePage extends Component {
       body: JSON.stringify({
         status: 'initialize',
       })
+    }).then((response) => {
+      return response.json()
+    }).then((data) => {
+      alert(data.result)
     })
-    alert(this.state.status)
+  }
+
+  checkConnection() {
+    fetch('http://localhost:5000/check-connection', {
+      method: 'POST',
+    }).then((response) => {
+      return response.json()
+    }).then((data) => {
+      alert(data.result)
+    })
   }
 
   render() {
@@ -36,11 +49,17 @@ class HomePage extends Component {
         </Breadcrumb>
         <Layout style={{ padding: '24px 0', background: '#fff'}}>
           <Content style={{ padding: '0 24px', minHeight: '100px' }}>
-            WELCOME TO AUTRAFF !
+            <h1>WELCOME TO AUTRAFF !</h1>
             <div>
-              <Button type="primary">Open Connection</Button>
-              <Button onClick={ this.openConnection } >Check Client Connectivity</Button>
+              <Button type="primary" onClick={ this.openConnection }>Open Connection</Button>
+            </div>
+            <div>
+              <Button onClick={ this.checkConnection } >Check Client Connectivity</Button>
+            </div>
+            <div>
               <Button type="dashed">Shutdown Connected Clients</Button>
+            </div>
+            <div>
               <Button type="danger">Shutdown Connection</Button>
             </div>
           </Content>
