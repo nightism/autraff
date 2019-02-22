@@ -6,12 +6,12 @@ import 'antd/dist/antd.css';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import TaskDashboard from './task_page_components/TaskDashboard'
-import TaskListPage from './task_page_components/TaskListPage'
+import JobDashboard from './job_page_components/JobDashboard'
+import JobListPage from './job_page_components/JobListPage'
 
 const { Content, Sider } = Layout;
 
-const TaskManagement = () => {
+const JobManagement = () => {
   return (
     <Content style={{ padding: '0 50px' }}>
       <Breadcrumb style={{ margin: '16px 0' }}>
@@ -30,26 +30,26 @@ const TaskManagement = () => {
               <MenuItem key="dashboard">
                 <Icon type="pie-chart"/>
                 <span>Dashboard</span>
-                <Link to="/task-management/dashboard"/>
+                <Link to="/job-management/dashboard"/>
               </MenuItem>
 
-              <MenuItem key="tasklist">
+              <MenuItem key="joblist">
                 <Icon type="align-left"/>
-                <span>Task List</span>
-                <Link to="/task-management/task-list-page"/>
+                <span>Job List</span>
+                <Link to="/job-management/task-list-page"/>
               </MenuItem>
 
-              <MenuItem key="addtask">
+              <MenuItem key="addjob">
                 <Icon type="plus"/>
-                <span>Add Tasks</span>
+                <span>Add Jobs</span>
               </MenuItem>
 
             </Menu>
           </Sider>
 
           <Content style={{ padding: '0 24px', minHeight: '100px' }}>
-            <Route exact path='/task-management/dashboard' component={TaskDashboard} />
-            <Route exact path='/task-management/task-list-page' component={TaskListPage} />
+            <Route exact path='/job-management/dashboard' component={JobDashboard} />
+            <Route exact path='/job-management/task-list-page' component={JobListPage} />
           </Content>
         </Layout>
       </Router>
@@ -57,4 +57,4 @@ const TaskManagement = () => {
   );
 }
 
-export default TaskManagement;
+export default JobManagement;
