@@ -9,7 +9,8 @@ from modules import *
 
 NAMESERVER_ADDRESS = '127.0.0.1:26000'
 CLIENT_RECEIVER_ADDRESS = '127.0.0.1:27000'
-CLIENT_ALIAS = 'client'
+CLIENT_ALIAS = 'client-127.0.0.1'
+COMMUNICATION_CHANNEL = CLIENT_ALIAS + '-comm'
 
 
 scheduler = BackgroundScheduler()
@@ -32,25 +33,26 @@ def receive_command(agent, message):
 
         interval = int(message['interval'])
         para = message['para']
-        job = lambda : mod.execute(para)
+        job = lambda: mod.execute(para)
 
         id = scheduler.add_job(job, 'interval', seconds=interval).id
         # print('Job scheduled: ' + str(id))
         return id
 
     elif command == 'delete_task':
-        mod_id = message['mod_id']
+        mod_id = message['job_id']
         rc = scheduler.remove_job(mod_id)
         return "DEL"
 
-
-def lambda_job(para, driver=None):
-    return lambda : execute(para, driver)
+    return "NAN"
 
 
 if __name__ == '__main__':
 
     ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
-    client = run_agent(CLIENT_ALIAS, nsaddr=NAMESERVER_ADDRESS)  # TODO change the alias
+    client = run_agent(CLIENT_ALIAS, nsaddr=NAMESERVER_ADDRESS)
 
-    client.bind('REP', alias='request_addr', handler=receive_command, transport='tcp', addr=CLIENT_RECEIVER_ADDRESS)
+    client.bind('REP', alias="request_addr", handler=receive_command, transport='tcp',
+                addr=CLIENT_RECEIVER_ADDRESS)
+
+    print("client successfully initiated.")
