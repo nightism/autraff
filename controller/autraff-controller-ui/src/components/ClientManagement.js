@@ -27,12 +27,12 @@ class ClientManagement extends Component {
     }).then(data => {
       var clientMenue = data.map((client) => {
         return (<Menu.Item key={ client.ip }>
-          <Link to="/client-management/127.0.0.1">{ client.ip }</Link>
+          <Link to={"/client-management/" + client.ip + "/detail"}>{client.ip}</Link>
         </Menu.Item>)
       })
       var clientControlMenu = data.map((client) => {
         return (<Menu.Item key={ client.ip + ".control"}>
-          <Link to="/client-management/127.0.0.1">{ client.ip }</Link>
+          <Link to={"/client-control/" + client.ip}>{client.ip}</Link>
         </Menu.Item>)
       })
       this.setState({clients: clientMenue})
@@ -83,7 +83,7 @@ class ClientManagement extends Component {
             <Content style={{ padding: '0 24px', minHeight: '100%' }}>
               {/* {this.state.client} */}
               <Route exact path='/client-management/dashboard' component={ ClientDashboard } />
-              <Route exact path='/client-management/127.0.0.1' component={ ClientPage } />
+              <Route exact path='/client-management/:client/detail' component={ ClientPage } />
             </Content>
           </Layout>
         </Router>

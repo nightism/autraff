@@ -53,8 +53,8 @@ class ClientDashboard extends Component {
         return newDict
       })
       this.setState({clientInfo: clientList})
-      console.log(this.state.clientInfo)
-      console.log(clientList)
+      // console.log(this.state.clientInfo)
+      // console.log(clientList)
     })
   }
 
