@@ -50,16 +50,16 @@ class HomePage extends Component {
         <Layout style={{ padding: '24px 0', background: '#fff'}}>
           <Content style={{ padding: '0 24px', minHeight: '100px' }}>
             <h1>WELCOME TO AUTRAFF !</h1>
-            <div>
+            <div style={{ padding: 10 }}>
               <Button type="primary" onClick={ this.openConnection }>Open Connection</Button>
             </div>
-            <div>
-              <Button onClick={ this.checkConnection } >Check Client Connectivity</Button>
+            <div style={{ padding: 10 }}>
+              <Button onClick={ this.checkConnection } >Check Nameserver Status</Button>
             </div>
-            <div>
+            <div style={{ padding: 10 }}>
               <Button type="dashed">Shutdown Connected Clients</Button>
             </div>
-            <div>
+            <div style={{ padding: 10 }}>
               <Button type="danger">Shutdown Connection</Button>
             </div>
           </Content>

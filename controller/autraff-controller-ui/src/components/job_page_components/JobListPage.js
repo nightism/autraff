@@ -28,7 +28,10 @@ class JobListPage extends Component {
   }, {
     title: 'Start time',
     dataIndex: 'start',
-  },];
+  }, {
+    title: 'Sequence',
+    dataIndex: 'seq'
+  }];
 
   componentDidMount() {
     fetch('http://localhost:5000/job', {
@@ -38,6 +41,7 @@ class JobListPage extends Component {
     }).then(data => {
       var jobs = data.map((job) => {
         var newDict = {}
+        newDict['seq'] = job.seq
         newDict['name'] = job.name
         newDict['client'] = job.client
         newDict['persona'] = job.persona
@@ -64,6 +68,7 @@ class JobListPage extends Component {
           bordered
           columns={this.jobInfoColumns}
           dataSource={this.state.jobInfo}
+          rowKey="seq"
         />
       </div>
     );

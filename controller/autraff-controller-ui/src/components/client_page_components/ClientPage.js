@@ -35,9 +35,10 @@ class ClientPage extends Component {
     dataIndex: 'start'
   }, {
     title: 'Actions',
-    render: (text, record) => <div>
-      <Button value={record.key} onClick={this.scheduleJob}>schedule</Button> 
-      <Button value={record.key} onClick={this.stopJob}>stop</Button>
+    render: (text, record) => <div style={{ textAlign: 'center' }}>
+      <Button type="primary" value={record.key} onClick={this.scheduleJob}>schedule</Button>
+      <span style={{ padding: 10 }}></span>
+      <Button type="danger" value={record.key} onClick={this.stopJob}>stop</Button>
     </div>
   }];
 

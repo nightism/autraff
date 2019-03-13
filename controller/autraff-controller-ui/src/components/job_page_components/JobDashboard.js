@@ -35,6 +35,10 @@ class JobDashboard extends Component {
   }, {
     title: 'Start Time',
     dataIndex: 'start',
+  }, {
+    title: 'Sequence Number',
+    dataIndex: 'id',
+    className: 'hide',
   }];
 
   componentDidMount() {
@@ -55,7 +59,7 @@ class JobDashboard extends Component {
         newDict['schedule_id'] = job.schedule_id
         newDict['id'] = job.seq
 
-        console.log(job)
+        // console.log(job)
 
         if (newDict['schedule_id'] === null || newDict['schedule_id'] === "") {
           newDict['active'] = 'inactive'
@@ -90,6 +94,7 @@ class JobDashboard extends Component {
           bordered
           columns={this.jobInfoColumns}
           dataSource={this.state.jobInfo}
+          rowKey="id"
         />
       </div>
     );

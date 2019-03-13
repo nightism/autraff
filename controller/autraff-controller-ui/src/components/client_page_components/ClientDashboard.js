@@ -6,16 +6,16 @@ class ClientDashboard extends Component {
   state = {
     overallStates: [{
       title: 'Number of Clients',
-      value: '5'
+      value: '2'
     }, {
       title: 'Number of Active Clients',
       value: '1'
     }, {
       title: 'Last Modification on',
-      value: '7 Feb 2019 18:59'
+      value: '21 Feb 2019 21:47'
     }, {
       title: 'Number of Scheduled Tasks',
-      value: '13'
+      value: '0'
     }],
     clientInfo: []
   };
@@ -47,7 +47,7 @@ class ClientDashboard extends Component {
         var newDict = {}
         newDict['key'] = client.ip
         newDict['active'] = 'unknown'
-        newDict['tasks'] = 'unknown'
+        newDict['tasks'] = '0'
         newDict['os'] = client.system
         newDict['version'] = client.version
         return newDict
