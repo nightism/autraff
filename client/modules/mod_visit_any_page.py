@@ -6,6 +6,7 @@
 """
 
 from selenium import webdriver
+from ..util.constants import FIREFOX_WEBDRIVER
 import time
 
 
@@ -19,9 +20,10 @@ def execute(args, driver=None):
     :return res: the web page content of the searching result.
     """
 
-    # TODO logic need to be redefined
-    if driver is None:
-        driver = webdriver.Firefox(executable_path='./geckodriver-v0.23.0-linux64/geckodriver')
+    is_stand_alone = (driver is None)
+
+    if is_stand_alone:
+        driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
 
     print('test')
 
@@ -29,8 +31,12 @@ def execute(args, driver=None):
         driver.get(args['url'])
         res = driver.page_source
         time.sleep(1)
-        driver.close()
-        return res
+
+        if is_stand_alone:
+            driver.close()
+            return res
+        else:
+            return driver
 
     except Exception as e:
         print("Error occured: \"" + str(e))

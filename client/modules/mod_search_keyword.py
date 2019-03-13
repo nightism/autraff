@@ -5,6 +5,7 @@
 
 """
 from selenium import webdriver
+from ..util.constants import FIREFOX_WEBDRIVER
 import time
 
 
@@ -17,11 +18,10 @@ def execute(args, driver=None):
                  keyword: keyword to search
     :return res: the web page content of the searching result.
     """
+    is_stand_alone = (driver is None)
 
-    if driver is None:
-        driver = webdriver.Firefox(executable_path='./geckodriver-v0.23.0-linux64/geckodriver')
-
-    print("checkpoint2")
+    if is_stand_alone:
+        driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
 
     for c in range(2):
         try:
@@ -55,8 +55,11 @@ def execute(args, driver=None):
 
             res = driver.page_source
 
-            driver.close()
-            return res
+            if is_stand_alone:
+                driver.close()
+                return res
+            else:
+                return driver
 
         except Exception as e:
             if c == 0:
