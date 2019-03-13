@@ -23,13 +23,14 @@ def execute(args, driver=None):
                  keyword: keyword to search
     :return res: the web page content of the searching result.
     """
-    is_stand_alone = (driver is None)
 
-    if is_stand_alone:
-        driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
-
-    for c in range(2):
+    for counter in range(2):
         try:
+            is_stand_alone = (driver is None)
+
+            if is_stand_alone:
+                driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
+
             engine = args['engine']
             keyword = args['keyword']
             if engine == 'Google':
@@ -67,11 +68,11 @@ def execute(args, driver=None):
                 return driver
 
         except Exception as e:
-            if c == 0:
+            if counter == 0:
                 print("Error occured: \"" + str(e) + "\" Retrying one more time.")
             else:
                 print("Error occured: \"" + str(e) + "\" Skipping to next command.")
-                return ""
+                raise e
 
 
 if __name__ == '__main__':

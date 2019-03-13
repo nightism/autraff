@@ -15,10 +15,23 @@ import time
 
 def execute(args, driver=None):
     """
-    This module will use a specific searching engine to search certain keyword using the driver given.
+    This module will continue browsing the web within certain amount of time.
 
     :param args: dict of mandantory and optional arguments used.
-                 engine: searching engine used, support: Google, Bing
-                 keyword: keyword to search
+                 time: total web browsing time util we start execution, in second, noted that 1h = 3600s
+                 (optional) url: the starting url that we are going to start with
+                 (optional) keyword: keyword to be browsed, if the url is not provided, the the searching
+                 result will be the first page that we are going to start with
     :return res: the web page content of the searching result.
     """
+
+    try:
+        is_stand_alone = (driver is None)
+
+        if is_stand_alone:
+            driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
+
+
+
+
+

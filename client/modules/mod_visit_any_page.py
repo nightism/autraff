@@ -24,15 +24,21 @@ def execute(args, driver=None):
     :return res: the web page content of the searching result.
     """
 
-    is_stand_alone = (driver is None)
-
-    if is_stand_alone:
-        driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
-
     try:
+        is_stand_alone = (driver is None)
+
+        if is_stand_alone:
+            driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
+
         driver.get(args['url'])
         res = driver.page_source
-        time.sleep(1)
+        visit_time = args['time']
+        if visit_time is None:
+            visit_time = 1
+        else:
+            visit_time = int(visit_time)
+
+        time.sleep(visit_time)
 
         if is_stand_alone:
             driver.close()
@@ -42,6 +48,7 @@ def execute(args, driver=None):
 
     except Exception as e:
         print("Error occured: \"" + str(e))
+        raise e
 
 
 if __name__ == '__main__':
