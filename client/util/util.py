@@ -1,8 +1,13 @@
 import time
 
 from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 from .constants import FIREFOX_WEBDRIVER
+
+
+SELECT_LINK_OPEN_IN_NEW_TAB = Keys.CONTROL + Keys.SHIFT + Keys.RETURN
+
 
 def stay(staying_time):
     """
@@ -28,6 +33,7 @@ def close_driver(should_close, driver):
     if should_close:
         res = driver.page_source
         driver.close()
+        print("test")
         return res
     else:
         return driver
