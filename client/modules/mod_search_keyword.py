@@ -4,6 +4,11 @@
 * author Mingyang
 
 """
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from selenium import webdriver
 from ..util.constants import FIREFOX_WEBDRIVER
 import time
@@ -67,3 +72,13 @@ def execute(args, driver=None):
             else:
                 print("Error occured: \"" + str(e) + "\" Skipping to next command.")
                 return ""
+
+
+if __name__ == '__main__':
+    engine = input()
+    keyword = input()
+
+    execute({
+        'engine': engine,
+        'keyword': keyword,
+    })

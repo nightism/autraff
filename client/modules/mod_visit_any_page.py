@@ -5,8 +5,12 @@
 
 """
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from selenium import webdriver
-from ..util.constants import FIREFOX_WEBDRIVER
+from util.constants import FIREFOX_WEBDRIVER
 import time
 
 
@@ -25,8 +29,6 @@ def execute(args, driver=None):
     if is_stand_alone:
         driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
 
-    print('test')
-
     try:
         driver.get(args['url'])
         res = driver.page_source
@@ -40,3 +42,8 @@ def execute(args, driver=None):
 
     except Exception as e:
         print("Error occured: \"" + str(e))
+
+
+if __name__ == '__main__':
+    url = input()
+    execute({'url': url})
