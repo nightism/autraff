@@ -5,13 +5,9 @@
 
 """
 
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from selenium import webdriver
-from ..util.constants import FIREFOX_WEBDRIVER
-import time
+from util.util import get_driver
+from util.util import close_driver
+from util.util import stay
 
 
 def execute(args, driver=None):
@@ -21,15 +17,15 @@ def execute(args, driver=None):
     :param args: dict of mandantory and optional arguments used.
                  engine: searching engine used, support: Google, Bing
                  keyword: keyword to search
+                 (optional) time: the time remaining on the searching result
+    :param driver: (optional) selenium driver used
     :return res: the web page content of the searching result.
     """
 
     for counter in range(2):
         try:
             is_stand_alone = (driver is None)
-
-            if is_stand_alone:
-                driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
+            driver = get_driver(driver)
 
             engine = args['engine']
             keyword = args['keyword']
@@ -48,8 +44,7 @@ def execute(args, driver=None):
             # sends Enter key
             search_field.send_keys(u'\ue007')
 
-            # TODO logic need to be refined
-            time.sleep(5)
+            stay(args.get('time'))
 
             # TODO to be removed, these code will click a result link
             # # searches for elements with class g (google's search results) or other search result classes or ids
@@ -59,13 +54,7 @@ def execute(args, driver=None):
             # most_relevant.click()
             # return driver.current_url
 
-            res = driver.page_source
-
-            if is_stand_alone:
-                driver.close()
-                return res
-            else:
-                return driver
+            return close_driver(is_stand_alone, driver)
 
         except Exception as e:
             if counter == 0:

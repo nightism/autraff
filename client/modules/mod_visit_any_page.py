@@ -5,13 +5,9 @@
 
 """
 
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-from selenium import webdriver
-from util.constants import FIREFOX_WEBDRIVER
-import time
+from util.util import get_driver
+from util.util import close_driver
+from util.util import stay
 
 
 def execute(args, driver=None):
@@ -20,31 +16,21 @@ def execute(args, driver=None):
 
     :param args: dict of mandantory and optional arguments used.
                  url: the page that is going to be visited
+                 (optional) time: the time remaining on this page
     :param driver: (optional) selenium driver used
     :return res: the web page content of the searching result.
     """
 
     try:
         is_stand_alone = (driver is None)
-
-        if is_stand_alone:
-            driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
+        driver = get_driver(driver)
 
         driver.get(args['url'])
         res = driver.page_source
-        visit_time = args['time']
-        if visit_time is None:
-            visit_time = 1
-        else:
-            visit_time = int(visit_time)
 
-        time.sleep(visit_time)
+        stay(dict.get('time'))
 
-        if is_stand_alone:
-            driver.close()
-            return res
-        else:
-            return driver
+        return close_driver(is_stand_alone, driver)
 
     except Exception as e:
         print("Error occured: \"" + str(e))
