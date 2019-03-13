@@ -35,8 +35,3 @@ def execute(args, driver=None):
     except Exception as e:
         print("Error occured: \"" + str(e))
         raise e
-
-
-if __name__ == '__main__':
-    url = input()
-    execute({'url': url})

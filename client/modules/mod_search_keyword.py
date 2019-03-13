@@ -46,14 +46,6 @@ def execute(args, driver=None):
 
             stay(args.get('time'))
 
-            # TODO to be removed, these code will click a result link
-            # # searches for elements with class g (google's search results) or other search result classes or ids
-            # search_results = driver\
-            #     .find_elements_by_xpath("//div[@class='g'] | //li[@class='b_algo'] | //div[@id='links']/child::*")
-            # most_relevant = search_results[index].find_element_by_xpath(".//a")
-            # most_relevant.click()
-            # return driver.current_url
-
             return close_driver(is_stand_alone, driver)
 
         except Exception as e:
@@ -62,13 +54,3 @@ def execute(args, driver=None):
             else:
                 print("Error occured: \"" + str(e) + "\" Skipping to next command.")
                 raise e
-
-
-if __name__ == '__main__':
-    engine = input()
-    keyword = input()
-
-    execute({
-        'engine': engine,
-        'keyword': keyword,
-    })
