@@ -5,8 +5,9 @@
 
 *env*
 
-template.yml
+*template.yml*
 
+client/dep.txt
 client/dependency.txt
 client/geckodriver.log
 
