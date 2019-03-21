@@ -147,8 +147,8 @@ class ClientPage extends Component {
   }
 
   connectToClient() {
-    // console.log(this.state.client)
-    fetch("http://localhost:5000/connect_to_client", {
+    console.log(this.state.client)
+    fetch("http://localhost:5000/connect-to-client", {
       method: "POST",
       body: JSON.stringify({
         client: this.state.client
@@ -156,7 +156,7 @@ class ClientPage extends Component {
     }).then((response) => {
       return response.json()
     }).then((data) => {
-      // alert(data.result)
+      alert(data.result)
       if (data.result === 'success') {
         this.setState({status: 'connected'})
       } else {
@@ -186,7 +186,7 @@ class ClientPage extends Component {
       })
       this.setState({'jobInfo': jobList})
 
-      fetch("http://localhost:5000/connect_to_client", {
+      fetch("http://localhost:5000/connect-to-client", {
         method: "POST",
         body: JSON.stringify({
           client: this.props.match.params.client
@@ -225,7 +225,7 @@ class ClientPage extends Component {
         })
         this.setState({'jobInfo': jobList})
 
-        fetch("http://localhost:5000/connect_to_client", {
+        fetch("http://localhost:5000/connect-to-client", {
           method: "POST",
           body: JSON.stringify({
             client: this.props.match.params.client
