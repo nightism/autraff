@@ -3,11 +3,11 @@
 *.pyc
 *__pycache__*
 
+*env*
+
 template.yml
 
-client/clientenv
 client/dependency.txt
 client/geckodriver.log
 
-controller/contenv
 controller/dependency.txt
