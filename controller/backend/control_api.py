@@ -1,4 +1,5 @@
-from flask import Flask, request, Response, jsonify
+from flask import request, jsonify
+from flask import Blueprint
 
 from osbrain import NSProxy
 from osbrain import run_agent
@@ -6,21 +7,12 @@ from osbrain import run_nameserver
 
 import json
 
-from service import app, db
+from utils.constants import *
+
+control_api = Blueprint('control_api', __name__)
 
 
-NAMESERVER_ADDRESS = '127.0.0.1:26000'
-CONTROLLER_ALIAS = 'server'
-COMMUNICATION_CHANNEL = 'request_addr'
-CLIENT_PREFIX = 'client-'
-CONNECTION_SUFFIX = '_tcp_channel'
-
-COMMAND_SCHEDULE_TASK = 'schedule_task'
-COMMAND_DELETE_TASK = 'delete_task'
-COMMAND_GET_LOG = 'get_log'
-
-
-@app.route("/open-connection", methods=["POST"])
+@control_api.route("/open-connection", methods=["POST"])
 def open_connection():
     try:
         run_nameserver(NAMESERVER_ADDRESS)
@@ -40,7 +32,7 @@ def open_connection():
         return resp
 
 
-@app.route("/check-connection", methods=["POST"])
+@control_api.route("/check-connection", methods=["POST"])
 def check_connection():
     try:
         ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
@@ -60,9 +52,10 @@ def check_connection():
         return resp
 
 
-@app.route("/connect_to_client", methods=["POST"])
+@control_api.route("/connect-to-client", methods=["POST"])
 def connect_to_client():
     try:
+        print("test")
         ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
         controller = ns.proxy(CONTROLLER_ALIAS)
 
@@ -90,13 +83,14 @@ def connect_to_client():
     return connection_name
 
 
-@app.route("/schedule-job", methods=["POST"])
+@control_api.route("/schedule-job", methods=["POST"])
 def schedule_job():
+    print("test2")
     ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
     controller = ns.proxy(CONTROLLER_ALIAS)
-
+    print("test3")
     data = json.loads(request.data)
-
+    print("test4")
     connection_name = data['connection_name']
     message = {
         'command': COMMAND_SCHEDULE_TASK,
@@ -107,6 +101,7 @@ def schedule_job():
 
     controller.send(connection_name, message)
     reply = controller.recv(connection_name)
+    print("test5")
 
     result = {
         'schedule_id': str(reply)
@@ -117,7 +112,7 @@ def schedule_job():
     return resp
 
 
-@app.route("/stop-job", methods=["POST"])
+@control_api.route("/stop-job", methods=["POST"])
 def stop_job():
     ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
     controller = ns.proxy(CONTROLLER_ALIAS)

@@ -1,7 +1,8 @@
-from flask import Flask, request, Response, jsonify
-import os
+from flask_sqlalchemy import SQLAlchemy
+from flask_marshmallow import Marshmallow
 
-from service import app, db, ma
+db = SQLAlchemy()
+ma = Marshmallow()
 
 
 class Client(db.Model):

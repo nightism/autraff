@@ -1,38 +1,37 @@
-from flask import Flask, request, Response, jsonify
-import json
+from flask import request, jsonify
+from flask import Blueprint
+
 from datetime import datetime
+import json
 
-from service import app, db
-from db_schema import Client, ClientSchema
-from db_schema import Module, ModuleSchema
-from db_schema import Persona, PersonaSchema
-from db_schema import Job, JobSchema
+import db_schema
 
+db_api = Blueprint('db_api', __name__)
 
-client_schema = ClientSchema()
-clients_schema = ClientSchema(many=True)
+client_schema = db_schema.ClientSchema()
+clients_schema = db_schema.ClientSchema(many=True)
 
-module_schema = ModuleSchema()
-modules_schema = ModuleSchema(many=True)
+module_schema = db_schema.ModuleSchema()
+modules_schema = db_schema.ModuleSchema(many=True)
 
-persona_schema = PersonaSchema()
-personas_schema = PersonaSchema(many=True)
+persona_schema = db_schema.PersonaSchema()
+personas_schema = db_schema.PersonaSchema(many=True)
 
-job_schema = JobSchema()
-jobs_schema = JobSchema(many=True)
+job_schema = db_schema.JobSchema()
+jobs_schema = db_schema.JobSchema(many=True)
 
 
 # endpoint to create new client
-@app.route("/client", methods=["POST"])
+@db_api.route("/client", methods=["POST"])
 def add_client():
     ip = request.json['ip']
     system = request.json['system']
     version = request.json['version']
 
-    new_client = Client(ip, system, version)
+    new_client = db_schema.Client(ip, system, version)
 
-    db.session.add(new_client)
-    db.session.commit()
+    db_schema.db.session.add(new_client)
+    db_schema.db.session.commit()
 
     resp = client_schema.jsonify(new_client)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -41,9 +40,9 @@ def add_client():
 
 
 # endpoint to show all clients
-@app.route("/client", methods=["GET"])
+@db_api.route("/client", methods=["GET"])
 def get_client():
-    all_clients = Client.query.all()
+    all_clients = db_schema.Client.query.all()
     result = clients_schema.dump(all_clients)
 
     resp = jsonify(result.data)
@@ -52,9 +51,9 @@ def get_client():
 
 
 # endpoint to get client detail by ip
-@app.route("/client/<ip>", methods=["GET"])
+@db_api.route("/client/<ip>", methods=["GET"])
 def client_detail(ip):
-    client = Client.query.get(ip)
+    client = db_schema.Client.query.get(ip)
 
     resp = client_schema.jsonify(client)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -62,11 +61,11 @@ def client_detail(ip):
 
 
 # endpoint to update client
-@app.route("/client", methods=["PUT"])
+@db_api.route("/client", methods=["PUT"])
 def client_update():
     data = json.loads(request.data)
     ip = data['ip']
-    client = Client.query.get(ip)
+    client = db_schema.Client.query.get(ip)
     new_ip = data['new_ip']
     system = data['system']
     version = data['version']
@@ -75,7 +74,7 @@ def client_update():
     client.system = system
     client.version = version
 
-    db.session.commit()
+    db_schema.db.session.commit()
 
     resp = client_schema.jsonify(client)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -83,13 +82,13 @@ def client_update():
 
 
 # endpoint to delete client
-@app.route("/client", methods=["DELETE"])
+@db_api.route("/client", methods=["DELETE"])
 def client_delete():
     data = json.loads(request.data)
     ip = data['ip']
-    client = Client.query.get(ip)
-    db.session.delete(client)
-    db.session.commit()
+    client = db_schema.Client.query.get(ip)
+    db_schema.db.session.delete(client)
+    db_schema.db.session.commit()
 
     resp = client_schema.jsonify(client)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -97,17 +96,17 @@ def client_delete():
 
 
 # endpoint to add module
-@app.route("/module", methods=["POST"])
+@db_api.route("/module", methods=["POST"])
 def add_module():
     data = json.loads(request.data)
 
     name = data['name']
     description = data['description']
 
-    new_module = Module(name, description)
+    new_module = db_schema.Module(name, description)
 
-    db.session.add(new_module)
-    db.session.commit()
+    db_schema.db.session.add(new_module)
+    db_schema.db.session.commit()
 
     resp = module_schema.jsonify(new_module)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -115,9 +114,9 @@ def add_module():
 
 
 # endpoint to show all modules
-@app.route("/module", methods=["GET"])
+@db_api.route("/module", methods=["GET"])
 def get_module():
-    all_modules = Module.query.all()
+    all_modules = db_schema.Module.query.all()
     result = modules_schema.dump(all_modules)
 
     resp = jsonify(result.data)
@@ -126,7 +125,7 @@ def get_module():
 
 
 # endpoint to add persona 
-@app.route("/persona", methods=["POST"])
+@db_api.route("/persona", methods=["POST"])
 def add_persona():
     data = json.loads(request.data)
 
@@ -135,10 +134,10 @@ def add_persona():
     interest = []  # TODO validate as a list
     account = dict()  # TODO validate as a dict
 
-    new_persona = Persona(name, engine, interest, account)
+    new_persona = db_schema.Persona(name, engine, interest, account)
 
-    db.session.add(new_persona)
-    db.session.commit()
+    db_schema.db.session.add(new_persona)
+    db_schema.db.session.commit()
 
     resp = persona_schema.jsonify(new_persona)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -146,7 +145,7 @@ def add_persona():
 
 
 # endpoint to add job
-@app.route("/job", methods=["POST"])
+@db_api.route("/job", methods=["POST"])
 def add_job():
     data = json.loads(request.data)
 
@@ -161,9 +160,9 @@ def add_job():
     # persona = data['persona']
     arguments = data['arguments']
 
-    new_job = Job(name, module, client, interval, dt_obj, arguments=arguments)
-    db.session.add(new_job)
-    db.session.commit()
+    new_job = db_schema.Job(name, module, client, interval, dt_obj, arguments=arguments)
+    db_schema.db.session.add(new_job)
+    db_schema.db.session.commit()
 
     resp = job_schema.jsonify(new_job)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -171,9 +170,9 @@ def add_job():
 
 
 # endpoint to show all job
-@app.route("/job", methods=["GET"])
+@db_api.route("/job", methods=["GET"])
 def get_jobs():
-    all_jobs = Job.query.all()
+    all_jobs = db_schema.Job.query.all()
     result = jobs_schema.dump(all_jobs)
 
     resp = jsonify(result.data)
@@ -182,9 +181,9 @@ def get_jobs():
 
 
 # endpoint to show one job
-@app.route("/job/<id>/detail", methods=["GET"])
+@db_api.route("/job/<id>/detail", methods=["GET"])
 def get_a_single_job(id):
-    job = Job.query.get(id)
+    job = db_schema.Job.query.get(id)
 
     resp = job_schema.jsonify(job)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -192,9 +191,9 @@ def get_a_single_job(id):
 
 
 # endpoint to update one job
-@app.route("/job/<id>", methods=["PUT"])
+@db_api.route("/job/<id>", methods=["PUT"])
 def update_a_job(id):
-    job = Job.query.get(id)
+    job = db_schema.Job.query.get(id)
 
     data = json.loads(request.data)
     job.name = data['name']
@@ -204,7 +203,7 @@ def update_a_job(id):
     job.arguments = data['arguments']
     print(job.arguments)
 
-    db.session.commit()
+    db_schema.db.session.commit()
 
     resp = job_schema.jsonify(job)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -212,18 +211,13 @@ def update_a_job(id):
 
 
 # endpoint to add schedule_id to a job
-@app.route("/job/schedule/<seq>", methods=["POST"])
+@db_api.route("/job/schedule/<seq>", methods=["POST"])
 def update_job_schedule_id(seq):
-    print("test")
-    # print(seq)
-    # this_job = {
-    #     "test": "test"
-    # }
     data = json.loads(request.data)
     schedule_id = data['schedule_id']
-    this_job = Job.query.get(seq)
+    this_job = db_schema.Job.query.get(seq)
     this_job.schedule_id = schedule_id
-    db.session.commit()
+    db_schema.db.session.commit()
 
     resp = job_schema.jsonify(this_job)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -231,10 +225,9 @@ def update_job_schedule_id(seq):
 
 
 # endpoint to get jobs of a client
-@app.route("/job/<client>", methods=["GET"])
+@db_api.route("/job/<client>", methods=["GET"])
 def get_jobs_of_a_client(client):
-    print(client)
-    jobs = Job.query.filter(Job.client == client)
+    jobs = db_schema.Job.query.filter(db_schema.Job.client == client)
 
     resp = jobs_schema.jsonify(jobs)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -251,10 +244,5 @@ def get_jobs_of_a_client(client):
     # "new_ip": "10.0.26.4",
     # "system": "Linux",
     # "version": "Ubuntu 16.0.4",
-    
-    
     # "name": "mod_visit_any_page",
     # "description": "{'desc': 'visit any web page', 'para':{'url':'https://www.google.com'}}}"
-
-
-
