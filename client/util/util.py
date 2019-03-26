@@ -9,16 +9,14 @@ from .constants import FIREFOX_WEBDRIVER
 SELECT_LINK_OPEN_IN_NEW_TAB = Keys.CONTROL + Keys.SHIFT + Keys.RETURN
 
 
-def stay(staying_time):
+def stay(staying_time=5):
     """
         stay and sleep for certain amount of time, default value 5 seconds
     """
-
     if staying_time is None:
         staying_time = 5
-    else:
-        staying_time = int(staying_time)
 
+    staying_time = int(staying_time)
     time.sleep(staying_time)
 
 
