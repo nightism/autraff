@@ -11,7 +11,7 @@
 
 from util.util import get_driver
 from util.util import close_driver
-from util.util import SELECT_LINK_OPEN_IN_NEW_TAB
+from util.selenium_operations import SELECT_LINK_OPEN_IN_NEW_TAB
 
 
 from modules.mod_search_keyword import execute as search_keyword
@@ -34,28 +34,39 @@ def execute(args, driver=None):
     try:
         driver, is_stand_alone = get_driver(driver)
 
+        # get args from dict
         starting_url = args.get('url')
         keyword = args['keyword']
-        starting_page = None
+
+        # initialize starting page
+        current_page = None
         if starting_url is None:
-            starting_page = search_keyword({
+            current_page = search_keyword({
                 'keyword': keyword,
-                'engine': 'Google',
+                'engine': 'Google',  # TODO default searching engine
                 'time': '1',
             }, driver)
             search_results = driver\
                 .find_elements_by_xpath("//div[@class='g'] | //li[@class='b_algo'] | //div[@id='links']/child::*")
             most_relevant = search_results[1].find_element_by_xpath(".//a")
-            most_relevant.send_keys(SELECT_LINK_OPEN_IN_NEW_TAB)
+            most_relevant.send_keys(SELECT_LINK_OPEN_IN_NEW_TAB)  # open page in a new tab
         else:
-            starting_page = visit_page({
+            current_page = visit_page({
                 'url': starting_url,
                 'time': '1',
             }, driver)
 
-        staying_time = int(args['time'])
+        # total time of browsing
+        total_staying_time = int(args['time'])
 
-        while staying_time != 0:
+        # start browsing the web
+        while total_staying_time != 0:
+            # Compute interest of current page theme
+            # Obtain staying time
+            # Computer theme closeness and visibility closeness for every page linking
+            # Computer possibility for every linking
+            # Go to the link with the highest likelihood
+
             return
 
         close_driver(is_stand_alone, driver)
@@ -65,15 +76,15 @@ def execute(args, driver=None):
         raise e
 
 
-if __name__ == '__main__':
-    keyword = input()
-
-    execute({
-        'keyword': keyword,
-        'time': 10
-    })
-
-
+# if __name__ == '__main__':
+#     keyword = input()
+#
+#     execute({
+#         'keyword': keyword,
+#         'time': 10
+#     })
+#
+#
 
 
 

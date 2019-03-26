@@ -1,12 +1,8 @@
 import time
 
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 
 from .constants import FIREFOX_WEBDRIVER
-
-
-SELECT_LINK_OPEN_IN_NEW_TAB = Keys.CONTROL + Keys.SHIFT + Keys.RETURN
 
 
 def stay(staying_time=5):
