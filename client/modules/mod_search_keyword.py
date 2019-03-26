@@ -24,8 +24,7 @@ def execute(args, driver=None):
 
     for counter in range(2):
         try:
-            is_stand_alone = (driver is None)
-            driver = get_driver(driver)
+            driver, is_stand_alone = get_driver(driver)
 
             engine = args['engine']
             keyword = args['keyword']

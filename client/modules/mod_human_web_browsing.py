@@ -32,8 +32,7 @@ def execute(args, driver=None):
     """
 
     try:
-        is_stand_alone = (driver is None)
-        driver = get_driver(driver)
+        driver, is_stand_alone = get_driver(driver)
 
         starting_url = args.get('url')
         keyword = args['keyword']
