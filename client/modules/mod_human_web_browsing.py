@@ -5,17 +5,17 @@
 
 """
 
-import sys
-import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# import sys
+# import os
+# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from util.util import get_driver
 from util.util import close_driver
 from util.util import SELECT_LINK_OPEN_IN_NEW_TAB
 
 
-from mod_search_keyword import execute as search_keyword
-from mod_visit_any_page import execute as visit_page
+from modules.mod_search_keyword import execute as search_keyword
+from modules.mod_visit_any_page import execute as visit_page
 
 
 def execute(args, driver=None):

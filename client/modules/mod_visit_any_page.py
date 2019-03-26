@@ -17,6 +17,10 @@ def execute(args, driver=None):
     :param args: dict of mandantory and optional arguments used.
                  url: the page that is going to be visited
                  (optional) time: the time remaining on this page
+                 <example> {
+                                url: "http://www.bbc.com",
+                                time: '10',
+                            }
     :param driver: (optional) selenium driver used
     :return res: the web page content of the searching result.
     """
@@ -28,7 +32,10 @@ def execute(args, driver=None):
         driver.get(args['url'])
         res = driver.page_source
 
-        stay(dict.get('time'))
+        if 'time' in dict:
+            stay(dict['time'])
+        else:
+            stay()
 
         return close_driver(is_stand_alone, driver)
 
