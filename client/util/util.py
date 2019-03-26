@@ -21,10 +21,11 @@ def stay(staying_time=5):
 
 
 def get_driver(driver):
-    if driver is None:
+    stand_alone = driver is None
+    if stand_alone:
         driver = webdriver.Firefox(executable_path=FIREFOX_WEBDRIVER)
 
-    return driver
+    return driver, stand_alone
 
 
 def close_driver(should_close, driver):
