@@ -89,7 +89,7 @@ def sentence_similarity_from_synsets(synsets_one, synsets_two):
         return total_score / word_count
 
 
-def sentence_similarity(sen1, sen2):
+def calculate_sentence_similarity(sen1, sen2):
     synsets_one, synsets_two = preprocess(sen1, sen2)
     similarity_one = sentence_similarity_from_synsets(synsets_one, synsets_two)
     similarity_two = sentence_similarity_from_synsets(synsets_two, synsets_one)
@@ -100,4 +100,4 @@ def sentence_similarity(sen1, sen2):
 if __name__ == '__main__':
     sen1 = input()
     sen2 = input()
-    print(sentence_similarity(sen1, sen2))
+    print(calculate_sentence_similarity(sen1, sen2))

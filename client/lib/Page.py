@@ -1,4 +1,4 @@
-from util.util_human_web_browsing.sentence_smilarity import sentence_similarity
+from util.util_human_web_browsing.sentence_smilarity import calculate_sentence_similarity
 
 
 class Page:
@@ -7,12 +7,12 @@ class Page:
         self.content = content
 
     def calculate_theme_closeness(self, another_title):
-        result = sentence_similarity(self.title, another_title)
+        result = calculate_sentence_similarity(self.title, another_title)
         return result
 
     def calculate_content_closeness(self, another_content):
         # TODO
-        result = sentence_similarity(self.content, another_content)
+        result = calculate_sentence_similarity(self.content, another_content)
         return result
 
     # TODO def calculate_staying_time(self, ):
