@@ -9,10 +9,11 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from lib.Page import Page
+
 from util.util import get_driver
 from util.util import close_driver
 from util.selenium_operations import extract_page_content
-
 
 from modules.mod_search_keyword import execute as search_keyword
 from modules.mod_visit_any_page import execute as visit_page
@@ -42,25 +43,25 @@ def execute(args, driver=None):
         # initialize starting page
         if starting_url is None:
             # start with a google search by clicking the first result
-            current_page = search_keyword({
+            driver = search_keyword({
                 'keyword': keyword,
                 'engine': 'Google',  # TODO default searching engine
                 'time': '1',
             }, driver)
-            current_page = click_result({'n': 0}, driver=current_page)
+            driver = click_result({'n': 0}, driver=driver)
         else:
             # start with a specific page
-            current_page = visit_page({
+            driver = visit_page({
                 'url': starting_url,
                 'time': '1',
             }, driver)
 
         # record current page information
-        title = current_page.title
-        content = extract_page_content(current_page)
+        title = driver.title
+        content = extract_page_content(driver)
 
-        print(title)
-        print(content)
+        # record the starting page
+        current_page = Page(title, content, 0)
 
         # total time of browsing
         total_staying_time = int(args['time'])
