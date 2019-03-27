@@ -34,6 +34,7 @@ def execute(args, driver=None):
                 url = 'https://www.bing.com'
 
             driver.get(url)
+            stay(2)
 
             # TODO logic need to be went through again
             # searches for element with class search or gsfi (google's name for sreach field class)
@@ -41,6 +42,7 @@ def execute(args, driver=None):
                                                         "or contains(@class, 'gsfi')]")
             search_field.send_keys(keyword)
             # sends Enter key
+            stay(1)
             search_field.send_keys(u'\ue007')
 
             stay(args.get('time'))

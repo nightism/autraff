@@ -5,9 +5,9 @@
 
 """
 
-# import sys
-# import os
-# sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from util.util import get_driver
 from util.util import close_driver
@@ -16,6 +16,7 @@ from util.selenium_operations import SELECT_LINK_OPEN_IN_NEW_TAB
 
 from modules.mod_search_keyword import execute as search_keyword
 from modules.mod_visit_any_page import execute as visit_page
+from modules.mod_click_searching_result import execute as click_result
 
 
 def execute(args, driver=None):
@@ -46,10 +47,7 @@ def execute(args, driver=None):
                 'engine': 'Google',  # TODO default searching engine
                 'time': '1',
             }, driver)
-            search_results = driver\
-                .find_elements_by_xpath("//div[@class='g'] | //li[@class='b_algo'] | //div[@id='links']/child::*")
-            most_relevant = search_results[1].find_element_by_xpath(".//a")
-            most_relevant.send_keys(SELECT_LINK_OPEN_IN_NEW_TAB)  # open page in a new tab
+            click_result({'n': 0}, driver=driver)
         else:
             current_page = visit_page({
                 'url': starting_url,
@@ -76,15 +74,15 @@ def execute(args, driver=None):
         raise e
 
 
-# if __name__ == '__main__':
-#     keyword = input()
-#
-#     execute({
-#         'keyword': keyword,
-#         'time': 10
-#     })
-#
-#
+if __name__ == '__main__':
+    keyword = input()
+
+    execute({
+        'keyword': keyword,
+        'time': 10
+    })
+
+
 
 
 
