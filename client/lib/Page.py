@@ -15,4 +15,4 @@ class Page:
         result = sentence_similarity(self.content, another_content)
         return result
 
-
+    # TODO def calculate_staying_time(self, ):

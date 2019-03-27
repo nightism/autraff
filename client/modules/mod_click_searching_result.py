@@ -35,6 +35,8 @@ def execute(args, driver=None):
             .find_elements_by_xpath("//div[@class='g'] | //li[@class='b_algo'] | //div[@id='links']/child::*")
         most_relevant = search_results[n].find_element_by_xpath(".//a")
         most_relevant.click()
+
+        # TODO open new tab not working well, driver will stay
         # most_relevant.send_keys(SELECT_LINK_OPEN_IN_NEW_TAB)  # open page in a new tab
 
         stay(staying_time)
