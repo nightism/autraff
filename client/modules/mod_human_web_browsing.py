@@ -11,7 +11,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from util.util import get_driver
 from util.util import close_driver
-from util.selenium_operations import SELECT_LINK_OPEN_IN_NEW_TAB
+from util.selenium_operations import extract_page_content
 
 
 from modules.mod_search_keyword import execute as search_keyword
@@ -47,12 +47,14 @@ def execute(args, driver=None):
                 'engine': 'Google',  # TODO default searching engine
                 'time': '1',
             }, driver)
-            click_result({'n': 0}, driver=driver)
+            current_page = click_result({'n': 0}, driver=current_page)
         else:
             current_page = visit_page({
                 'url': starting_url,
                 'time': '1',
             }, driver)
+
+        extract_page_content(current_page)
 
         # total time of browsing
         total_staying_time = int(args['time'])
