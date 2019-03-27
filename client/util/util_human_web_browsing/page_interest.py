@@ -1,8 +1,5 @@
-from lib.Page import Page
-
-
 def calculate_page_interest(page):
-    max_length = Page.max_content_length
+    max_length = page.max_content_length
     page_length = len(page.content)
 
     original_interest = (page_length * 1.0) / (max_length * 1.0)
