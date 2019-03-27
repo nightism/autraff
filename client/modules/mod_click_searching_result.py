@@ -6,7 +6,6 @@
 """
 
 from util.util import stay
-from util.selenium_operations import SELECT_LINK_OPEN_IN_NEW_TAB
 
 
 def execute(args, driver=None):

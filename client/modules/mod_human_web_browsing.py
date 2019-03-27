@@ -40,8 +40,8 @@ def execute(args, driver=None):
         keyword = args['keyword']
 
         # initialize starting page
-        current_page = None
         if starting_url is None:
+            # start with a google search by clicking the first result
             current_page = search_keyword({
                 'keyword': keyword,
                 'engine': 'Google',  # TODO default searching engine
@@ -49,12 +49,18 @@ def execute(args, driver=None):
             }, driver)
             current_page = click_result({'n': 0}, driver=current_page)
         else:
+            # start with a specific page
             current_page = visit_page({
                 'url': starting_url,
                 'time': '1',
             }, driver)
 
-        extract_page_content(current_page)
+        # record current page information
+        title = current_page.title
+        content = extract_page_content(current_page)
+
+        print(title)
+        print(content)
 
         # total time of browsing
         total_staying_time = int(args['time'])

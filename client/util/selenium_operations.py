@@ -9,7 +9,7 @@ def extract_page_content(driver):
 
     try:
         el = driver.find_element_by_tag_name("body")
-        print(el.text)
+        # print(el.text)
         return el.text
     except Exception as e:
         print('[Selenium Util] ' + str(e))

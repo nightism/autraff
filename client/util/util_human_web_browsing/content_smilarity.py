@@ -38,7 +38,7 @@ def word_tag_to_synset(word, tag):
 
 def preprocess(sen_one, sen_two):
     """
-    compute the similarity between two sentences using Wordnet
+    compute the similarity between two contents using Wordnet
     """
 
     # Tokenize
@@ -64,7 +64,7 @@ def preprocess(sen_one, sen_two):
     return synsets_one, synsets_two
 
 
-def sentence_similarity_from_synsets(synsets_one, synsets_two):
+def content_similarity_from_synsets(synsets_one, synsets_two):
 
     total_score = 0.0
     word_count = 0
@@ -89,10 +89,10 @@ def sentence_similarity_from_synsets(synsets_one, synsets_two):
         return total_score / word_count
 
 
-def calculate_sentence_similarity(sen1, sen2):
+def calculate_content_similarity(sen1, sen2):
     synsets_one, synsets_two = preprocess(sen1, sen2)
-    similarity_one = sentence_similarity_from_synsets(synsets_one, synsets_two)
-    similarity_two = sentence_similarity_from_synsets(synsets_two, synsets_one)
+    similarity_one = content_similarity_from_synsets(synsets_one, synsets_two)
+    similarity_two = content_similarity_from_synsets(synsets_two, synsets_one)
 
     return (similarity_one + similarity_two) / 2.0
 
@@ -100,4 +100,4 @@ def calculate_sentence_similarity(sen1, sen2):
 if __name__ == '__main__':
     sen1 = input()
     sen2 = input()
-    print(calculate_sentence_similarity(sen1, sen2))
+    print(calculate_content_similarity(sen1, sen2))
