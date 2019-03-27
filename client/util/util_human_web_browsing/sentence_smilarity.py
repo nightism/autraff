@@ -73,8 +73,8 @@ def sentence_similarity_from_synsets(synsets_one, synsets_two):
         # Calculate similarity score of the most similar word
         all_scores = list(map(synset.path_similarity, synsets_two))
         all_scores = list(filter(lambda x: x is not None, all_scores))
-        print(synset)
-        print(all_scores)
+        # print(synset)
+        # print(all_scores)
         if all_scores:
             score = max(all_scores)
 
