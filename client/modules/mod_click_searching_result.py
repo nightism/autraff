@@ -14,7 +14,6 @@ def execute(args, driver=None):
     This module will click a link in the searching result, cannot be used standalone
 
     :param args: dict of mandantory and optional arguments used.
-                 engine: searching engine used, support: Google, Bing
                  (optional) n: the n-th result will be clicked
                  (optional) time: the time remaining on the page
     :param driver: selenium driver used
