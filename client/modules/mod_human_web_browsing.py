@@ -37,6 +37,7 @@ def execute(args, driver=None):
 
     try:
         driver, is_stand_alone = get_driver(driver)
+        driver.maximize_window()
 
         # get args from dict
         starting_url = args.get('url')
@@ -62,19 +63,18 @@ def execute(args, driver=None):
         title = driver.title
         content = extract_page_content(driver)
 
-        driver.maximize_window()
 
         # record the starting page
         height = driver.execute_script("return document.body.scrollHeight")
         current_page = Page(title, content, 0, None, height)
-        print(current_page.interest_in_theme)
-        print(current_page.interest_in_page)
-        print(current_page.staying_time)
+        # print(current_page.interest_in_theme)
+        # print(current_page.interest_in_page)
+        # print(current_page.staying_time)
 
-        # current_page_links = get_all_clickable_links(driver)
-        # current_page_links_possibility = calculate_link_possibility(current_page, current_page_links)
-        #
-        # print(current_page_links_possibility[0])
+        current_page_links = get_all_clickable_links(driver)
+        current_page_links_possibility = calculate_link_possibility(current_page, current_page_links)
+
+        print(current_page_links_possibility[0])
 
         # for a in driver.find_elements_by_xpath('.//a')[-10:]:
         #     print(a.text)
