@@ -9,7 +9,14 @@ def get_all_clickable_links(driver):
         return []
 
     all_links = driver.find_elements_by_xpath('.//a')
-    all_links = list(filter(lambda link: link.text is not None and link.text != "", all_links))
+
+    def validate_link(link):
+        try:
+            return link.text is not None and link.text != ""
+        except:
+            return False
+
+    all_links = list(filter(lambda link: validate_link(link), all_links))
 
     return all_links
 
@@ -44,19 +51,22 @@ def calculate_link_possibility(page, all_links):
     possibility = []
 
     for index, link in enumerate(all_links):
-        visual_effect = PHI_OF_VISUAL_EFFECT * calculate_link_visibility_closeness_in_a_page(page, link)
-        theme_closeness = calculate_link_theme_closeness_in_a_page(page, link)
-        theme_interest = page.interest_in_theme
-        theme_effect = PHI_OF_CONTENT_EFFECT \
-                       * (2 * theme_closeness * theme_interest / (theme_closeness ** 2 + theme_interest ** 2))
+        try:
+            visual_effect = PHI_OF_VISUAL_EFFECT * calculate_link_visibility_closeness_in_a_page(page, link)
+            theme_closeness = calculate_link_theme_closeness_in_a_page(page, link)
+            theme_interest = page.interest_in_theme
+            theme_effect = PHI_OF_CONTENT_EFFECT \
+                           * (2 * theme_closeness * theme_interest / (theme_closeness ** 2 + theme_interest ** 2))
 
-        effect = (theme_effect + visual_effect)
+            effect = (theme_effect + visual_effect)
 
-        if effect > 0.0000000001:
-            possibility.append({
-                'link': link,
-                'possibility': effect
-            })
+            if effect > 0.0000000001:
+                possibility.append({
+                    'link': link,
+                    'possibility': effect
+                })
+        except Exception as e:
+            continue
 
     def take_possibility(link_dict):
         return link_dict['possibility']
