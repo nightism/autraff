@@ -7,10 +7,12 @@
 
 import sys
 import os
+import time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from lib.page import Page
 
+from util.util import stay
 from util.util import get_driver
 from util.util import close_driver
 from util.selenium_operations import extract_page_content
@@ -37,59 +39,80 @@ def execute(args, driver=None):
 
     try:
         driver, is_stand_alone = get_driver(driver)
-        driver.maximize_window()
+        # driver.maximize_window()
 
         # get args from dict
         starting_url = args.get('url')
         keyword = args.get('keyword')
+        total_staying_time = int(args['time'])  # total time of browsing
+
         # initialize starting page
         if starting_url is None:
             # start with a google search by clicking the first result
             driver = search_keyword({
                 'keyword': keyword,
                 'engine': 'Google',  # TODO default searching engine
-                'time': '1',
+                'time': '0',
             }, driver)
             driver = click_result({'n': 0}, driver=driver)
         else:
             # start with a specific page
             driver = visit_page({
                 'url': starting_url,
-                'time': '1',
+                'time': '0',
             }, driver)
 
-        # record current page information
-        title = driver.title
-        content = extract_page_content(driver)
+        theme_staying_time = 0
+        prev_page = None
+        # mark starting time
+        time_stamp = time.time()
 
-
-        # record the starting page
-        height = driver.execute_script("return document.body.scrollHeight")
-        current_page = Page(title, content, 0, None, height)
-        # print(current_page.interest_in_theme)
-        # print(current_page.interest_in_page)
-        # print(current_page.staying_time)
-
-        current_page_links = get_all_clickable_links(driver)
-        current_page_links_possibility = calculate_link_possibility(current_page, current_page_links)
-
-        current_page_links_possibility[0]['link'].click()
-
-        # for a in driver.find_elements_by_xpath('.//a')[-10:]:
-        #     print(a.text)
-
-        # total time of browsing
-        total_staying_time = int(args['time'])
-
-        # start browsing the web
+        # start simulation of human browsing
         while total_staying_time != 0:
+            stay(10)
+
+            # record current page information
+            title = driver.title
+            content = extract_page_content(driver)
+            height = driver.execute_script("return document.body.scrollHeight")
+
+            # create page object
+            current_page = Page(title, content, theme_staying_time, prev_page, height)
+
+            # retrieve all links on the page
+            current_page_links = get_all_clickable_links(driver)
+            current_page_links_possibility = calculate_link_possibility(current_page, current_page_links)
+
+            time_stayed = int(time.time() - time_stamp)
+            page_staying_time = max(0, current_page.staying_time - time_stayed)
+
+            # record theme staying time
+            stay(page_staying_time)
+            time_stayed = max(page_staying_time, time_stayed)
+            theme_staying_time = theme_staying_time + time_stayed
+            total_staying_time = max(0, total_staying_time - time_stayed)
+
+            # click the most likely link to be clicked
+            # TODO if the link is not clickable
+            link_to_be_click = current_page_links_possibility[0]['link']
+            link_text = link_to_be_click.text
+            link_to_be_click.click()
+            time_stamp = time.time()  # TODO may not record here
+
+            # To decide whether we are browsing the same theme
+            theme_closeness = current_page.calculate_theme_closeness(link_text)
+            if theme_closeness < 0.6:
+                theme_staying_time = 0
+
+            # record previous page
+            prev_page = current_page
+
+            # start browsing the web
             # Compute interest of current page theme
             # Obtain staying time
             # Computer theme closeness and visibility closeness for every page linking
             # Computer possibility for every linking
             # Go to the link with the highest likelihood
-
-            return
 
         close_driver(is_stand_alone, driver)
 
@@ -102,8 +125,9 @@ if __name__ == '__main__':
     # keyword = input()
 
     execute({
-        'url': 'https://www.bbc.com/news/uk-england-cornwall-46991379',
-        'time': 10
+        # 'keyword': input(),
+        'url': 'http://time.com/section/newsfeed/',
+        'time': 100000
     })
 
 

@@ -32,6 +32,8 @@ def execute(args, driver=None):
 
         search_results = driver \
             .find_elements_by_xpath("//div[@class='g'] | //li[@class='b_algo'] | //div[@id='links']/child::*")
+        # search_results = driver.find_elements_by_xpath("//h3[@class='LC20lb']/a[@href]")
+        print(search_results)
         most_relevant = search_results[n].find_element_by_xpath(".//a")
         most_relevant.click()
 
