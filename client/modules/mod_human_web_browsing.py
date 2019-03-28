@@ -41,8 +41,7 @@ def execute(args, driver=None):
 
         # get args from dict
         starting_url = args.get('url')
-        keyword = args['keyword']
-
+        keyword = args.get('keyword')
         # initialize starting page
         if starting_url is None:
             # start with a google search by clicking the first result
@@ -74,7 +73,7 @@ def execute(args, driver=None):
         current_page_links = get_all_clickable_links(driver)
         current_page_links_possibility = calculate_link_possibility(current_page, current_page_links)
 
-        current_page_links_possibility[0].click()
+        current_page_links_possibility[0]['link'].click()
 
         # for a in driver.find_elements_by_xpath('.//a')[-10:]:
         #     print(a.text)
@@ -100,10 +99,10 @@ def execute(args, driver=None):
 
 
 if __name__ == '__main__':
-    keyword = input()
+    # keyword = input()
 
     execute({
-        'keyword': keyword,
+        'url': 'https://www.bbc.com/news/uk-england-cornwall-46991379',
         'time': 10
     })
 

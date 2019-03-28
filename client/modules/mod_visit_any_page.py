@@ -31,8 +31,8 @@ def execute(args, driver=None):
         driver.get(args['url'])
         res = driver.page_source
 
-        if 'time' in dict:
-            stay(dict['time'])
+        if 'time' in args:
+            stay(args['time'])
         else:
             stay()
 

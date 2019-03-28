@@ -32,7 +32,8 @@ def calculate_link_visibility_closeness_in_a_page(page, link):
     # x_closeness = 1.0 - 0.2 * abs(x - (page_width / 2.0)) / (page_width / 2.0)
 
     # How far is the y deviated from the top
-    y_closeness = 1.0 - y / page_height
+    # the larger y_closeness, the farther the link
+    y_closeness = y / page_height
 
     actual_closeness = 0.5 - 0.5 * math.sin(math.pi * (y_closeness - 0.5))
 
