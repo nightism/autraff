@@ -23,6 +23,8 @@ from modules.mod_search_keyword import execute as search_keyword
 from modules.mod_visit_any_page import execute as visit_page
 from modules.mod_click_searching_result import execute as click_result
 
+from selenium.common.exceptions import ElementNotInteractableException
+
 
 def execute(args, driver=None):
     """
@@ -94,9 +96,18 @@ def execute(args, driver=None):
 
             # click the most likely link to be clicked
             # TODO if the link is not clickable
-            link_to_be_click = current_page_links_possibility[0]['link']
-            link_text = link_to_be_click.text
-            link_to_be_click.click()
+            while True:
+                try:
+                    link_to_be_click = current_page_links_possibility[0]['link']
+                    link_text = link_to_be_click.text
+                    link_to_be_click.click()
+                    break
+                except ElementNotInteractableException:
+                    current_page_links_possibility.pop(0)
+                    continue
+                finally:
+                    break
+
             time_stamp = time.time()  # TODO may not record here
 
             # To decide whether we are browsing the same theme
