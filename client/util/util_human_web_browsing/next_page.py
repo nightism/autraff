@@ -46,17 +46,20 @@ def calculate_link_possibility(page, all_links):
         visual_effect = PHI_OF_VISUAL_EFFECT * calculate_link_visibility_closeness_in_a_page(page, link)
         theme_closeness = calculate_link_theme_closeness_in_a_page(page, link)
         theme_interest = page.interest_in_theme
-        theme_effect = PHI_OF_CONTENT_EFFECT * \
-                       (2 * theme_closeness * theme_interest / (theme_closeness ** 2 + theme_interest ** 2))
+        theme_effect = PHI_OF_CONTENT_EFFECT \
+                       * (2 * theme_closeness * theme_interest / (theme_closeness ** 2 + theme_interest ** 2))
 
-        possibility.append({
-            'link': link,
-            'possibility': theme_effect + visual_effect
-        })
+        effect = (theme_effect + visual_effect)
+
+        if effect > 0.0000000001:
+            possibility.append({
+                'link': link,
+                'possibility': effect
+            })
 
     def take_possibility(link_dict):
         return link_dict['possibility']
 
-    possibility.sort(key=take_possibility)
+    possibility.sort(key=take_possibility, reverse=True)
 
     return possibility

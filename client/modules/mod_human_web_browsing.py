@@ -74,7 +74,7 @@ def execute(args, driver=None):
         current_page_links = get_all_clickable_links(driver)
         current_page_links_possibility = calculate_link_possibility(current_page, current_page_links)
 
-        print(current_page_links_possibility[0])
+        current_page_links_possibility[0].click()
 
         # for a in driver.find_elements_by_xpath('.//a')[-10:]:
         #     print(a.text)
