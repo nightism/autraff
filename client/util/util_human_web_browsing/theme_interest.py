@@ -16,5 +16,5 @@ def calculate_interest_in_theme(cumulative_staying_time):
     current_interest = temp_interest / highest_interest_time_square * temp_time + 1
     current_interest = max(0, current_interest)
 
-    print(current_interest)
+    # print(current_interest)
     return current_interest

@@ -77,9 +77,6 @@ def content_similarity_from_synsets(synsets_one, synsets_two):
         # print(all_scores)
         if all_scores:
             score = max(all_scores)
-
-        # Check that the similarity could have been computed
-        if score is not None:
             total_score += score
             word_count += 1
 
