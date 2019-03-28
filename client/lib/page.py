@@ -8,9 +8,10 @@ from util.util_human_web_browsing.page_staying_time import calculate_page_stayin
 class Page:
     max_content_length = 0
 
-    def __init__(self, title, content, theme_staying_time, prev_page):
+    def __init__(self, title, content, theme_staying_time, prev_page, height):
         self.title = title
         self.content = content
+        self.height = height
 
         # the time spent on current theme
         self.theme_staying_time = theme_staying_time
@@ -33,12 +34,13 @@ class Page:
         self.interest_in_page = calculate_page_interest(self)
 
         # calculate staying time for current page
-        self.staying_time = calculate_page_staying_time(self.interest_in_page,
-                                                        self.interest_in_theme,
-                                                        self.content_closeness)
+        # among all content in a page, around 10% of them will be really useful information
+        self.staying_time = int(calculate_page_staying_time(self.interest_in_page,
+                                                            self.interest_in_theme,
+                                                            self.max_content_length) / 10)
 
-    def calculate_theme_closeness(self, another_title):
-        result = calculate_theme_similarity(self.title, another_title)
+    def calculate_theme_closeness(self, link_title):
+        result = calculate_theme_similarity(self.title, link_title)
         return result
 
     # TODO def calculate_staying_time(self, ):

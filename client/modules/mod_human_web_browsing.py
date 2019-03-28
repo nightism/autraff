@@ -9,11 +9,13 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from lib.Page import Page
+from lib.page import Page
 
 from util.util import get_driver
 from util.util import close_driver
 from util.selenium_operations import extract_page_content
+from util.util_human_web_browsing.next_page import get_all_clickable_links
+from util.util_human_web_browsing.next_page import calculate_link_possibility
 
 from modules.mod_search_keyword import execute as search_keyword
 from modules.mod_visit_any_page import execute as visit_page
@@ -60,8 +62,22 @@ def execute(args, driver=None):
         title = driver.title
         content = extract_page_content(driver)
 
+        driver.maximize_window()
+
         # record the starting page
-        current_page = Page(title, content, 0)
+        height = driver.execute_script("return document.body.scrollHeight")
+        current_page = Page(title, content, 0, None, height)
+        print(current_page.interest_in_theme)
+        print(current_page.interest_in_page)
+        print(current_page.staying_time)
+
+        # current_page_links = get_all_clickable_links(driver)
+        # current_page_links_possibility = calculate_link_possibility(current_page, current_page_links)
+        #
+        # print(current_page_links_possibility[0])
+
+        # for a in driver.find_elements_by_xpath('.//a')[-10:]:
+        #     print(a.text)
 
         # total time of browsing
         total_staying_time = int(args['time'])
@@ -79,7 +95,7 @@ def execute(args, driver=None):
         close_driver(is_stand_alone, driver)
 
     except Exception as e:
-        print("Error occured: \"" + str(e))
+        print("Error occurred: \"" + str(e))
         raise e
 
 
