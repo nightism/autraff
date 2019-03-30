@@ -10,4 +10,5 @@ def calculate_page_staying_time(page_interest, theme_interest, max_content_lengt
     actual_scanning_time = scan_whole_content * page_interest * theme_interest
 
     # return int(actual_scanning_time)
+    # TODO change it back
     return 10

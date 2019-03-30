@@ -37,7 +37,7 @@ class Page:
         # among all content in a page, around 10% of them will be really useful information
         self.staying_time = int(calculate_page_staying_time(self.interest_in_page,
                                                             self.interest_in_theme,
-                                                            self.max_content_length) / 10)
+                                                            self.max_content_length))
 
     def calculate_theme_closeness(self, link_title):
         result = calculate_theme_similarity(self.title, link_title)
