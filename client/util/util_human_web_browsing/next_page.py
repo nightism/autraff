@@ -37,9 +37,9 @@ def calculate_link_visibility_closeness_in_a_page(page, link):
 
     # How far is the x deviated from the middle
     # x_closeness = 1.0 - 0.2 * abs(x - (page_width / 2.0)) / (page_width / 2.0)
-
     # How far is the y deviated from the top
     # the larger y_closeness, the farther the link
+
     y_closeness = y / page_height
 
     actual_closeness = 0.5 - 0.5 * math.sin(math.pi * (y_closeness - 0.5))
@@ -55,7 +55,7 @@ def calculate_link_possibility(page, all_links):
         try:
             visual_effect = PHI_OF_VISUAL_EFFECT * calculate_link_visibility_closeness_in_a_page(page, link)
             theme_closeness = calculate_link_theme_closeness_in_a_page(page, link)
-            theme_interest = page.interest_in_them
+            theme_interest = page.interest_in_theme
             theme_effect = PHI_OF_CONTENT_EFFECT \
                            * (2 * theme_closeness * theme_interest / (theme_closeness ** 2 + theme_interest ** 2))
 
@@ -64,24 +64,25 @@ def calculate_link_possibility(page, all_links):
             if effect > 0.0001:
                 possibility.append({
                     'link': link,
-                    'possibility': effect
+                    'possibility': effect,
+                    'theme_closeness': theme_closeness,
                 })
                 total += effect
         except Exception as e:
             continue
 
-    def take_possibility(link_dict):
-        return link_dict['possibility']
-
-    possibility.sort(key=take_possibility, reverse=True)
-
     return possibility, total
 
 
 def normalize_link_possibility(all_links, total_score):
-    num = len(all_links)
-    total_score = total_score * num
-    all_links = list(map(lambda link: link['possibility'] * num / total_score, all_links))
+    total_score = total_score
+
+    def normalize(link):
+        link['possibility'] = link['possibility'] / total_score
+
+        return link
+
+    all_links = list(map(normalize, all_links))
 
     return all_links
 
@@ -89,10 +90,11 @@ def normalize_link_possibility(all_links, total_score):
 def find_link_in_distribution(num, all_links):
     cumulative_score = 0
     prev_link = None
+
     for link in all_links:
         if cumulative_score > num:
             return prev_link
         else:
-            cumulative_score + link['possibility']
+            cumulative_score += link['possibility']
             prev_link = link
     return prev_link
