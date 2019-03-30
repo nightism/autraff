@@ -6,9 +6,6 @@ class Page:
         self.content = content
         self.height = height
 
-        # calculate the interest in current theme
-        self.interest_in_theme = util_wrapper.get_theme_interest_level()
-
         # calculate the content closeness with previous page
         self.content_closeness = util_wrapper.calculate_content_similarity(self.content)
 
@@ -22,5 +19,4 @@ class Page:
         # calculate staying time for current page
         # among all content in a page, around 10% of them will be really useful information
         self.staying_time = int(util_wrapper.calculate_staying_time(self.interest_in_page,
-                                                                    self.interest_in_theme,
                                                                     self.max_content_length))

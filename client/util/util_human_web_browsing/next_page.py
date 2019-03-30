@@ -1,7 +1,5 @@
 import math
-
-PHI_OF_VISUAL_EFFECT = 0.3
-PHI_OF_CONTENT_EFFECT = 1 - PHI_OF_VISUAL_EFFECT
+from util.util_human_web_browsing.theme_similarity import calculate_theme_similarity
 
 
 def get_all_clickable_links(driver):
@@ -21,14 +19,13 @@ def get_all_clickable_links(driver):
     return all_links
 
 
-def calculate_link_theme_closeness_in_a_page(page, link):
-    score = page.calculate_theme_closeness(link.text)
+def calculate_link_theme_closeness_in_a_page(page_title, link):
+    score = calculate_theme_similarity(page_title, link.text)
 
     return score
 
 
-def calculate_link_visibility_closeness_in_a_page(page, link):
-    page_height = page.height
+def calculate_link_visibility_closeness_in_a_page(page_height, link):
     # page_width = page.width
 
     location = link.location
@@ -47,31 +44,34 @@ def calculate_link_visibility_closeness_in_a_page(page, link):
     return actual_closeness
 
 
-def calculate_link_possibility(page, all_links):
-    possibility = []
-    total = 0.0
+def calculate_link_possibility(page, interest_in_theme, all_links, phi_visual_effect):
+    all_link_possibility = []
+    total_score = 0.0
+    phi_theme_effect = 1 - phi_visual_effect
 
     for index, link in enumerate(all_links):
         try:
-            visual_effect = PHI_OF_VISUAL_EFFECT * calculate_link_visibility_closeness_in_a_page(page, link)
-            theme_closeness = calculate_link_theme_closeness_in_a_page(page, link)
-            theme_interest = page.interest_in_theme
-            theme_effect = PHI_OF_CONTENT_EFFECT \
+            visual_effect = phi_visual_effect * calculate_link_visibility_closeness_in_a_page(page.height, link)
+            theme_closeness = calculate_link_theme_closeness_in_a_page(page.title, link)
+            theme_interest = interest_in_theme
+            theme_effect = phi_theme_effect \
                            * (2 * theme_closeness * theme_interest / (theme_closeness ** 2 + theme_interest ** 2))
 
             effect = (theme_effect + visual_effect)
 
             if effect > 0.0001:
-                possibility.append({
+                all_link_possibility.append({
                     'link': link,
                     'possibility': effect,
                     'theme_closeness': theme_closeness,
                 })
-                total += effect
-        except Exception as e:
+                total_score += effect
+        except:
             continue
 
-    return possibility, total
+    # print(len(all_link_possibility))
+
+    return all_link_possibility, total_score
 
 
 def normalize_link_possibility(all_links, total_score):
@@ -91,6 +91,7 @@ def find_link_in_distribution(num, all_links):
     cumulative_score = 0
     prev_link = None
 
+    # TODO change linear search to binary search
     for link in all_links:
         if cumulative_score > num:
             return prev_link
