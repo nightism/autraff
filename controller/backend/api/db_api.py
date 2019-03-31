@@ -15,25 +15,6 @@ job_schema = db_schema.JobSchema()
 jobs_schema = db_schema.JobSchema(many=True)
 
 
-# endpoint to create new client
-@db_api.route("/client", methods=["POST"])
-def add_client():
-    # TODO to be deprecated
-    ip = request.json['ip']
-    system = request.json['system']
-    version = request.json['version']
-
-    new_client = db_schema.Client(ip, system, version)
-
-    db_schema.db.session.add(new_client)
-    db_schema.db.session.commit()
-
-    resp = client_schema.jsonify(new_client)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
-
-    return resp
-
-
 # endpoint to show all clients
 @db_api.route("/client", methods=["GET"])
 def get_client():
@@ -55,9 +36,31 @@ def client_detail(ip):
     return resp
 
 
+# endpoint to create new client
+@db_api.route("/client", methods=["POST"])
+def add_client():
+    # TODO to be deprecated
+    ip = request.json['ip']
+    system = request.json['system']
+    version = request.json['version']
+
+    new_client = db_schema.Client(ip, system, version)
+
+    db_schema.db.session.add(new_client)
+    db_schema.db.session.commit()
+
+    resp = client_schema.jsonify(new_client)
+    # TODO for all: find a more elegant way to deal with cors header
+    #  for example -
+    resp.headers.add('Access-Control-Allow-Origin', '*')
+
+    return resp
+
+
 # endpoint to update client
 @db_api.route("/client", methods=["PUT"])
 def client_update():
+    # TODO to be deprecated
     data = json.loads(request.data)
     ip = data['ip']
     client = db_schema.Client.query.get(ip)
@@ -79,6 +82,7 @@ def client_update():
 # endpoint to delete client
 @db_api.route("/client", methods=["DELETE"])
 def client_delete():
+    # TODO to be deprecated
     data = json.loads(request.data)
     ip = data['ip']
     client = db_schema.Client.query.get(ip)
