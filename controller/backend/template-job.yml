@@ -1,8 +1,6 @@
 # Job
 
 
-
-Client:
 - client: 127.0.0.1
   name: Visit NUS Website
   module: mod_visit_any_page

@@ -1,11 +1,16 @@
 from flask import Flask
 import os
+import datetime
+
 
 app = Flask(__name__)
 
+basedir = os.path.abspath(os.path.dirname(__file__))
+db_dir = os.path.join(basedir, 'database/autraffdata.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_dir
+
+
 def run_service():
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'database/autraffdata.db')
 
     from db_schema import db, ma
     db.init_app(app)
@@ -21,25 +26,38 @@ def run_service():
 
 
 def init_backend_db(clients, jobs):
-    from db_schema import db
-    from db_schema import Client, ClientSchema
-    from db_schema import Job, JobSchema
+    from sqlite3 import connect
 
-    Client.query().delete()
-    Job.query().delete()
+    conn = connect(os.path.join(basedir, 'database/autraffdata.db'))
+    c = conn.cursor()
 
+    print('[Service DB] cleaning database.')
+    c.execute('DELETE FROM Client WHERE 1')
+    c.execute('DELETE FROM Job WHERE 1')
+
+    print('[Service DB] inserting new clients information.')
     for client in clients:
         ip = client['ip']
         system = client['system']
         version = client['version']
-        new_client = Client(ip, system, version)
-        # db.session.add(new_client)
-        # db.session.commit()
+        c.execute('INSERT INTO Client (ip, system, version) VALUES ("' + ip + '", "' + system + '", "' + version + '")')
 
+    print('[Service DB] inserting new jobs information.')
     for job in jobs:
         name = job['name']
         client = job['client']
         module = job['module']
-        interval = int(job['interval'])
+        interval = str(int(job['interval']))
+        start = job.get('start')
         args = str(job['args'])
+
+        if start is None:
+            start = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
         print(args)
+        c.execute('INSERT INTO Job (name, module, client, interval, start, arguments) VALUES ("' +
+                  name + '", "' + module + '", "' + client + '", ' + interval + ', "' + start + '", "' + args + '")')
+
+    conn.commit()
+    print('[Service DB] database re-initiated.')
+    conn.close()
