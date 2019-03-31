@@ -16,10 +16,11 @@ def run_service():
     db.init_app(app)
     ma.init_app(app)
 
-    from api.db_api import db_api
+    from api.db_api import db_client_api, db_job_api
     from api.control_api import control_api
 
-    app.register_blueprint(db_api)
+    app.register_blueprint(db_client_api)
+    app.register_blueprint(db_job_api)
     app.register_blueprint(control_api)
 
     app.run(debug=True)
@@ -54,7 +55,7 @@ def init_backend_db(clients, jobs):
         if start is None:
             start = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        print(args)
+        # print(args)
         c.execute('INSERT INTO Job (name, module, client, interval, start, arguments) VALUES ("' +
                   name + '", "' + module + '", "' + client + '", ' + interval + ', "' + start + '", "' + args + '")')
 
