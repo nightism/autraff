@@ -1,0 +1,30 @@
+# Job
+
+
+
+Client:
+- client: 127.0.0.1
+  alias: Visit NUS Website
+  module: mod_visit_any_page
+  duration: 10  # 10 seconds
+  interval: 120  # 2 minutes
+  args:
+    url: 'http://nus.edu.sg/'
+    time: 10
+
+- client: 127.0.0.1
+  module: mod_human_web_browsing
+  duration: 1200  # 20 minutes
+  interval: 3600  # 1 hour
+  args:
+    url: 'https://www.bbc.com/'
+    time: 1200
+
+- client: 10.0.26.5
+  module: mod_working_mode_behavior
+  duration: 7200  # 2 hour
+  interval: 86400  # 1 day
+  args:
+    admin_email: ['admin1@ncl.sg']
+    target1: 'https://www.web1.ncl.org'
+    target2: 'https://www.web2.ncl.org'
