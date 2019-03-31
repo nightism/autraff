@@ -7,7 +7,6 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import ClientManagement from './ClientManagement';
 import JobManagement from './JobManagement';
-import PersonaManagement from './PersonaManagement'
 import HomePage from './Home'
 
 const { Header, Footer } = Layout;
@@ -18,6 +17,9 @@ const PageWrapper = () => {
       <Layout style={{height:"100vh"}}>
         <Header className="header">
           {/* <div className="logo" /> */}
+          <div className='logo' style={{ float: 'left', maxHeight: '60px', overflow: 'hidden'}}>
+            <img src={process.env.PUBLIC_URL + '/title-logo.png'} style={{ marginTop: '-42px', width: '150px', marginRight: '20px' }}/>
+          </div>
           <Menu
             theme="dark"
             mode="horizontal"
@@ -39,10 +41,10 @@ const PageWrapper = () => {
               <Link to="/job-management/dashboard" />
             </Menu.Item>
 
-            <Menu.Item key="4">
+            {/* <Menu.Item key="4">
               <span>Persona Management</span>
               <Link to="/persona-management/dashboard" />
-            </Menu.Item>
+            </Menu.Item> */}
 
             {/* <Menu.Item key="5">
               <span>Database</span>
@@ -60,13 +62,12 @@ const PageWrapper = () => {
         <Route exact path='/' component={HomePage} />
         <Route exact path='/client-management/dashboard' component={ClientManagement} />
         <Route exact path='/job-management/dashboard' component={JobManagement} />
-        <Route exact path='/persona-management/dashboard' component={PersonaManagement} />
+        {/* <Route exact path='/persona-management/dashboard' component={PersonaManagement} /> */}
 
 
-        {/* <Footer style={{ textAlign: 'center' }}>
-          {/* Ant Design ©2018 Created by Ant UED */}
-          {/* Autraff ©2018
-        </Footer> */}
+        <Footer style={{ textAlign: 'center' }}>
+          Autraff ©2019 Created by SUN Mingyang
+        </Footer>
       </Layout>
     
     
