@@ -48,29 +48,9 @@ def get_jobs():
 
 
 # endpoint to show one job
-@db_api.route("/job/<id>/detail", methods=["GET"])
-def get_a_single_job(id):
-    job = db_schema.Job.query.get(id)
-
-    resp = job_schema.jsonify(job)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
-    return resp
-
-
-# endpoint to update one job
-@db_api.route("/job/<id>", methods=["PUT"])
-def update_a_job(id):
-    job = db_schema.Job.query.get(id)
-
-    data = json.loads(request.data)
-    job.name = data['name']
-    # job.persona = request.json['persona']
-    job.interval = int(data['interval'])
-    job.start = datetime.strptime(data['start'], '%Y-%m-%d %H:%M:%S')
-    job.arguments = data['arguments']
-    print(job.arguments)
-
-    db_schema.db.session.commit()
+@db_api.route("/job/<seq>/detail", methods=["GET"])
+def get_a_single_job(seq):
+    job = db_schema.Job.query.get(seq)
 
     resp = job_schema.jsonify(job)
     resp.headers.add('Access-Control-Allow-Origin', '*')
@@ -97,5 +77,26 @@ def get_jobs_of_a_client(client):
     jobs = db_schema.Job.query.filter(db_schema.Job.client == client)
 
     resp = jobs_schema.jsonify(jobs)
+    resp.headers.add('Access-Control-Allow-Origin', '*')
+    return resp
+
+
+# endpoint to update one job
+@db_api.route("/job/<seq>", methods=["PUT"])
+def update_a_job(seq):
+    # TODO to be deprecated
+    job = db_schema.Job.query.get(seq)
+
+    data = json.loads(request.data)
+    job.name = data['name']
+    # job.persona = request.json['persona']
+    job.interval = int(data['interval'])
+    job.start = datetime.strptime(data['start'], '%Y-%m-%d %H:%M:%S')
+    job.arguments = data['arguments']
+    print(job.arguments)
+
+    db_schema.db.session.commit()
+
+    resp = job_schema.jsonify(job)
     resp.headers.add('Access-Control-Allow-Origin', '*')
     return resp
