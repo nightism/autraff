@@ -4,7 +4,7 @@ from flask import Blueprint
 from datetime import datetime
 import json
 
-import db_schema
+from database import db_schema
 
 db_api = Blueprint('db_api', __name__)
 

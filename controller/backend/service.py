@@ -12,12 +12,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_dir
 
 def run_service():
 
-    from db_schema import db, ma
+    from database.db_schema import db, ma
     db.init_app(app)
     ma.init_app(app)
 
-    from db_api import db_api
-    from control_api import control_api
+    from api.db_api import db_api
+    from api.control_api import control_api
 
     app.register_blueprint(db_api)
     app.register_blueprint(control_api)

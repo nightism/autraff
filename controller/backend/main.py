@@ -22,5 +22,6 @@ if __name__ == '__main__':
     client_conf = yaml.load(client_conf_file, Loader=yaml.FullLoader)
     job_conf = yaml.load(job_conf_file, Loader=yaml.FullLoader)
 
-    service.run_service()
     service.init_backend_db(client_conf, job_conf)
+    service.run_service()
+
