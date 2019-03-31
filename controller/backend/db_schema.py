@@ -28,6 +28,38 @@ class ClientSchema(ma.Schema):
         fields = ('ip', 'system', 'version')
 
 
+class Job(db.Model):
+    __tablename__ = 'Job'
+    __table_args__ = {'sqlite_autoincrement': True}
+    # TODO primary key should be named as 'id' by convention. refactor in future development
+    seq = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255))
+
+    module = db.Column(db.String(255))
+    client = db.Column(db.String, db.ForeignKey('Client.ip', ondelete='CASCADE'), nullable=False)
+
+    interval = db.Column(db.Integer, nullable=False)
+    start = db.Column(db.DateTime, nullable=False)
+
+    # TODO find a more elegant way to store arguments
+    arguments = db.Column(db.Text, nullable=True)
+
+    schedule_id = db.Column(db.String, default='')
+
+    def __init__(self, name, module, client, interval, start=datetime.now(), arguments=""):
+        self.name = name
+        self.module = module
+        self.client = client
+        self.interval = interval
+        self.arguments = arguments
+        self.start = start
+
+
+class JobSchema(ma.Schema):
+    class Meta:
+        fields = ('seq', 'client', 'name', 'module', 'interval', 'start', 'arguments', 'schedule_id')
+
+
 # TODO may be deleted in the future
 # class Module(db.Model):
 #     __tablename__ = 'Module'
@@ -67,33 +99,3 @@ class ClientSchema(ma.Schema):
 #         fields = ('name', 'engine', 'interest', 'account')
 
 
-class Job(db.Model):
-    __tablename__ = 'Job'
-    __table_args__ = {'sqlite_autoincrement': True}
-    # TODO primary key should be named as 'id' by convention. refactor in future development
-    seq = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-
-    module = db.Column(db.String(255))
-    client = db.Column(db.String, db.ForeignKey('Client.ip', ondelete='CASCADE'), nullable=False)
-
-    interval = db.Column(db.Integer, nullable=False)
-    start = db.Column(db.DateTime, nullable=False)
-
-    # TODO find a more elegant way to store arguments
-    arguments = db.Column(db.Text, nullable=True)
-
-    schedule_id = db.Column(db.String, default='')
-
-    def __init__(self, name, module, client, interval, start=datetime.now(), arguments=""):
-        self.name = name
-        self.module = module
-        self.client = client
-        self.interval = interval
-        self.arguments = arguments
-        self.start = start
-
-
-class JobSchema(ma.Schema):
-    class Meta:
-        fields = ('seq', 'client', 'name', 'module', 'interval', 'start', 'arguments', 'schedule_id')

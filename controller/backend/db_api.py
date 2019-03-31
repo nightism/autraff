@@ -11,12 +11,6 @@ db_api = Blueprint('db_api', __name__)
 client_schema = db_schema.ClientSchema()
 clients_schema = db_schema.ClientSchema(many=True)
 
-module_schema = db_schema.ModuleSchema()
-modules_schema = db_schema.ModuleSchema(many=True)
-
-persona_schema = db_schema.PersonaSchema()
-personas_schema = db_schema.PersonaSchema(many=True)
-
 job_schema = db_schema.JobSchema()
 jobs_schema = db_schema.JobSchema(many=True)
 
@@ -24,6 +18,7 @@ jobs_schema = db_schema.JobSchema(many=True)
 # endpoint to create new client
 @db_api.route("/client", methods=["POST"])
 def add_client():
+    # TODO to be deprecated
     ip = request.json['ip']
     system = request.json['system']
     version = request.json['version']
@@ -91,55 +86,6 @@ def client_delete():
     db_schema.db.session.commit()
 
     resp = client_schema.jsonify(client)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
-    return resp
-
-
-# endpoint to add module
-@db_api.route("/module", methods=["POST"])
-def add_module():
-    data = json.loads(request.data)
-
-    name = data['name']
-    description = data['description']
-
-    new_module = db_schema.Module(name, description)
-
-    db_schema.db.session.add(new_module)
-    db_schema.db.session.commit()
-
-    resp = module_schema.jsonify(new_module)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
-    return resp
-
-
-# endpoint to show all modules
-@db_api.route("/module", methods=["GET"])
-def get_module():
-    all_modules = db_schema.Module.query.all()
-    result = modules_schema.dump(all_modules)
-
-    resp = jsonify(result.data)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
-    return resp
-
-
-# endpoint to add persona 
-@db_api.route("/persona", methods=["POST"])
-def add_persona():
-    data = json.loads(request.data)
-
-    name = data['name']
-    engine = data['engine']
-    interest = []  # TODO validate as a list
-    account = dict()  # TODO validate as a dict
-
-    new_persona = db_schema.Persona(name, engine, interest, account)
-
-    db_schema.db.session.add(new_persona)
-    db_schema.db.session.commit()
-
-    resp = persona_schema.jsonify(new_persona)
     resp.headers.add('Access-Control-Allow-Origin', '*')
     return resp
 
@@ -232,6 +178,56 @@ def get_jobs_of_a_client(client):
     resp = jobs_schema.jsonify(jobs)
     resp.headers.add('Access-Control-Allow-Origin', '*')
     return resp
+
+
+# TODO to be deleted in the future
+# # endpoint to add module
+# @db_api.route("/module", methods=["POST"])
+# def add_module():
+#     data = json.loads(request.data)
+#
+#     name = data['name']
+#     description = data['description']
+#
+#     new_module = db_schema.Module(name, description)
+#
+#     db_schema.db.session.add(new_module)
+#     db_schema.db.session.commit()
+#
+#     resp = module_schema.jsonify(new_module)
+#     resp.headers.add('Access-Control-Allow-Origin', '*')
+#     return resp
+#
+#
+# # endpoint to show all modules
+# @db_api.route("/module", methods=["GET"])
+# def get_module():
+#     all_modules = db_schema.Module.query.all()
+#     result = modules_schema.dump(all_modules)
+#
+#     resp = jsonify(result.data)
+#     resp.headers.add('Access-Control-Allow-Origin', '*')
+#     return resp
+#
+#
+# # endpoint to add persona
+# @db_api.route("/persona", methods=["POST"])
+# def add_persona():
+#     data = json.loads(request.data)
+#
+#     name = data['name']
+#     engine = data['engine']
+#     interest = []
+#     account = dict()
+#
+#     new_persona = db_schema.Persona(name, engine, interest, account)
+#
+#     db_schema.db.session.add(new_persona)
+#     db_schema.db.session.commit()
+#
+#     resp = persona_schema.jsonify(new_persona)
+#     resp.headers.add('Access-Control-Allow-Origin', '*')
+#     return resp
 
 # "client": "client",
     # "connection_name": "client_tcp_channel",

@@ -4,7 +4,7 @@
 
 Client:
 - client: 127.0.0.1
-  alias: Visit NUS Website
+  name: Visit NUS Website
   module: mod_visit_any_page
   duration: 10  # 10 seconds
   interval: 120  # 2 minutes
@@ -13,6 +13,7 @@ Client:
     time: 10
 
 - client: 127.0.0.1
+  name: Browsing BBC News Website
   module: mod_human_web_browsing
   duration: 1200  # 20 minutes
   interval: 3600  # 1 hour
@@ -21,6 +22,7 @@ Client:
     time: 1200
 
 - client: 10.0.26.5
+  name: Working Mode Simulation
   module: mod_working_mode_behavior
   duration: 7200  # 2 hour
   interval: 86400  # 1 day

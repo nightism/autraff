@@ -1,9 +1,9 @@
 # Client
 
 - ip: 127.0.0.1
-  os: Linux
+  system: Linux
   version: Ubuntu 18.0.4
 
 - ip: 10.0.26.5
-  os: Linux
+  system: Linux
   version: Ubuntu 16.0.4
