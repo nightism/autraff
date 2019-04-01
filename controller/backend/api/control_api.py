@@ -16,22 +16,30 @@ ns = None
 controller = None
 
 
-@control_api.route("/open-connection", methods=["POST"])
+@control_api.route("/open-connection", methods=["GET"])
 def open_connection():
     try:
         global ns
         global controller
 
-        ns = run_nameserver(NAMESERVER_ADDRESS)
-        controller = run_agent(CONTROLLER_ALIAS)
+        # TODO Logic is a bit flawed, to be refined
+        if ns is None:
+            ns = run_nameserver(NAMESERVER_ADDRESS)
+
+        if controller is None:
+            controller = run_agent(CONTROLLER_ALIAS)
         result = {
-            "result": "success"
+            "result": "success",
+            "nameserver": NAMESERVER_ADDRESS,
+            "controller": CONTROLLER_ALIAS,
         }
         resp = create_response(result)
         return resp
     except Exception:
         result = {
-            "result": "fail"
+            "result": "fail",
+            "nameserver": "",
+            "controller": "",
         }
         resp = create_response(result)
         return resp
@@ -110,6 +118,7 @@ def check_connection_naive():
     }
     resp = create_response(result)
     return resp
+
 
 @control_api.route("/connect-to-client", methods=["POST"])
 def connect_to_client():

@@ -14,7 +14,8 @@ const { Header, Footer } = Layout;
 const PageWrapper = () => {
   return (
     <Router>
-      <Layout style={{height:"100vh"}}>
+      <Layout style={{ height:"100vh" }}>
+        {/* TODO  display issue when resizing the window becomes (e.g. when the height becomes shorter) */}
         <Header className="header">
           {/* <div className="logo" /> */}
           <div className='logo' style={{ float: 'left', maxHeight: '60px', overflow: 'hidden'}}>
@@ -62,6 +63,8 @@ const PageWrapper = () => {
           </Menu>
         </Header>
 
+        {/* TODO Layout and Breadcrumb should be in this level, in Page Wrapper level */}
+
         <Route exact path='/' component={HomePage} />
         <Route exact path='/client-management/dashboard' component={ClientManagement} />
         <Route exact path='/job-management/dashboard' component={JobManagement} />
@@ -72,10 +75,10 @@ const PageWrapper = () => {
           Autraff ©2019 Created by SUN Mingyang
         </Footer>
       </Layout>
-    
-    
+
+
     </Router>
-    
+
   );
 }
 

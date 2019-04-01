@@ -17,7 +17,11 @@ class ClientDashboard extends Component {
       title: 'Number of Scheduled Tasks',
       value: '0'
     }],
-    clientInfo: []
+    clientInfo: [],
+    numOfClient: 0,
+    numOfActiveClient: 'Unknown',
+    lastModifiedOn: 'Unknown',
+    numOfScheduledTasks: 'Unkown',
   };
 
   clientInfoColumns = [{
@@ -69,6 +73,9 @@ class ClientDashboard extends Component {
           dataSource={this.state.overallStates}
           renderItem={item  => (
             <List.Item>
+              <Card title={item.title}> {item.value} </Card>
+              <Card title={item.title}> {item.value} </Card>
+              <Card title={item.title}> {item.value} </Card>
               <Card title={item.title}> {item.value} </Card>
             </List.Item>
           )}
