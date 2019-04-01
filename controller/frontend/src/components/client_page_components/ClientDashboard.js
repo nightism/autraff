@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Table, List, Card } from 'antd';
+import { Table, List, Card, Row, Col } from 'antd';
 
 class ClientDashboard extends Component {
   state = {
@@ -68,20 +68,23 @@ class ClientDashboard extends Component {
         <h1>Dashboard</h1>
         <hr></hr>
 
-        <List
-          grid={ {gutter: 20, column: 4} }
-          dataSource={this.state.overallStates}
-          renderItem={item  => (
-            <List.Item>
-              <Card title={item.title}> {item.value} </Card>
-              <Card title={item.title}> {item.value} </Card>
-              <Card title={item.title}> {item.value} </Card>
-              <Card title={item.title}> {item.value} </Card>
-            </List.Item>
-          )}
-        />
+        <Row gutter={20}>
+          <Col span={6}>
+            <Card title='Number of Clients'> {this.state.numOfClient} </Card>
+          </Col>
+          <Col span={6}>
+            <Card title='Number of Active Clients'> {this.state.numOfActiveClient} </Card>
+          </Col>
+          <Col span={6}>
+            <Card title='Last Modification on'> {this.state.lastModifiedOn} </Card>
+          </Col>
+          <Col span={6}>
+            <Card title='Number of Scheduled Tasks'> {this.state.numOfScheduledTasks} </Card>
+          </Col>
+        </Row>
 
         <Table
+          style={{ marginTop: '40px' }}
           bordered
           columns={this.clientInfoColumns}
           dataSource={this.state.clientInfo}
