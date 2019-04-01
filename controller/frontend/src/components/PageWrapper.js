@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import 'antd/dist/antd.css';
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -27,16 +27,19 @@ const PageWrapper = () => {
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item key="1">
+              <Icon type='home' />
               <span>Home</span>
               <Link to="/" />
             </Menu.Item>
 
             <Menu.Item key="2">
+              <Icon type='laptop' />
               <span>Client Management</span>
               <Link to="/client-management/dashboard" />
             </Menu.Item>
 
             <Menu.Item key="3">
+              <Icon type='book' />
               <span>Job Management</span>
               <Link to="/job-management/dashboard" />
             </Menu.Item>
