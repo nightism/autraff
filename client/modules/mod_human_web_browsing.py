@@ -18,10 +18,6 @@ from util.util import stay
 from util.util import get_driver
 from util.util import close_driver
 from util.selenium_operations import extract_page_content
-from util.util_human_web_browsing.next_page import get_all_clickable_links
-from util.util_human_web_browsing.next_page import calculate_link_possibility
-from util.util_human_web_browsing.next_page import normalize_link_possibility
-from util.util_human_web_browsing.next_page import find_link_in_distribution
 
 from modules.mod_search_keyword import execute as search_keyword
 from modules.mod_visit_any_page import execute as visit_page
