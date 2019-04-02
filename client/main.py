@@ -12,7 +12,7 @@ CLIENT_RECEIVER_ADDRESS = '127.0.0.1:27000'
 CLIENT_NAME = '127.0.0.1'
 CLIENT_ALIAS = 'client-' + CLIENT_NAME
 
-scheduler = BackgroundScheduler()
+scheduler = None
 
 
 def receive_command(agent, message):
@@ -20,54 +20,55 @@ def receive_command(agent, message):
     handler for osBrain client to reply the server request.
     :para: agent object and message odject transmitted
     """
-    print('test1')
+
+    global scheduler
 
     try:
-        print("exco??")
-        if scheduler.state == STATE_STOPPED or scheduler.state == STATE_PAUSED:
-            # scheduler =
-            print("wat??")
+        # TODO the following codes do not work, needs to figure out why
+        # print('[Scheduler] status: ' + str(scheduler.state))
+        # if scheduler.state == STATE_STOPPED or scheduler.state == STATE_PAUSED:
+        #     print('[Scheduler] Background Scheduler restarted.')
+        #     scheduler.start()
+        if scheduler is None:
+            scheduler = BackgroundScheduler()
             scheduler.start()
-            print("wat???")
-    except Exception as e:
-        print(e)
-        print(str(e))
-
-    print('test2')
+            print('[Scheduler] Background Scheduler started, status ' + str(scheduler.state))
+    except Exception as err:
+        print(str(err))
 
     command = message['command']
-    print(command)
+    # print(command)
 
     if command == 'schedule_task':
-        print("test3")
         mod_name = message['module']
         mod = eval(mod_name)
-        # print("Scheduling task " + mod_name)
+        print("[Scheduler] Scheduling task " + mod_name)
 
         interval = int(message['interval'])
         para = message['para']
-        job = lambda: mod.execute(para)
 
-        id = scheduler.add_job(job, 'interval', seconds=interval).id
+        schedule_id = scheduler.add_job(lambda: mod.execute(para), 'interval', seconds=interval).id
         # print('Job scheduled: ' + str(id))
-        return id
+        return schedule_id
 
     elif command == 'delete_task':
         mod_id = message['job_id']
         rc = scheduler.remove_job(mod_id)
         return "DEL"
+    elif command == 'retrieve_logs':
+        log_file = open('./geckodriver.log').read()
+        return log_file
 
     return "NAN"
 
 
 if __name__ == '__main__':
-    # keyword = input()
-    # mod_human_web_browsing.execute({
-    #     'keyword': keyword,
-    #     'time': 10
-    # })
-
     try:
+        # global scheduler
+        # scheduler = BackgroundScheduler()
+        # scheduler.start()
+        # print('[Scheduler] Background Scheduler started, status ' + str(scheduler.state))
+
         ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
         client = run_agent(CLIENT_ALIAS, nsaddr=NAMESERVER_ADDRESS)
 
@@ -78,6 +79,4 @@ if __name__ == '__main__':
         print(str(e))
         raise e
 
-    print("client successfully initiated.")
-
-
+    print("[General] client successfully initiated.")
