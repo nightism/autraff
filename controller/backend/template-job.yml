@@ -4,17 +4,20 @@
 - client: 127.0.0.1
   name: Visit NUS Website
   module: mod_visit_any_page
-  duration: 10  # 10 seconds
-  interval: 120  # 2 minutes
+  duration: 5  # 10 seconds
+  interval: 10  # 2 minutes
+  # start time **** start now 
+  # log keep track
+  # machien learning features -> result
   args:
     url: 'http://nus.edu.sg/'
-    time: 10
+    time: 5
 
 - client: 127.0.0.1
   name: Browsing BBC News Website
   module: mod_human_web_browsing
   duration: 1200  # 20 minutes
-  interval: 3600  # 1 hour
+  interval: 10  # 10 seconds 
   args:
     url: 'https://www.bbc.com/'
     time: 1200

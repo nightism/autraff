@@ -12,9 +12,10 @@ from utils.request_utils import create_response
 
 control_api = Blueprint('control_api', __name__)
 
-ns = None
-controller = None
+ns = run_nameserver(NAMESERVER_ADDRESS)
+controller = run_agent(CONTROLLER_ALIAS)
 
+# http://localhost:5000/open-connection
 
 @control_api.route("/open-connection", methods=["GET"])
 def open_connection():
@@ -144,7 +145,7 @@ def connect_to_client():
         }
         resp = create_response(result)
         return resp
-    except Exception as e:
+    except Exception as err:
         result = {
             "result": "client is malfunctioning."
         }
@@ -189,12 +190,15 @@ def check_client_connection(client):
 
 @control_api.route("/schedule-job", methods=["POST"])
 def schedule_job():
-    print("test2")
-    ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
-    controller = ns.proxy(CONTROLLER_ALIAS)
-    print("test3")
+    global ns
+    global controller
+
+    if ns is None:
+        ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
+    if controller is None:
+        controller = ns.proxy(CONTROLLER_ALIAS)
+
     data = json.loads(request.data)
-    print("test4")
     connection_name = data['connection_name']
     message = {
         'command': COMMAND_SCHEDULE_TASK,
@@ -205,7 +209,6 @@ def schedule_job():
 
     controller.send(connection_name, message)
     reply = controller.recv(connection_name)
-    print("test5")
 
     result = {
         'schedule_id': str(reply)

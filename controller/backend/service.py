@@ -23,7 +23,7 @@ def run_service():
     app.register_blueprint(db_job_api)
     app.register_blueprint(control_api)
 
-    app.run(debug=True)
+    app.run(debug=False)
 
 
 def init_backend_db(clients, jobs):

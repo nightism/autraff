@@ -17,7 +17,7 @@ class HomePage extends Component {
       controllerAlias: '',
       serviceUpTime: 'UNKOWN',
       alertDisplay: {
-        style: { margin: '10px' }
+        style: { display: 'None' }
       }
     };
 
@@ -27,8 +27,8 @@ class HomePage extends Component {
 
   openConnection() {
     connectToNameserverAndController().then(data => {
-      let alertDisplay = { margin: '10px' }
-      if (data.controller !== '' && data.nameserverAddr !== '') {
+      let alertDisplay = { display: 'None' }
+      if (data.controller === '' && data.nameserverAddr === '') {
         alertDisplay = {}
       }
       this.setState({

@@ -2,26 +2,18 @@ import React, { Component } from 'react';
 
 import { Table, List, Card } from 'antd';
 
+
 class JobListPage extends Component {
   state = {
     jobInfo: []
   };
 
   jobInfoColumns = [{
-    title: 'Task ID',
-    dataIndex: 'schedule_id',
-  }, {
     title: 'Task Name',
     dataIndex: 'name',
   }, {
-    title: 'Module',
-    dataIndex: 'module',
-  }, {
     title: 'Deployed machine',
     dataIndex: 'client',
-  }, {
-    title: 'Persona',
-    dataIndex: 'persona',
   }, {
     title: 'Period',
     dataIndex: 'interval',
@@ -32,6 +24,37 @@ class JobListPage extends Component {
     title: 'Sequence',
     dataIndex: 'seq'
   }];
+
+
+  nestedTableRendering(job) {
+    let jobExpandedColumns = [{
+      title: 'Module',
+      dataIndex: 'module',
+    }, {
+      title: 'Arguments',
+      dataIndex: 'arguments',
+    }, {
+      title: 'Scheduling ID',
+      dataIndex: 'schedule_id',
+    }]
+
+    // console.log(job)
+
+    let jobExpandedData = [{
+      schedule_id: job.schedule_id,
+      module: job.module,
+      arguments: job.arguments,
+    }]
+
+    // console.log(job.seq.toString() + '-detail')
+
+    return <Table
+      columns={jobExpandedColumns}
+      dataSource={jobExpandedData}
+      pagination={false}
+      rowKey={job.seq.toString() + '-detail'}
+    />
+  }
 
   componentDidMount() {
     fetch('http://localhost:5000/job', {
@@ -44,7 +67,6 @@ class JobListPage extends Component {
         newDict['seq'] = job.seq
         newDict['name'] = job.name
         newDict['client'] = job.client
-        newDict['persona'] = job.persona
         newDict['module'] = job.module
         newDict['interval'] = job.interval
         newDict['arguments'] = job.arguments
@@ -68,6 +90,7 @@ class JobListPage extends Component {
           bordered
           columns={this.jobInfoColumns}
           dataSource={this.state.jobInfo}
+          expandedRowRender={this.nestedTableRendering}
           rowKey="seq"
         />
       </div>

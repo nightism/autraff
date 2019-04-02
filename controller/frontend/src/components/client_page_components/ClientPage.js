@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Table, List, Card, Button } from 'antd';
+import { Table, List, Card, Button, Icon } from 'antd';
 
 class ClientPage extends Component {
   state = {
@@ -41,6 +41,15 @@ class ClientPage extends Component {
       <Button type="danger" value={record.key} onClick={this.stopJob}>stop</Button>
     </div>
   }];
+
+  generateStatusIcon(status) {
+    if (status === 'connecting')
+      return (<Icon type="sync" spin/>)
+    else if (status === 'connected')
+      return (<Icon type="check-circle" theme='twoTone' twoToneColor="#52c41a"/>)
+    else
+      return (<Icon type="close-circle" theme='twoTone' twoToneColor="#ff0000"/>)
+  }
 
   scheduleJob(e){
     console.log('scheduling')
@@ -147,7 +156,9 @@ class ClientPage extends Component {
   }
 
   connectToClient() {
-    console.log(this.state.client)
+    // console.log(this.state.client)
+    this.setState({status: 'connecting'})
+
     fetch("http://localhost:5000/connect-to-client", {
       method: "POST",
       body: JSON.stringify({
@@ -160,13 +171,14 @@ class ClientPage extends Component {
       if (data.result === 'success') {
         this.setState({status: 'connected'})
       } else {
-        this.setState({status: 'unknown'})
+        this.setState({status: 'disconnected'})
       }
     })
   }
 
   componentDidMount() {
     this.setState({'client': this.props.match.params.client})
+    this.setState({status: 'connecting'})
 
     fetch("http://localhost:5000/job/" + this.props.match.params.client, {
       method: "GET"
@@ -198,15 +210,18 @@ class ClientPage extends Component {
         if (data.result === 'success') {
           this.setState({status: 'connected'})
         } else {
-          this.setState({status: 'unknown'})
+          this.setState({status: 'disconnected'})
         }
       })
     })
   }
 
+  // TODO too many repeated code here
   componentDidUpdate() {
     if (this.state.client !== this.props.match.params.client) {
       this.setState({'client': this.props.match.params.client})
+      this.setState({status: 'connecting'})
+
       fetch("http://localhost:5000/job/" + this.props.match.params.client, {
         method: "GET"
       }).then((response) => {
@@ -237,7 +252,7 @@ class ClientPage extends Component {
           if (data.result === 'success') {
             this.setState({status: 'connected'})
           } else {
-            this.setState({status: 'unknown'})
+            this.setState({status: 'disconnected'})
           }
         })
       })
@@ -251,12 +266,18 @@ class ClientPage extends Component {
         <h1>{this.props.match.params.client}</h1>
         <hr></hr>
 
-        <div>
+        <div style={{ fontSize: 20, marginBottom: 20, marginTop: 20}}>
           Status: {this.state.status}
-          <span style={{ padding: 10 }}></span>
-          <Button onClick={this.connectToClient}>connect to this client</Button>
+          <span style={{ margin: 5 }}></span>
+          <span>
+            {this.generateStatusIcon(this.state.status)}
+          </span>
+          <span style={{ margin: 10 }}></span>
+          <Button onClick={this.connectToClient} ghost type="primary">Refresh Client Connection Status</Button>
+          <span style={{ margin: 10 }}></span>
+          <Button onClick={(e) => { alert('Coming soon!') }} ghost type="primary">Refresh Client Schedule Status</Button>
         </div>
-        <div style={{ padding: 10 }}></div>
+        <div style={{ margin: 10 }}></div>
         <Table
           bordered
           columns={this.jobInfoColumns}

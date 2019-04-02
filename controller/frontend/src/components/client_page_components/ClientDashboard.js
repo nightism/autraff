@@ -4,24 +4,12 @@ import { Table, List, Card, Row, Col } from 'antd';
 
 class ClientDashboard extends Component {
   state = {
-    overallStates: [{
-      title: 'Number of Clients',
-      value: '2'
-    }, {
-      title: 'Number of Active Clients',
-      value: '1'
-    }, {
-      title: 'Last Modification on',
-      value: '21 Feb 2019 21:47'
-    }, {
-      title: 'Number of Scheduled Tasks',
-      value: '0'
-    }],
     clientInfo: [],
-    numOfClient: 0,
-    numOfActiveClient: 'Unknown',
-    lastModifiedOn: 'Unknown',
-    numOfScheduledTasks: 'Unkown',
+
+    numOfClient: 2, // TODO dummy data now
+    numOfActiveClient: 1, // TODO dummy data now
+    lastModifiedOn: 'Within an hour', // TODO dummy data now
+    numOfScheduledTasks: '0', // TODO dummy data now
   };
 
   clientInfoColumns = [{
@@ -50,8 +38,8 @@ class ClientDashboard extends Component {
       var clientList = data.map((client) => {
         var newDict = {}
         newDict['key'] = client.ip
-        newDict['active'] = 'unknown'
-        newDict['tasks'] = '0'
+        newDict['active'] = (client.ip === '127.0.0.1') ? 'active' : 'inactive' // TODO dummy data now
+        newDict['tasks'] = (client.ip === '127.0.0.1') ? 2 : 1 // TODO dummy data now
         newDict['os'] = client.system
         newDict['version'] = client.version
         return newDict

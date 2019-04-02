@@ -7,16 +7,16 @@ class JobDashboard extends Component {
   state = {
     overallStates: [{
       title: 'Number of Clients',
-      value: 'NA'
+      value: '2' // TODO dummy data now
     }, {
       title: 'Number of Active Clients',
-      value: 'NA'
+      value: '1' // TODO dummy data now
     }, {
       title: 'Last Modification on',
-      value: 'NA'
+      value: 'NA' // TODO dummy data now
     }, {
       title: 'Number of Scheduled Tasks',
-      value: 'NA'
+      value: 'NA' // TODO dummy data now
     }],
   };
 
@@ -30,7 +30,7 @@ class JobDashboard extends Component {
     title: 'Active',
     dataIndex: 'active'
   }, {
-    title: 'Interval',
+    title: 'Arguments',
     dataIndex: 'arguments',
   }, {
     title: 'Start Time',
@@ -38,7 +38,7 @@ class JobDashboard extends Component {
   }, {
     title: 'Sequence Number',
     dataIndex: 'id',
-    className: 'hide',
+    style: { display: 'hide' }
   }];
 
   componentDidMount() {
