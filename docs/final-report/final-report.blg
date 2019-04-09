@@ -3,46 +3,51 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: final-report.aux
 The style file: apalike.bst
 Database file #1: reference.bib
+Warning--empty journal in BT2
 Warning--empty publisher in IATMA
-You've used 1 entry,
+Warning--empty school in BrowSim
+Warning--empty journal in BT1
+Warning--empty journal in Yoshka
+Warning--empty journal in Cryton
+You've used 10 entries,
             1935 wiz_defined-function locations,
-            480 strings with 3941 characters,
-and the built_in function-call counts, 612 in all, are:
-= -- 52
-> -- 34
-< -- 1
-+ -- 11
-- -- 11
-* -- 51
-:= -- 104
-add.period$ -- 3
-call.type$ -- 1
-change.case$ -- 9
-chr.to.int$ -- 1
-cite$ -- 2
-duplicate$ -- 25
-empty$ -- 43
-format.name$ -- 12
-if$ -- 127
+            519 strings with 4536 characters,
+and the built_in function-call counts, 3045 in all, are:
+= -- 273
+> -- 113
+< -- 9
++ -- 35
+- -- 35
+* -- 225
+:= -- 562
+add.period$ -- 22
+call.type$ -- 10
+change.case$ -- 61
+chr.to.int$ -- 10
+cite$ -- 16
+duplicate$ -- 141
+empty$ -- 220
+format.name$ -- 45
+if$ -- 574
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 1
-newline$ -- 8
-num.names$ -- 5
-pop$ -- 13
+missing$ -- 5
+newline$ -- 45
+num.names$ -- 32
+pop$ -- 74
 preamble$ -- 1
-purify$ -- 9
+purify$ -- 66
 quote$ -- 0
-skip$ -- 19
+skip$ -- 116
 stack$ -- 0
-substring$ -- 32
-swap$ -- 8
+substring$ -- 140
+swap$ -- 17
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 6
-warning$ -- 1
-while$ -- 5
+type$ -- 60
+warning$ -- 6
+while$ -- 23
 width$ -- 0
-write$ -- 15
-(There was 1 warning)
+write$ -- 107
+(There were 6 warnings)

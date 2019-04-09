@@ -1,33 +1,42 @@
-# Job
-
-
-- client: 127.0.0.1
-  name: Visit NUS Website
-  module: mod_visit_any_page
-  duration: 5  # 10 seconds
-  interval: 10  # 2 minutes
   # start time **** start now 
   # log keep track
   # machien learning features -> result
-  args:
-    url: 'http://nus.edu.sg/'
-    time: 5
+
+# Job
 
 - client: 127.0.0.1
-  name: Browsing BBC News Website
+  name: browsing_bbc_news_website
   module: mod_human_web_browsing
-  duration: 1200  # 20 minutes
+  start: now
   interval: 10  # 10 seconds 
   args:
     url: 'https://www.bbc.com/'
-    time: 1200
+    time: 1200 # duration, 20 minutes
+
 
 - client: 10.0.26.5
-  name: Working Mode Simulation
-  module: mod_working_mode_behavior
-  duration: 7200  # 2 hour
+  name: visit_ncl_website
+  module: mod_visit_any_page
+  start: 2019-06-01 12:01:30
+  interval: 1200  # 1200 seconds = 20 minutes
+  args:
+    url: 'http://www.ncl.sg/'
+    time: 5  # duration, 5 seconds
+
+- client: 10.0.26.5
+  name: send_email_to_admin
+  module: mod_send_email
+  args:
+    addr: admin@ncl.org
+
+- client: 10.0.26.5
+  name: check_ncl_web_service
+  module: mod_visit_any_page
   interval: 86400  # 1 day
   args:
-    admin_email: ['admin1@ncl.sg']
-    target1: 'https://www.web1.ncl.org'
-    target2: 'https://www.web2.ncl.org'
+    target:
+      - 'https://www.web1.ncl.org'
+      - 'https://www.web2.ncl.org'
+  success: visit_ncl_website
+  failure: send_email_to_admin
+    

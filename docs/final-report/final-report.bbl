@@ -1,9 +1,46 @@
 \begin{thebibliography}{}
 
+\bibitem[Champandard, 2007]{BT2}
+Champandard, A.~J. (2007).
+\newblock Popular approaches to behavior tree design.
+
 \bibitem[Gebert et~al., 2012]{IATMA}
 Gebert, S., Pries, R., Schlosser, D., and Heck, K. (2012).
 \newblock Internet access traffic measurement and analysis.
 \newblock In Pescapè, A., Salgarelli, L., and Dimitropoulos, X., editors, {\em
   Traffic Monitoring and Analysis}, pages 29--42.
+
+\bibitem[Grönholm, 2019]{APScheduler}
+Grönholm, A. (2019).
+\newblock {\em APScheduler User Manual}.
+
+\bibitem[Hirner, 2018]{BrowSim}
+Hirner, E. (2018).
+\newblock {\em Web browsing simulator for needs safety exercise}.
+\newblock PhD thesis.
+
+\bibitem[Knafla, 2011]{BT1}
+Knafla, B. (2011).
+\newblock Introduction to behavior trees.
+
+\bibitem[Mammadov et~al., 2017]{Yoshka}
+Mammadov, S., Mehta, D., Stoner, E., and Carvalho, M.~M. (2017).
+\newblock High fidelity adaptive cyber emulation.
+
+\bibitem[Nutar, 2018]{Cryton}
+Nutar, I. (2018).
+\newblock Automation of complex attack scenarios.
+
+\bibitem[{Open Sistemas de Información Internet S.L.}, 2019]{osBrain}
+{Open Sistemas de Información Internet S.L.} (2019).
+\newblock {\em osBrain User Manual}.
+
+\bibitem[Unknown, 2017]{Dumpsterfire}
+Unknown (2017).
+\newblock {\em DumpsterFire Toolset User Manual}.
+
+\bibitem[Unknown, 2018]{AutoTTP}
+Unknown (2018).
+\newblock {\em AutoTTP User Manual}.
 
 \end{thebibliography}
