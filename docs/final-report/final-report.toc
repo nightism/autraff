@@ -1,58 +1,79 @@
-\contentsline {chapter}{\numberline {1}Introduction}{4}
-\contentsline {section}{\numberline {1.1}Background}{4}
-\contentsline {section}{\numberline {1.2}Illustration of actions to be done by fictitious users in CDX}{6}
-\contentsline {section}{\numberline {1.3}The need of an automatic traffic generator to simulate human behaviours in CDX}{7}
-\contentsline {section}{\numberline {1.4}System design requirements}{7}
-\contentsline {subsection}{\numberline {1.4.1}Requirements for Traffic Generating Orchestration Tool}{7}
-\contentsline {subsection}{\numberline {1.4.2}Requirements for Human Web-browsing Behavior Simulation Model}{9}
-\contentsline {chapter}{\numberline {2}Related Work: Traffic Generating Orchestration Tool}{10}
-\contentsline {section}{\numberline {2.1}BrowSim}{10}
-\contentsline {subsection}{\numberline {2.1.1}Usage}{10}
-\contentsline {subsection}{\numberline {2.1.2}Discussion}{11}
-\contentsline {section}{\numberline {2.2}Yoshka}{12}
-\contentsline {subsection}{\numberline {2.2.1}Discussion}{13}
-\contentsline {section}{\numberline {2.3}Cryton}{13}
-\contentsline {subsection}{\numberline {2.3.1}Design Architecture}{14}
-\contentsline {subsection}{\numberline {2.3.2}Discussion}{15}
-\contentsline {section}{\numberline {2.4}DumpsterFire Toolset}{16}
-\contentsline {section}{\numberline {2.5}AutoTTP}{16}
-\contentsline {section}{\numberline {2.6}Summary}{17}
-\contentsline {chapter}{\numberline {3}System Design: Traffic Generating Orchestration Tool - Autraff}{18}
-\contentsline {section}{\numberline {3.1}Terminologies}{18}
-\contentsline {section}{\numberline {3.2}Software Architecutre and Overview}{19}
-\contentsline {subsection}{\numberline {3.2.1}Controller}{20}
-\contentsline {subsubsection}{Entry point}{20}
-\contentsline {subsubsection}{Logic}{21}
-\contentsline {subsubsection}{Parser}{21}
-\contentsline {subsubsection}{Graphical UI}{21}
-\contentsline {subsubsection}{Communication Component}{21}
-\contentsline {subsubsection}{Log Component}{21}
-\contentsline {subsection}{\numberline {3.2.2}Cient}{22}
+\contentsline {chapter}{\numberline {1}Introduction}{5}
+\contentsline {section}{\numberline {1.1}Background}{5}
+\contentsline {section}{\numberline {1.2}Illustration of actions to be done by fictitious users in CDX}{7}
+\contentsline {section}{\numberline {1.3}The need for an automatic traffic generator and orchestrator to simulate human behaviours in CDX}{8}
+\contentsline {section}{\numberline {1.4}System design requirements}{8}
+\contentsline {subsection}{\numberline {1.4.1}Requirements for Traffic Generating Orchestration Tool}{8}
+\contentsline {subsection}{\numberline {1.4.2}Requirements for Human Web-browsing Behavior Simulation Model}{10}
+\contentsline {chapter}{\numberline {2}Related Work: Traffic Generating Orchestration Tool}{11}
+\contentsline {section}{\numberline {2.1}BrowSim}{11}
+\contentsline {subsection}{\numberline {2.1.1}Usage}{11}
+\contentsline {subsection}{\numberline {2.1.2}Discussion}{12}
+\contentsline {section}{\numberline {2.2}Yoshka}{13}
+\contentsline {subsection}{\numberline {2.2.1}Discussion}{14}
+\contentsline {section}{\numberline {2.3}Cryton}{14}
+\contentsline {subsection}{\numberline {2.3.1}Design Architecture}{15}
+\contentsline {subsection}{\numberline {2.3.2}Discussion}{16}
+\contentsline {section}{\numberline {2.4}DumpsterFire Toolset}{17}
+\contentsline {section}{\numberline {2.5}AutoTTP}{17}
+\contentsline {section}{\numberline {2.6}Summary}{18}
+\contentsline {chapter}{\numberline {3}System Design: Traffic Generating Orchestration Tool - Autraff}{19}
+\contentsline {section}{\numberline {3.1}Terminologies}{19}
+\contentsline {section}{\numberline {3.2}Software Architecture and Overview}{20}
+\contentsline {subsection}{\numberline {3.2.1}Controller}{21}
+\contentsline {subsubsection}{Entry point}{21}
 \contentsline {subsubsection}{Logic}{22}
+\contentsline {subsubsection}{Parser}{22}
+\contentsline {subsubsection}{Graphical UI}{22}
 \contentsline {subsubsection}{Communication Component}{22}
-\contentsline {subsubsection}{Scheduler}{22}
-\contentsline {subsubsection}{Executor}{22}
-\contentsline {subsubsection}{Module}{22}
-\contentsline {section}{\numberline {3.3}High-Level Script}{23}
-\contentsline {subsection}{\numberline {3.3.1}Script of client information}{23}
-\contentsline {subsection}{\numberline {3.3.2}Script of job information}{24}
-\contentsline {section}{\numberline {3.4}Implementation Details}{26}
-\contentsline {subsection}{\numberline {3.4.1}Communication}{27}
-\contentsline {subsection}{\numberline {3.4.2}Client}{28}
-\contentsline {subsubsection}{Logic}{28}
-\contentsline {subsubsection}{Module \& Executor}{28}
-\contentsline {subsubsection}{Scheduler}{30}
-\contentsline {subsubsection}{Log}{31}
-\contentsline {subsection}{\numberline {3.4.3}Controller}{32}
-\contentsline {subsubsection}{Parser \& Database}{32}
-\contentsline {subsubsection}{Logic \& Backend}{33}
-\contentsline {subsubsection}{UI \& Frontend}{33}
-\contentsline {subsection}{\numberline {3.4.4}Use Case by Sequence Diagram}{33}
-\contentsline {section}{\numberline {3.5}Limitations about Current Implementation}{33}
-\contentsline {chapter}{\numberline {4}Literature Review: Human Web Browsing Simulation}{34}
-\contentsline {chapter}{\numberline {5}Mathmatical Modeling: Human Web Browsing Simulation}{35}
-\contentsline {chapter}{\numberline {6}Testing and Validation}{36}
-\contentsline {chapter}{\numberline {7}Conclusions}{37}
-\contentsline {section}{\numberline {7.1}Smmary}{37}
-\contentsline {section}{\numberline {7.2}Limitation}{37}
-\contentsline {section}{\numberline {7.3}Future work}{37}
+\contentsline {subsubsection}{Log Component}{22}
+\contentsline {subsection}{\numberline {3.2.2}Client}{23}
+\contentsline {subsubsection}{Logic}{23}
+\contentsline {subsubsection}{Communication Component}{23}
+\contentsline {subsubsection}{Scheduler}{23}
+\contentsline {subsubsection}{Executor}{23}
+\contentsline {subsubsection}{Module}{23}
+\contentsline {section}{\numberline {3.3}High-Level Script}{24}
+\contentsline {subsection}{\numberline {3.3.1}Script of client information}{24}
+\contentsline {subsection}{\numberline {3.3.2}Script of job information}{25}
+\contentsline {section}{\numberline {3.4}Implementation Details}{27}
+\contentsline {subsection}{\numberline {3.4.1}Communication}{28}
+\contentsline {subsection}{\numberline {3.4.2}Client}{29}
+\contentsline {subsubsection}{Logic}{29}
+\contentsline {subsubsection}{Module \& Executor}{29}
+\contentsline {subsubsection}{Scheduler}{31}
+\contentsline {subsubsection}{Log}{32}
+\contentsline {subsection}{\numberline {3.4.3}Controller}{33}
+\contentsline {subsubsection}{Parser \& Database}{33}
+\contentsline {subsubsection}{Logic \& Backend}{34}
+\contentsline {subsubsection}{UI \& Frontend}{36}
+\contentsline {subsection}{\numberline {3.4.4}Use Case by Flow Chart}{38}
+\contentsline {section}{\numberline {3.5}Summary}{39}
+\contentsline {chapter}{\numberline {4}Literature Review: Human Web Browsing Simulation}{40}
+\contentsline {section}{\numberline {4.1}Random and Probabilistic Model}{40}
+\contentsline {section}{\numberline {4.2}Server-side Web Log Analysis Model}{41}
+\contentsline {section}{\numberline {4.3}Content Analysis and Interest-driven Browsing Model}{41}
+\contentsline {section}{\numberline {4.4}Summary}{42}
+\contentsline {chapter}{\numberline {5}Mathematical Modelling: Human Web Browsing Simulation}{43}
+\contentsline {section}{\numberline {5.1}Terminologies}{43}
+\contentsline {section}{\numberline {5.2}Assumption}{44}
+\contentsline {section}{\numberline {5.3}Key Concepts behind}{44}
+\contentsline {section}{\numberline {5.4}Model Design}{45}
+\contentsline {subsection}{\numberline {5.4.1}Factors influencing the web browsing behaviors}{45}
+\contentsline {subsection}{\numberline {5.4.2}General flow of browsing behavior simulation}{46}
+\contentsline {subsection}{\numberline {5.4.3}Mathematical Details and Formulas}{46}
+\contentsline {subsubsection}{Interest in the theme of current page \(P_i\)}{46}
+\contentsline {subsubsection}{Theme closeness and content closeness}{47}
+\contentsline {subsubsection}{Interest in page content}{47}
+\contentsline {subsubsection}{Staying time for page \(P_i\)}{48}
+\contentsline {subsubsection}{Visibility closeness for every link in page \(P_i\)}{48}
+\contentsline {subsubsection}{Probability of click on the link that connects to page \(P_j\)}{48}
+\contentsline {section}{\numberline {5.5}Implementation}{49}
+\contentsline {section}{\numberline {5.6}Enhancement using Machine Learning Model}{50}
+\contentsline {section}{\numberline {5.7}Summary}{51}
+\contentsline {chapter}{\numberline {6}Testing and Validation}{52}
+\contentsline {chapter}{\numberline {7}Conclusions}{53}
+\contentsline {section}{\numberline {7.1}Limitations and Future Work}{53}
+\contentsline {subsection}{\numberline {7.1.1}Autraff Orchestration Framework}{53}
+\contentsline {subsection}{\numberline {7.1.2}Human Web Browsing Simulation Module}{54}
+\contentsline {section}{\numberline {7.2}Summary}{55}

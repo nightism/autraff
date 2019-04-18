@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.6)  9 APR 2019 21:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.4.6)  18 APR 2019 17:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -249,28 +249,32 @@ File: listings.cfg 2015/06/04 1.6 listings configuration
 ))
 Package: listings 2015/06/04 1.6 (Carsten Heinz)
 
-(./final-report.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+) (./final-report.aux)
 \openout1 = `final-report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 13.
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 14.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 13.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 13.
+LaTeX Font Info:    ... okay on input line 14.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 14.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
@@ -381,74 +385,74 @@ Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count109
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 21.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 22.
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 80.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 103.
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--84
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 85--86
+Underfull \hbox (badness 10000) in paragraph at lines 105--107
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
+Underfull \hbox (badness 10000) in paragraph at lines 108--109
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
+Underfull \hbox (badness 10000) in paragraph at lines 110--111
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
 
  []
 
 [1]
-Underfull \hbox (badness 10000) in paragraph at lines 94--100
+Underfull \hbox (badness 10000) in paragraph at lines 117--123
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--103
+Underfull \hbox (badness 10000) in paragraph at lines 124--126
 
  []
 
 
-Overfull \hbox (28.44563pt too wide) in paragraph at lines 104--106
+Overfull \hbox (28.44563pt too wide) in paragraph at lines 127--129
 \OT1/ptm/m/n/12 Ubuntu Linux 18.04 Bionic Beaver, Python 3.6, Flask 1.0, Flask-
 Marshmallow 0.10, Flask-SQLAlchemy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
+Underfull \hbox (badness 10000) in paragraph at lines 127--129
 
  []
 
 [2]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 109.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 132.
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--114
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 115--116
+Underfull \hbox (badness 10000) in paragraph at lines 135--137
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--118
+Underfull \hbox (badness 10000) in paragraph at lines 138--139
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--120
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--143
 
  []
 
@@ -486,44 +490,42 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
  [2
 
 
-])
+] [3])
 \tf@toc=\write3
 \openout3 = `final-report.toc'.
 
- [3]
+ [4]
 Chapter 1.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <17.28> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 126.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 149.
 
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--132
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
 
  []
 
-[4
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
+
+ []
+
+[5
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 133--134
+Underfull \hbox (badness 10000) in paragraph at lines 156--157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
 
  []
 
-
-LaTeX Warning: Reference `imp' on page 5 undefined on input line 137.
-
+[6]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ú in font ptmr7t!
@@ -531,41 +533,41 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--142
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 
  []
 
-[5]
-Overfull \hbox (7.11983pt too wide) in paragraph at lines 144--172
+
+Overfull \hbox (7.11983pt too wide) in paragraph at lines 167--195
 [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--172
+Underfull \hbox (badness 10000) in paragraph at lines 167--195
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--176
+Underfull \hbox (badness 10000) in paragraph at lines 198--199
 
  []
 
-[6] [7]
+[7] [8]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
- [8] [9]
+ [9] [10]
 Chapter 2.
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 214.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 236.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
-Underfull \hbox (badness 10000) in paragraph at lines 214--215
+Underfull \hbox (badness 10000) in paragraph at lines 236--237
 
  []
 
-[10
+[11
 
 ]
 Missing character: There is no ‚ in font ptmr7t!
@@ -575,16 +577,16 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ô in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--232
+Underfull \hbox (badness 10000) in paragraph at lines 253--254
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 237--238
+Underfull \hbox (badness 10000) in paragraph at lines 259--260
 
  []
 
-[11]
+[12]
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ú in font ptmr7t!
@@ -598,44 +600,44 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 239--240
+Underfull \hbox (badness 10000) in paragraph at lines 261--262
 
  []
 
-<./pictures/yoshka-hls.png, id=52, 327.09703pt x 395.97937pt>
+<./pictures/yoshka-hls.png, id=58, 327.09703pt x 395.97937pt>
 File: ./pictures/yoshka-hls.png Graphic file (type png)
 <use ./pictures/yoshka-hls.png>
-Package pdftex.def Info: ./pictures/yoshka-hls.png  used on input line 246.
+Package pdftex.def Info: ./pictures/yoshka-hls.png  used on input line 268.
 (pdftex.def)             Requested size: 211.38832pt x 255.90321pt.
-<./pictures/yoshka-bbt.png, id=53, 335.00156pt x 503.63156pt>
+<./pictures/yoshka-bbt.png, id=59, 335.00156pt x 503.63156pt>
 File: ./pictures/yoshka-bbt.png Graphic file (type png)
 <use ./pictures/yoshka-bbt.png>
-Package pdftex.def Info: ./pictures/yoshka-bbt.png  used on input line 250.
+Package pdftex.def Info: ./pictures/yoshka-bbt.png  used on input line 272.
 (pdftex.def)             Requested size: 190.24818pt x 286.01247pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 258--259
+Underfull \hbox (badness 10000) in paragraph at lines 280--281
 
  []
 
-[12 <./pictures/yoshka-hls.png (PNG copy)> <./pictures/yoshka-bbt.png (PNG copy
+[13 <./pictures/yoshka-hls.png (PNG copy)> <./pictures/yoshka-bbt.png (PNG copy
 )>]
-Underfull \hbox (badness 10000) in paragraph at lines 265--266
+Underfull \hbox (badness 10000) in paragraph at lines 287--288
 
  []
 
-<./pictures/cryton-hls.png, id=57, 1614.03pt x 961.5925pt>
+<./pictures/cryton-hls.png, id=63, 1614.03pt x 961.5925pt>
 File: ./pictures/cryton-hls.png Graphic file (type png)
 <use ./pictures/cryton-hls.png>
-Package pdftex.def Info: ./pictures/cryton-hls.png  used on input line 271.
+Package pdftex.def Info: ./pictures/cryton-hls.png  used on input line 293.
 (pdftex.def)             Requested size: 375.80544pt x 223.89075pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[13]
-<./pictures/cryton-arc.png, id=62, 805.13297pt x 277.4114pt>
+[14]
+<./pictures/cryton-arc.png, id=69, 805.13297pt x 277.4114pt>
 File: ./pictures/cryton-arc.png Graphic file (type png)
 <use ./pictures/cryton-arc.png>
-Package pdftex.def Info: ./pictures/cryton-arc.png  used on input line 281.
+Package pdftex.def Info: ./pictures/cryton-arc.png  used on input line 303.
 (pdftex.def)             Requested size: 469.75502pt x 161.85536pt.
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
@@ -655,8 +657,8 @@ Missing character: There is no ú in font ptmr7t!
 Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
- [14 <./pictures/cryton-hls.png> <./pictures/cryton-arc.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 289--290
+ [15 <./pictures/cryton-hls.png> <./pictures/cryton-arc.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 311--312
 
  []
 
@@ -673,203 +675,398 @@ Missing character: There is no ‚ in font ptmr7t!
 Missing character: There is no Ä in font ptmr7t!
 Missing character: There is no ù in font ptmr7t!
 
-Underfull \hbox (badness 10000) in paragraph at lines 291--292
+Underfull \hbox (badness 10000) in paragraph at lines 313--314
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 293--294
+Underfull \hbox (badness 10000) in paragraph at lines 315--316
 
  []
 
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 298--299
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 303--304
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 306--307
+Underfull \hbox (badness 10000) in paragraph at lines 325--326
 
  []
 
-[16] [17]
+
+Underfull \hbox (badness 10000) in paragraph at lines 328--329
+
+ []
+
+[17] [18]
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--349
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
 
  []
 
 
-Overfull \hbox (3.14827pt too wide) in paragraph at lines 351--363
+Overfull \hbox (20.81207pt too wide) in paragraph at lines 373--385
 [][] 
  []
 
 
-Overfull \hbox (15.4365pt too wide) in paragraph at lines 365--386
+Overfull \hbox (16.44476pt too wide) in paragraph at lines 387--408
 [][] 
  []
 
-[18
+[19
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 389--390
+Underfull \hbox (badness 10000) in paragraph at lines 411--412
 
  []
 
-<./pictures/autraff-arc.png, id=80, 541.12163pt x 555.12393pt>
+<./pictures/autraff-arc.png, id=86, 541.12163pt x 555.12393pt>
 File: ./pictures/autraff-arc.png Graphic file (type png)
 <use ./pictures/autraff-arc.png>
-Package pdftex.def Info: ./pictures/autraff-arc.png  used on input line 397.
+Package pdftex.def Info: ./pictures/autraff-arc.png  used on input line 419.
 (pdftex.def)             Requested size: 469.75502pt x 481.92899pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[19] [20 <./pictures/autraff-arc.png>] [21] [22]
-Underfull \hbox (badness 10000) in paragraph at lines 444--445
+[20] [21 <./pictures/autraff-arc.png>] [22] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 466--467
 
  []
 
-<./pictures/client-template.png, id=94, 730.73pt x 494.84875pt>
+<./pictures/client-template.png, id=100, 730.73pt x 494.84875pt>
 File: ./pictures/client-template.png Graphic file (type png)
 <use ./pictures/client-template.png>
-Package pdftex.def Info: ./pictures/client-template.png  used on input line 448
+Package pdftex.def Info: ./pictures/client-template.png  used on input line 470
 .
 (pdftex.def)             Requested size: 281.85587pt x 190.86847pt.
-[23 <./pictures/client-template.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 456--457
+[24 <./pictures/client-template.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 478--479
 
  []
 
-<./pictures/job-template.png, id=98, 915.42pt x 1374.13374pt>
+<./pictures/job-template.png, id=104, 915.42pt x 1374.13374pt>
 File: ./pictures/job-template.png Graphic file (type png)
 <use ./pictures/job-template.png>
-Package pdftex.def Info: ./pictures/job-template.png  used on input line 460.
+Package pdftex.def Info: ./pictures/job-template.png  used on input line 482.
 (pdftex.def)             Requested size: 281.85587pt x 423.08354pt.
-[24 <./pictures/job-template.png>] [25]
-<./pictures/template-bbt.png, id=105, 280.04625pt x 144.54pt>
+[25 <./pictures/job-template.png>] [26]
+<./pictures/template-bbt.png, id=112, 280.04625pt x 144.54pt>
 File: ./pictures/template-bbt.png Graphic file (type png)
 <use ./pictures/template-bbt.png>
-Package pdftex.def Info: ./pictures/template-bbt.png  used on input line 498.
+Package pdftex.def Info: ./pictures/template-bbt.png  used on input line 520.
 (pdftex.def)             Requested size: 281.85587pt x 145.48137pt.
 Missing character: There is no √ in font ptmr7t!
 Missing character: There is no ≥ in font ptmr7t!
- [26 <./pictures/template-bbt.png>]
-<./pictures/comm-uml.png, id=109, 664.4825pt x 654.445pt>
+ [27 <./pictures/template-bbt.png>]
+<./pictures/comm-uml.png, id=116, 664.4825pt x 654.445pt>
 File: ./pictures/comm-uml.png Graphic file (type png)
 <use ./pictures/comm-uml.png>
-Package pdftex.def Info: ./pictures/comm-uml.png  used on input line 517.
+Package pdftex.def Info: ./pictures/comm-uml.png  used on input line 539.
 (pdftex.def)             Requested size: 469.75502pt x 462.662pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 521--522
+Underfull \hbox (badness 10000) in paragraph at lines 543--544
 
  []
 
-[27 <./pictures/comm-uml.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 539--540
+[28 <./pictures/comm-uml.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 561--562
 
  []
 
-[28]
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 544.
+[29]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 566.
 
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 544.
-
-Underfull \hbox (badness 10000) in paragraph at lines 563--564
-
- []
-
-[29]
-Missing character: There is no √ in font ptmr7t!
-Missing character: There is no ∂ in font ptmr7t!
-
-Underfull \hbox (badness 10000) in paragraph at lines 575--576
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 577--578
-
- []
-
-<./pictures/scheduler-uml.png, id=122, 825.0825pt x 433.62pt>
-File: ./pictures/scheduler-uml.png Graphic file (type png)
-<use ./pictures/scheduler-uml.png>
-Package pdftex.def Info: ./pictures/scheduler-uml.png  used on input line 581.
-(pdftex.def)             Requested size: 469.75502pt x 246.88145pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 566.
 
 Underfull \hbox (badness 10000) in paragraph at lines 585--586
 
  []
 
-[30] [31 <./pictures/scheduler-uml.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 602--603
+[30]
+Missing character: There is no √ in font ptmr7t!
+Missing character: There is no ∂ in font ptmr7t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 597--598
 
  []
 
-<./pictures/db-schema.png, id=130, 873.2625pt x 409.53pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 599--600
+
+ []
+
+<./pictures/scheduler-uml.png, id=128, 825.0825pt x 433.62pt>
+File: ./pictures/scheduler-uml.png Graphic file (type png)
+<use ./pictures/scheduler-uml.png>
+Package pdftex.def Info: ./pictures/scheduler-uml.png  used on input line 603.
+(pdftex.def)             Requested size: 469.75502pt x 246.88145pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 607--608
+
+ []
+
+[31] [32 <./pictures/scheduler-uml.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 624--625
+
+ []
+
+<./pictures/db-schema.png, id=137, 873.2625pt x 441.65pt>
 File: ./pictures/db-schema.png Graphic file (type png)
 <use ./pictures/db-schema.png>
-Package pdftex.def Info: ./pictures/db-schema.png  used on input line 608.
-(pdftex.def)             Requested size: 469.75502pt x 220.2993pt.
-[32 <./pictures/db-schema.png>] [33]
+Package pdftex.def Info: ./pictures/db-schema.png  used on input line 630.
+(pdftex.def)             Requested size: 469.75502pt x 237.57767pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 635--636
+
+ []
+
+[33 <./pictures/db-schema.png>]
+LaTeX Font Info:    Try loading font information for OML+ptm on input line 646.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd
+File: omlptm.fd 
+)
+
+LaTeX Font Warning: Font shape `OML/ptm/bx/n' undefined
+(Font)              using `OML/ptm/m/it' instead
+(Font)              for symbol `textless' on input line 646.
+
+LaTeX Font Info:    Font shape `OML/ptm/m/it' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 646.
+LaTeX Font Info:    Font shape `OML/ptm/bx/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 646.
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 666--667
+
+ []
+
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 668--669
+
+ []
+
+<./pictures/home-page.png, id=149, 1972.36874pt x 1348.03625pt>
+File: ./pictures/home-page.png Graphic file (type png)
+<use ./pictures/home-page.png>
+Package pdftex.def Info: ./pictures/home-page.png  used on input line 672.
+(pdftex.def)             Requested size: 375.80544pt x 256.84947pt.
+<./pictures/client-dash.png, id=150, 2542.49875pt x 1180.41pt>
+File: ./pictures/client-dash.png Graphic file (type png)
+<use ./pictures/client-dash.png>
+Package pdftex.def Info: ./pictures/client-dash.png  used on input line 678.
+(pdftex.def)             Requested size: 469.75502pt x 218.08424pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<./pictures/client-page.png, id=151, 2363.83125pt x 735.74875pt>
+File: ./pictures/client-page.png Graphic file (type png)
+<use ./pictures/client-page.png>
+Package pdftex.def Info: ./pictures/client-page.png  used on input line 684.
+(pdftex.def)             Requested size: 422.77664pt x 131.58705pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<./pictures/task-list.png, id=152, 2381.89874pt x 864.22874pt>
+File: ./pictures/task-list.png Graphic file (type png)
+<use ./pictures/task-list.png>
+Package pdftex.def Info: ./pictures/task-list.png  used on input line 690.
+(pdftex.def)             Requested size: 422.77664pt x 153.39178pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 696--697
+
+ []
+
+[36 <./pictures/home-page.png>]
+
+LaTeX Warning: Text page 37 contains only floats.
+
+[37 <./pictures/client-dash.png> <./pictures/client-page.png> <./pictures/task-
+list.png>]
+<./pictures/use-case.png, id=159, 635.37375pt x 926.46124pt>
+File: ./pictures/use-case.png Graphic file (type png)
+<use ./pictures/use-case.png>
+Package pdftex.def Info: ./pictures/use-case.png  used on input line 700.
+(pdftex.def)             Requested size: 328.82707pt x 479.48662pt.
+ [38 <./pictures/use-case.png>] [39]
 Chapter 4.
-[34
+
+Underfull \hbox (badness 10000) in paragraph at lines 716--717
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 721--722
+
+ []
+
+[40
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 723--724
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 729--730
+
+ []
+
+Missing character: There is no √ in font ptmr7t!
+Missing character: There is no ° in font ptmr7t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 731--732
+
+ []
+
+[41] [42]
 Chapter 5.
-[35
+
+Underfull \hbox (badness 10000) in paragraph at lines 744--745
+
+ []
+
+[43
 
 ]
+Missing character: There is no √ in font ptmr7t!
+Missing character: There is no ° in font ptmr7t!
+<./pictures/interest-freq.png, id=181, 686.565pt x 179.67125pt>
+File: ./pictures/interest-freq.png Graphic file (type png)
+<use ./pictures/interest-freq.png>
+Package pdftex.def Info: ./pictures/interest-freq.png  used on input line 786.
+(pdftex.def)             Requested size: 328.82707pt x 86.05203pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[44]
+<./pictures/model.png, id=186, 480.67078pt x 384.31078pt>
+File: ./pictures/model.png Graphic file (type png)
+<use ./pictures/model.png>
+Package pdftex.def Info: ./pictures/model.png  used on input line 799.
+(pdftex.def)             Requested size: 375.80544pt x 300.47075pt.
+ [45 <./pictures/interest-freq.png> <./pictures/model.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 830--831
+
+ []
+
+[46]
+Underfull \hbox (badness 10000) in paragraph at lines 832--833
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 837--838
+
+ []
+
+[47]
+<./pictures/prob-link.png, id=200, 1105.12875pt x 916.42375pt>
+File: ./pictures/prob-link.png Graphic file (type png)
+<use ./pictures/prob-link.png>
+Package pdftex.def Info: ./pictures/prob-link.png  used on input line 868.
+(pdftex.def)             Requested size: 328.82707pt x 272.6779pt.
+<./pictures/hbs-flow.png, id=201, 717.68124pt x 892.33376pt>
+File: ./pictures/hbs-flow.png Graphic file (type png)
+<use ./pictures/hbs-flow.png>
+Package pdftex.def Info: ./pictures/hbs-flow.png  used on input line 877.
+(pdftex.def)             Requested size: 422.77664pt x 525.66902pt.
+ [48 <./pictures/prob-link.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 882--883
+
+ []
+
+[49 <./pictures/hbs-flow.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 884--885
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 886--887
+
+ []
+
+[50]
+Missing character: There is no √ in font ptmr7t!
+Missing character: There is no ° in font ptmr7t!
+
+Underfull \hbox (badness 10000) in paragraph at lines 894--895
+
+ []
+
+[51]
 Chapter 6.
-[36
+
+Underfull \hbox (badness 10000) in paragraph at lines 899--900
+
+ []
+
+[52
 
 ]
 Chapter 7.
-(./final-report.bbl [37
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 910--911
+
+ []
+
+[53
+
+] [54] (./final-report.bbl [55]
+Missing character: There is no √ in font ptmr7t!
+Missing character: There is no ° in font ptmr7t!
 Missing character: There is no √ in font ptmr7t!
 Missing character: There is no ® in font ptmr7t!
 Missing character: There is no √ in font ptmr7t!
 Missing character: There is no ∂ in font ptmr7t!
+ [56
+
+]
+Missing character: There is no ‚ in font ptmr7t!
+Missing character: There is no Ä in font ptmr7t!
+Missing character: There is no ô in font ptmr7t!
 Missing character: There is no √ in font ptmr7t!
 Missing character: There is no ≥ in font ptmr7t!
-) [38
+) [57] (./final-report.aux)
 
-] (./final-report.aux)
-
-LaTeX Warning: There were undefined references.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 5326 strings out of 494880
- 81847 string characters out of 6179602
- 142073 words of memory out of 5000000
- 8561 multiletter control sequences out of 15000+600000
- 24451 words of font info for 50 fonts, out of 8000000 for 9000
+ 5526 strings out of 494880
+ 84954 string characters out of 6179602
+ 143605 words of memory out of 5000000
+ 8722 multiletter control sequences out of 15000+600000
+ 34489 words of font info for 73 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 42i,7n,40p,843b,1391s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 42i,7n,40p,970b,1391s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texm
-f-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmri8a.pfb>
-Output written on final-report.pdf (42 pages, 1105661 bytes).
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/sy
+mbol/usyr.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on final-report.pdf (62 pages, 2120486 bytes).
 PDF statistics:
- 174 PDF objects out of 1000 (max. 8388607)
- 109 compressed objects within 2 object streams
+ 270 PDF objects out of 1000 (max. 8388607)
+ 168 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 101 words of extra memory for PDF output out of 10000 (max. 10000000)
 

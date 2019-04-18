@@ -5,10 +5,6 @@
   version: Ubuntu 18.0.4
 
 - ip: 10.0.26.5
-  system: Linux
-  version: Ubuntu 16.0.4
-
-- ip: 10.0.26.5
   system: Windows
   version: Windows 10
 

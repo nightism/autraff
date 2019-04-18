@@ -3,51 +3,55 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: final-report.aux
 The style file: apalike.bst
 Database file #1: reference.bib
-Warning--empty journal in BT2
+Warning--empty journal in markov
+Warning--empty journal in ml
+Warning--empty journal in rp-limit
 Warning--empty publisher in IATMA
-Warning--empty school in BrowSim
-Warning--empty journal in BT1
 Warning--empty journal in Yoshka
+Warning--empty journal in closeness
+Warning--empty journal in BT2
 Warning--empty journal in Cryton
-You've used 10 entries,
+Warning--empty journal in ca-res1
+Warning--empty journal in yang
+You've used 22 entries,
             1935 wiz_defined-function locations,
-            519 strings with 4536 characters,
-and the built_in function-call counts, 3045 in all, are:
-= -- 273
-> -- 113
-< -- 9
-+ -- 35
-- -- 35
-* -- 225
-:= -- 562
-add.period$ -- 22
-call.type$ -- 10
-change.case$ -- 61
-chr.to.int$ -- 10
-cite$ -- 16
-duplicate$ -- 141
-empty$ -- 220
-format.name$ -- 45
-if$ -- 574
+            593 strings with 7114 characters,
+and the built_in function-call counts, 7487 in all, are:
+= -- 718
+> -- 312
+< -- 14
++ -- 103
+- -- 101
+* -- 581
+:= -- 1378
+add.period$ -- 64
+call.type$ -- 22
+change.case$ -- 159
+chr.to.int$ -- 22
+cite$ -- 32
+duplicate$ -- 294
+empty$ -- 490
+format.name$ -- 127
+if$ -- 1431
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 5
-newline$ -- 45
-num.names$ -- 32
-pop$ -- 74
+missing$ -- 16
+newline$ -- 111
+num.names$ -- 68
+pop$ -- 139
 preamble$ -- 1
-purify$ -- 66
+purify$ -- 159
 quote$ -- 0
-skip$ -- 116
+skip$ -- 241
 stack$ -- 0
-substring$ -- 140
-swap$ -- 17
-text.length$ -- 1
+substring$ -- 413
+swap$ -- 23
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 60
-warning$ -- 6
-while$ -- 23
+type$ -- 132
+warning$ -- 10
+while$ -- 54
 width$ -- 0
-write$ -- 107
-(There were 6 warnings)
+write$ -- 269
+(There were 10 warnings)

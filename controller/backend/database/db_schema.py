@@ -3,6 +3,13 @@ from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 
+# TODO the below codes are used for table creation
+# from flask import Flask
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///autraffdata.db'
+# db = SQLAlchemy(app)
+# ma = Marshmallow(app)
+
 db = SQLAlchemy()
 ma = Marshmallow()
 
@@ -30,34 +37,41 @@ class ClientSchema(ma.Schema):
 
 class Job(db.Model):
     __tablename__ = 'Job'
-    __table_args__ = {'sqlite_autoincrement': True}
+
     # TODO primary key should be named as 'id' by convention. refactor in future development
-    seq = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
+    # __table_args__ = {'sqlite_autoincrement': True}
+    # seq = db.Column(db.Integer, primary_key=True)
+
+    name = db.Column(db.String(255), primary_key=True)
 
     module = db.Column(db.String(255))
     client = db.Column(db.String, db.ForeignKey('Client.ip', ondelete='CASCADE'), nullable=False)
 
     interval = db.Column(db.Integer, nullable=False)
-    start = db.Column(db.DateTime, nullable=False)
+    start = db.Column(db.DateTime, nullable=True)
+
+    success = db.Column(db.String, db.ForeignKey('Job.name'), nullable=True)
+    failure = db.Column(db.String, db.ForeignKey('Job.name'), nullable=True)
 
     # TODO find a more elegant way to store arguments
     arguments = db.Column(db.Text, nullable=True)
 
     schedule_id = db.Column(db.String, default='')
 
-    def __init__(self, name, module, client, interval, start=datetime.now(), arguments=""):
+    def __init__(self, name, module, client, interval, start=datetime.now(), arguments="", success="", failure=""):
         self.name = name
         self.module = module
         self.client = client
         self.interval = interval
         self.arguments = arguments
         self.start = start
+        self.success = success
+        self.failure = failure
 
 
 class JobSchema(ma.Schema):
     class Meta:
-        fields = ('seq', 'client', 'name', 'module', 'interval', 'start', 'arguments', 'schedule_id')
+        fields = ('client', 'name', 'module', 'interval', 'start', 'arguments', 'schedule_id', 'success', 'failure')
 
 
 # TODO may be deleted in the future

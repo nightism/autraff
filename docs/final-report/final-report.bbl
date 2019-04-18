@@ -1,8 +1,31 @@
 \begin{thebibliography}{}
 
-\bibitem[Champandard, 2007]{BT2}
-Champandard, A.~J. (2007).
-\newblock Popular approaches to behavior tree design.
+\bibitem[Antoniou et~al., 2007]{markov}
+Antoniou, C., Koutsopoulos, H.~N., and Yannis, G. (2007).
+\newblock Traffic state prediction using markov chain models.
+\newblock {published in 2007 European Control Conference (ECC)}.
+
+\bibitem[Barabási, 2005]{interest-theo}
+Barabási, A.-L. (2005).
+\newblock The origin of bursts and heavy tails in human dynamics.
+\newblock {\em Nature}, 435:207--211.
+
+\bibitem[Busari and Williamson, 2002]{rp-distri}
+Busari, M. and Williamson, C. (2002).
+\newblock Prowgen: A synthetic workload generation tool for simulation
+  evaluation of web proxy caches.
+\newblock {\em Computer Networks}, 38:779--794.
+
+\bibitem[Chen and Chau, 2005]{ml}
+Chen, H. and Chau, M. (2005).
+\newblock Web mining: Machine learning for web applications.
+\newblock {published by University of Arizona}.
+
+\bibitem[Gavrilis et~al., 2007]{rp-limit}
+Gavrilis, D., Chatzis, I., and Dermatas, E. (2007).
+\newblock Flash crowd detection using decoy hyperlinks.
+\newblock {published in IEEE International Conference on Networking, Sensing
+  and Control}.
 
 \bibitem[Gebert et~al., 2012]{IATMA}
 Gebert, S., Pries, R., Schlosser, D., and Heck, K. (2012).
@@ -12,35 +35,86 @@ Gebert, S., Pries, R., Schlosser, D., and Heck, K. (2012).
 
 \bibitem[Grönholm, 2019]{APScheduler}
 Grönholm, A. (2019).
-\newblock {\em APScheduler User Manual}.
+\newblock Apscheduler user manual.
+\newblock \url{https://apscheduler.readthedocs.io/en/latest/}.
 
 \bibitem[Hirner, 2018]{BrowSim}
 Hirner, E. (2018).
-\newblock {\em Web browsing simulator for needs safety exercise}.
-\newblock PhD thesis.
+\newblock Web browsing simulator for needs safety exercise.
+\newblock unpublished.
 
-\bibitem[Knafla, 2011]{BT1}
-Knafla, B. (2011).
-\newblock Introduction to behavior trees.
+\bibitem[Kuljis, 2010]{ca-res2}
+Kuljis, J. (2010).
+\newblock Applying content analysis to web-based content.
+\newblock {\em Journal of Computing and Information Technology - CIT 18},
+  4:369--375.
 
 \bibitem[Mammadov et~al., 2017]{Yoshka}
 Mammadov, S., Mehta, D., Stoner, E., and Carvalho, M.~M. (2017).
 \newblock High fidelity adaptive cyber emulation.
 
+\bibitem[Mihalceaand et~al., 2006]{closeness}
+Mihalceaand, R., Corley, C., and Strapparava, C. (2006).
+\newblock Corpus-based and knowledge-based measuresof text semantic similarity.
+\newblock {published in: Proceeding AAAI'06 Proceedings of the 21st national
+  conference on Artificial intelligence - volume 1, pages 775-780 }.
+
+\bibitem[Nicolau et~al., 2017]{BT2}
+Nicolau, M., Perez-Liebana, D., O’Neill, M., and Brabazon, A. (2017).
+\newblock Evolutionary behavior tree approaches for navigating platform games.
+\newblock published by IEEE TRANSACTIONS ON COMPUTATIONAL INTELLIGENCE AND AI
+  IN GAME.
+
 \bibitem[Nutar, 2018]{Cryton}
 Nutar, I. (2018).
 \newblock Automation of complex attack scenarios.
+\newblock unpublished.
 
 \bibitem[{Open Sistemas de Información Internet S.L.}, 2019]{osBrain}
 {Open Sistemas de Información Internet S.L.} (2019).
-\newblock {\em osBrain User Manual}.
+\newblock osbrain user manual.
+\newblock \url{https://osbrain.readthedocs.io/en/stable/about.html}.
+
+\bibitem[Schechtera et~al., 1998]{mining-imp}
+Schechtera, S., Krishnanb, M., and D.Smithc, M. (1998).
+\newblock Using path profiles to predict http requests.
+\newblock {\em Computer Networks and ISDN Systems}, 30:457--467.
+
+\bibitem[Shen et~al., 2005]{ca-res1}
+Shen, X., Dumais, S., and Horvitz, E. (2005).
+\newblock Analysis of topic dynamics in web search.
+
+\bibitem[Shoulson et~al., 2011]{BT1}
+Shoulson, A., Garcia, F.~M., Jones, M., Mead, R., and Badler, N.~I. (2011).
+\newblock Parameterizing behavior trees.
+\newblock {\em Motion in Games. MIG 2011. Lecture Notes in Computer Science},
+  pages 144--155.
+
+\bibitem[{The Apache Software Foundation}, 2018]{Apache-ab}
+{The Apache Software Foundation} (2018).
+\newblock ab - apache http server benchmarking tool documentations.
+\newblock url{http://httpd.apache.org/docs/2.2/programs/ab.html}.
+
+\bibitem[Tyagi et~al., 2010]{mining}
+Tyagi, N.~K., Solanki, A.~K., and Wadhwa, M. (2010).
+\newblock Analysis of server log by web usage mining for website improvement.
+\newblock {\em IJCSI International Journal of Computer Science}, 7:17--21.
 
 \bibitem[Unknown, 2017]{Dumpsterfire}
 Unknown (2017).
-\newblock {\em DumpsterFire Toolset User Manual}.
+\newblock Dumpsterfire toolset user manual.
+\newblock
+  \url{https://github.com/TryCatchHCF/DumpsterFire/tree/master/FireModules}.
 
 \bibitem[Unknown, 2018]{AutoTTP}
 Unknown (2018).
-\newblock {\em AutoTTP User Manual}.
+\newblock Autottp user manual.
+\newblock \url{https://github.com/jymcheong/AutoTTP}.
+
+\bibitem[Yang, 2016]{yang}
+Yang, Y. (2016).
+\newblock Modeling of humanweb browsing based on theory of interest-driven
+  behavior.
+\newblock {published by York University}.
 
 \end{thebibliography}

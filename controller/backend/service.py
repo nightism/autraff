@@ -10,6 +10,13 @@ db_dir = os.path.join(basedir, 'database/autraffdata.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_dir
 
 
+def convertNoneToEmptyStr(obj):
+    if obj is None:
+        return ""
+    else:
+        return str(obj)
+
+
 def run_service():
 
     from database.db_schema import db, ma
@@ -46,18 +53,23 @@ def init_backend_db(clients, jobs):
     print('[Service DB] inserting new jobs information.')
     for job in jobs:
         name = job['name']
-        client = job['client']
         module = job['module']
-        interval = str(int(job['interval']))
-        start = job.get('start')
-        args = str(job['args'])
+        client = job['client']
 
-        if start is None:
+        success = convertNoneToEmptyStr(job.get('success'))
+        failure = convertNoneToEmptyStr(job.get('failure'))
+
+        interval = convertNoneToEmptyStr(job.get('interval'))
+        args = convertNoneToEmptyStr(job.get('args'))
+        start = convertNoneToEmptyStr(job.get('start'))
+
+        if start == 'now':
             start = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
         # print(args)
-        c.execute('INSERT INTO Job (name, module, client, interval, start, arguments) VALUES ("' +
-                  name + '", "' + module + '", "' + client + '", ' + interval + ', "' + start + '", "' + args + '")')
+        c.execute('INSERT INTO Job (name, module, client, interval, start, arguments, success, failure) VALUES ("' +
+                  name + '", "' + module + '", "' + client + '", ' + interval + ', "' + start + '", "' + args + '", "'
+                  + success + '", "' + failure + '")')
 
     conn.commit()
     print('[Service DB] database re-initiated.')
