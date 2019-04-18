@@ -37,6 +37,6 @@
     target:
       - 'https://www.web1.ncl.org'
       - 'https://www.web2.ncl.org'
-  success: visit_ncl_website
-  failure: send_email_to_admin
+#  success: visit_ncl_website
+#  failure: send_email_to_admin
     

@@ -10,7 +10,7 @@ db_dir = os.path.join(basedir, 'database/autraffdata.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_dir
 
 
-def convertNoneToEmptyStr(obj):
+def convert_none_to_empty_str(obj):
     if obj is None:
         return ""
     else:
@@ -50,26 +50,29 @@ def init_backend_db(clients, jobs):
         version = client['version']
         c.execute('INSERT INTO Client (ip, system, version) VALUES ("' + ip + '", "' + system + '", "' + version + '")')
 
+    # print(jobs)
+
     print('[Service DB] inserting new jobs information.')
     for job in jobs:
         name = job['name']
         module = job['module']
         client = job['client']
 
-        success = convertNoneToEmptyStr(job.get('success'))
-        failure = convertNoneToEmptyStr(job.get('failure'))
+        success = convert_none_to_empty_str(job.get('success'))
+        failure = convert_none_to_empty_str(job.get('failure'))
 
-        interval = convertNoneToEmptyStr(job.get('interval'))
-        args = convertNoneToEmptyStr(job.get('args'))
-        start = convertNoneToEmptyStr(job.get('start'))
+        interval = convert_none_to_empty_str(job.get('interval'))
+        args = convert_none_to_empty_str(job.get('args'))
+        start = convert_none_to_empty_str(job.get('start'))
 
         if start == 'now':
             start = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-        # print(args)
-        c.execute('INSERT INTO Job (name, module, client, interval, start, arguments, success, failure) VALUES ("' +
-                  name + '", "' + module + '", "' + client + '", ' + interval + ', "' + start + '", "' + args + '", "'
-                  + success + '", "' + failure + '")')
+        query = 'INSERT INTO Job (name, module, client, interval, start, arguments, success, failure) VALUES ("' +\
+                name + '", "' + module + '", "' + client + '", "' + interval + '", "' + start + '", "' + args + '", "' \
+                + success + '", "' + failure + '")'
+        c.execute(query)
+        print(job)
 
     conn.commit()
     print('[Service DB] database re-initiated.')
