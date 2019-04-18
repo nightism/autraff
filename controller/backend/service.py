@@ -23,12 +23,8 @@ def run_service():
     db.init_app(app)
     ma.init_app(app)
 
-    from api.db_api import db_client_api, db_job_api
-    from api.control_api import control_api
-
-    app.register_blueprint(db_client_api)
-    app.register_blueprint(db_job_api)
-    app.register_blueprint(control_api)
+    from api import root_api
+    root_api.init_app(app)
 
     app.run(debug=False)
 

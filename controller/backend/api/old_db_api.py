@@ -50,17 +50,3 @@ from api.db_job_api import db_api as db_job_api
 #     resp = persona_schema.jsonify(new_persona)
 #     resp.headers.add('Access-Control-Allow-Origin', '*')
 #     return resp
-
-# "client": "client",
-    # "connection_name": "client_tcp_channel",
-    # "module": "mod_visit_any_page",
-    # "interval": 5,
-    # "para": {
-    #     "url": "https://www.google.com"
-    # },
-    # "ip": "10.0.26.4",
-    # "new_ip": "10.0.26.4",
-    # "system": "Linux",
-    # "version": "Ubuntu 16.0.4",
-    # "name": "mod_visit_any_page",
-    # "description": "{'desc': 'visit any web page', 'para':{'url':'https://www.google.com'}}}"

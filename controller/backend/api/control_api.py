@@ -47,7 +47,7 @@ def open_connection():
         return resp
 
 
-@control_api.route("/check-connection", methods=["POST"])
+@control_api.route("/nameserver/debug", methods=["POST"])
 def check_nameserver_connection():
     try:
         global ns
@@ -73,7 +73,7 @@ def check_nameserver_connection():
         return resp
 
 
-@control_api.route("/check-controller-connection", methods=["GET"])
+@control_api.route("/controller/debug", methods=["GET"])
 def check_controller_connection():
     try:
         global ns
@@ -101,7 +101,7 @@ def check_controller_connection():
         return resp
 
 
-@control_api.route("/check-connection-naive", methods=["GET"])
+@control_api.route("/controller/status", methods=["GET"])
 def check_connection_naive():
     ns_address = ""
     controller_name = ""
@@ -122,7 +122,7 @@ def check_connection_naive():
     return resp
 
 
-@control_api.route("/connect-to-client", methods=["POST"])
+@control_api.route("/connect", methods=["POST"])
 def connect_to_client():
     try:
         global ns
@@ -156,7 +156,13 @@ def connect_to_client():
     return connection_name
 
 
-@control_api.route("/check-client-connection/<client>", methods=["GET"])
+@control_api.route("/connect/all", methods=["POST"])
+def connect_to_all_client():
+    # TODO
+    return create_response({})
+
+
+@control_api.route("/connect/<client>", methods=["GET"])
 def check_client_connection(client):
     try:
         global ns

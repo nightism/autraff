@@ -24,4 +24,3 @@ if __name__ == '__main__':
 
     service.init_backend_db(client_conf, job_conf)
     service.run_service()
-
