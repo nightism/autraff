@@ -13,6 +13,14 @@
     url: 'https://www.bbc.com/'
     time: 1200 # duration, 20 minutes
 
+- client: 127.0.0.1
+  name: visit_bbc_news_website
+  module: mod_visit_any_page
+  interval: 10  # 10 seconds
+  args:
+    url: 'http://www.bbc.com/'
+    time: 5  # duration, 5 seconds
+
 
 - client: 10.0.26.5
   name: visit_ncl_website
