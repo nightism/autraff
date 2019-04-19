@@ -44,8 +44,8 @@ class JobListPage extends Component {
     // console.log(job)
 
     let jobExpandedData = [{
+      name: job.name,
       schedule_id: job.schedule_id,
-      module: job.module,
       arguments: job.arguments,
       success: job.success,
       failure: job.failure,
@@ -57,7 +57,7 @@ class JobListPage extends Component {
       columns={jobExpandedColumns}
       dataSource={jobExpandedData}
       pagination={false}
-      rowKey={job.name + '-detail'}
+      rowKey="name"
     />
   }
 

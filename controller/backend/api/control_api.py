@@ -237,14 +237,16 @@ def create_job_obj(job_name):
 
     c.execute('SELECT interval, module, arguments, success, failure FROM Job WHERE name = "' + job_name + '"')
     job = c.fetchall()[0]
+    arguments = eval(job[2])
+    arguments['success'] = create_job_obj(job[3])
+    arguments['failure'] = create_response(job[4])
 
     job_obj = {
         "interval": job[0],
         "module": job[1],
-        "arguments": eval(job[2]),
-        "success": create_job_obj(job[3]),
-        'failure': create_job_obj(job[4]),
+        "arguments": arguments
     }
+    print(job_obj)
     return job_obj
 
 
