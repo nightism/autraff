@@ -12,11 +12,11 @@ db_dir = DB_PATH  #os.path.join(basedir, 'database/autraffdata.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_dir
 
 
-def convert_none_to_empty_str(obj):
+def convert_none_to_null_str(obj):
     if obj is None:
-        return ""
+        return 'null'
     else:
-        return str(obj)
+        return '"' + str(obj) + '"'
 
 
 def run_app_service():
@@ -56,19 +56,20 @@ def init_backend_db(clients, jobs):
         module = job['module']
         client = job['client']
 
-        success = convert_none_to_empty_str(job.get('success'))
-        failure = convert_none_to_empty_str(job.get('failure'))
+        success = convert_none_to_null_str(job.get('success'))
+        failure = convert_none_to_null_str(job.get('failure'))
 
-        interval = convert_none_to_empty_str(job.get('interval'))
-        args = convert_none_to_empty_str(job.get('args'))
-        start = convert_none_to_empty_str(job.get('start'))
+        interval = convert_none_to_null_str(job.get('interval'))
+        args = convert_none_to_null_str(job.get('args'))
+        start = convert_none_to_null_str(job.get('start'))
 
-        if start == 'now':
-            start = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        if start == '"now"':
+            start = '"' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '"'
 
-        query = 'INSERT INTO Job (name, module, client, interval, start, arguments, success, failure) VALUES ("' +\
-                name + '", "' + module + '", "' + client + '", "' + interval + '", "' + start + '", "' + args + '", "' \
-                + success + '", "' + failure + '")'
+        # TODO to find a more elegant way to do so
+        query = 'INSERT INTO Job (name, module, client, interval, start, arguments, success, failure) VALUES ("' + \
+                name + '", "' + module + '", "' + client + \
+                '", ' + interval + ', ' + start + ', ' + args + ', ' + success + ', ' + failure + ')'
         c.execute(query)
         # print(job)
 

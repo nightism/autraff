@@ -47,7 +47,7 @@ class Job(db.Model):
     module = db.Column(db.String(255))
     client = db.Column(db.String, db.ForeignKey('Client.ip', ondelete='CASCADE'), nullable=False)
 
-    interval = db.Column(db.Integer, nullable=False)
+    interval = db.Column(db.Integer, nullable=True)
     start = db.Column(db.DateTime, nullable=True)
 
     success = db.Column(db.String, db.ForeignKey('Job.name'), nullable=True)

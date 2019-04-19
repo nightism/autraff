@@ -6,6 +6,7 @@ from flask import Blueprint
 from database import db_schema
 
 from utils.request_utils import create_response
+from utils.request_utils import add_cors_support
 
 db_api = Blueprint('db_job_api', __name__)
 
@@ -34,7 +35,7 @@ def add_job():
     db_schema.db.session.add(new_job)
     db_schema.db.session.commit()
 
-    resp = create_response(job_schema.jsonify(new_job))
+    resp = add_cors_support(job_schema.jsonify(new_job))
     return resp
 
 
@@ -49,11 +50,11 @@ def get_jobs():
 
 
 # endpoint to show the details of one job
-@db_api.route("/job/<seq>/detail", methods=["GET"])
-def get_a_single_job(seq):
-    job = db_schema.Job.query.get(seq)
+@db_api.route("/job/<name>/detail", methods=["GET"])
+def get_a_single_job(name):
+    job = db_schema.Job.query.get(name)
 
-    resp = create_response(job_schema.jsonify(job))
+    resp = add_cors_support(job_schema.jsonify(job))
     return resp
 
 
@@ -67,7 +68,7 @@ def update_job_schedule_id(seq):
     db_schema.db.session.commit()
 
     resp = job_schema.jsonify(this_job)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp = add_cors_support(resp)
     return resp
 
 
@@ -77,14 +78,15 @@ def get_jobs_of_a_client(client):
     jobs = db_schema.Job.query.filter(db_schema.Job.client == client)
 
     resp = jobs_schema.jsonify(jobs)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp = add_cors_support(resp)
     return resp
 
 
 # endpoint to update one job
 @db_api.route("/job/<seq>", methods=["PUT"])
 def update_a_job(seq):
-    # TODO to be deprecated
+    # TODO this api is out of date, but it's ok for now since it is not used by front end
+
     job = db_schema.Job.query.get(seq)
 
     data = json.loads(request.data)
@@ -98,5 +100,5 @@ def update_a_job(seq):
     db_schema.db.session.commit()
 
     resp = job_schema.jsonify(job)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp = add_cors_support(resp)
     return resp

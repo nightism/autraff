@@ -1,9 +1,10 @@
 import json
-from flask import request, jsonify
+from flask import request
 from flask import Blueprint
 
 from database import db_schema
 
+from utils.request_utils import add_cors_support
 from utils.request_utils import create_response
 
 db_api = Blueprint('db_client_api', __name__)
@@ -45,7 +46,7 @@ def add_client():
     db_schema.db.session.add(new_client)
     db_schema.db.session.commit()
 
-    resp = create_response(client_schema.jsonify(new_client))
+    resp = add_cors_support(client_schema.jsonify(new_client))
 
     return resp
 
@@ -67,7 +68,7 @@ def client_update():
 
     db_schema.db.session.commit()
 
-    resp = create_response(client_schema.jsonify(client))
+    resp = add_cors_support(client_schema.jsonify(client))
     return resp
 
 
@@ -81,5 +82,5 @@ def client_delete():
     db_schema.db.session.delete(client)
     db_schema.db.session.commit()
 
-    resp = create_response(client_schema.jsonify(client))
+    resp = add_cors_support(client_schema.jsonify(client))
     return resp
