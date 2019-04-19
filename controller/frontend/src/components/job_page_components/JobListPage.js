@@ -9,33 +9,36 @@ class JobListPage extends Component {
   };
 
   jobInfoColumns = [{
-    title: 'Task Name',
-    dataIndex: 'name',
-  }, {
     title: 'Deployed machine',
     dataIndex: 'client',
   }, {
-    title: 'Period',
+    title: 'Task Name',
+    dataIndex: 'name',
+  }, {
+    title: 'Module',
+    dataIndex: 'module',
+  }, {
+    title: 'Interval',
     dataIndex: 'interval',
   }, {
     title: 'Start time',
     dataIndex: 'start',
-  }, {
-    title: 'Sequence',
-    dataIndex: 'seq'
   }];
 
 
   nestedTableRendering(job) {
     let jobExpandedColumns = [{
-      title: 'Module',
-      dataIndex: 'module',
-    }, {
       title: 'Arguments',
       dataIndex: 'arguments',
     }, {
       title: 'Scheduling ID',
       dataIndex: 'schedule_id',
+    }, {
+      title: 'On Success',
+      dataIndex: 'success',
+    }, {
+      title: 'On Failure',
+      dataIndex: 'failure',
     }]
 
     // console.log(job)
@@ -44,6 +47,8 @@ class JobListPage extends Component {
       schedule_id: job.schedule_id,
       module: job.module,
       arguments: job.arguments,
+      success: job.success,
+      failure: job.failure,
     }]
 
     // console.log(job.seq.toString() + '-detail')
@@ -52,7 +57,7 @@ class JobListPage extends Component {
       columns={jobExpandedColumns}
       dataSource={jobExpandedData}
       pagination={false}
-      rowKey={job.seq.toString() + '-detail'}
+      rowKey={job.name + '-detail'}
     />
   }
 
@@ -64,7 +69,6 @@ class JobListPage extends Component {
     }).then(data => {
       var jobs = data.map((job) => {
         var newDict = {}
-        newDict['seq'] = job.seq
         newDict['name'] = job.name
         newDict['client'] = job.client
         newDict['module'] = job.module
@@ -72,6 +76,8 @@ class JobListPage extends Component {
         newDict['arguments'] = job.arguments
         newDict['start'] = job.start
         newDict['schedule_id'] = job.schedule_id
+        newDict['success'] = job.success
+        newDict['failure'] = job.failure
         return newDict
       })
       this.setState({jobInfo: jobs})

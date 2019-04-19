@@ -9,7 +9,7 @@ class ClientDashboard extends Component {
     numOfClient: 2, // TODO dummy data now
     numOfActiveClient: 1, // TODO dummy data now
     lastModifiedOn: 'Within an hour', // TODO dummy data now
-    numOfScheduledTasks: '0', // TODO dummy data now
+    numOfTasks: 4, // TODO dummy data now
   };
 
   clientInfoColumns = [{
@@ -19,7 +19,7 @@ class ClientDashboard extends Component {
     title: 'Active',
     dataIndex: 'active',
   }, {
-    title: 'Tasks scheduled',
+    title: 'Tasks',
     dataIndex: 'tasks',
   }, {
     title: 'Operating System',
@@ -30,21 +30,26 @@ class ClientDashboard extends Component {
   }];
 
   componentDidMount() {
+    let counter = 0
     fetch('http://localhost:5000/client', {
       method: "GET",
     }).then(results => {
       return results.json()
     }).then(data => {
       var clientList = data.map((client) => {
+        counter ++;
         var newDict = {}
         newDict['key'] = client.ip
         newDict['active'] = (client.ip === '127.0.0.1') ? 'active' : 'inactive' // TODO dummy data now
-        newDict['tasks'] = (client.ip === '127.0.0.1') ? 2 : 1 // TODO dummy data now
+        newDict['tasks'] = (client.ip === '127.0.0.1') ? 1 : 3 // TODO dummy data now
         newDict['os'] = client.system
         newDict['version'] = client.version
         return newDict
       })
-      this.setState({clientInfo: clientList})
+      this.setState({
+        clientInfo: clientList,
+        numOfClient: counter,
+      })
       // console.log(this.state.clientInfo)
       // console.log(clientList)
     })
@@ -67,7 +72,7 @@ class ClientDashboard extends Component {
             <Card title='Last Modification on'> {this.state.lastModifiedOn} </Card>
           </Col>
           <Col span={6}>
-            <Card title='Number of Scheduled Tasks'> {this.state.numOfScheduledTasks} </Card>
+            <Card title='Number of Scheduled Tasks'> {this.state.numOfTasks} </Card>
           </Col>
         </Row>
 

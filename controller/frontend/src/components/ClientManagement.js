@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import ClientDashboard from './client_page_components/ClientDashboard'
 import ClientPage from './client_page_components/ClientPage'
+import { DB_CLIENT_API } from '../apis/apiLib';
 
 const { SubMenu } = Menu;
 const { Content, Sider } = Layout;
@@ -20,7 +21,7 @@ class ClientManagement extends Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:5000/client', {
+    fetch(DB_CLIENT_API, {
       method: "GET",
     }).then(results => {
       return results.json()
@@ -41,7 +42,6 @@ class ClientManagement extends Component {
   }
 
   render() {
-
     return (
       <Content style={{ padding: '0 50px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
@@ -102,7 +102,7 @@ class ClientManagement extends Component {
 //       <Menu.Item key=".report">report</Menu.Item>
 //       <Menu.Item key=".control">control</Menu.Item>
 //     </SubMenu>
-  
+
 //   );
 // }
 

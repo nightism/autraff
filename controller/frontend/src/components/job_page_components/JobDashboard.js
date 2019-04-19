@@ -5,15 +5,16 @@ import { Table, List, Card } from 'antd';
 
 class JobDashboard extends Component {
   state = {
+    jobInfo: [],
     overallStates: [{
       title: 'Number of Clients',
       value: '2' // TODO dummy data now
     }, {
       title: 'Number of Active Clients',
-      value: '1' // TODO dummy data now
+      value: '2' // TODO dummy data now
     }, {
       title: 'Last Modification on',
-      value: 'NA' // TODO dummy data now
+      value: 'Wthin 1 hour' // TODO dummy data now
     }, {
       title: 'Number of Scheduled Tasks',
       value: 'NA' // TODO dummy data now
@@ -27,21 +28,15 @@ class JobDashboard extends Component {
     title: 'Client',
     dataIndex: 'client',
   }, {
-    title: 'Active',
+    title: 'Scheduled',
     dataIndex: 'active'
   }, {
     title: 'Arguments',
     dataIndex: 'arguments',
-  }, {
-    title: 'Start Time',
-    dataIndex: 'start',
-  }, {
-    title: 'Sequence Number',
-    dataIndex: 'id',
-    style: { display: 'hide' }
-  }];
+  },];
 
   componentDidMount() {
+    let countScheduled = 0
     fetch('http://localhost:5000/job', {
       method: "GET",
     }).then(results => {
@@ -51,26 +46,38 @@ class JobDashboard extends Component {
         var newDict = {}
         newDict['name'] = job.name
         newDict['client'] = job.client
-        newDict['persona'] = job.persona
         newDict['module'] = job.module
         newDict['interval'] = job.interval
         newDict['arguments'] = job.arguments
         newDict['start'] = job.start
         newDict['schedule_id'] = job.schedule_id
-        newDict['id'] = job.seq
 
         // console.log(job)
 
         if (newDict['schedule_id'] === null || newDict['schedule_id'] === "") {
           newDict['active'] = 'inactive'
         } else {
+          countScheduled ++
           newDict['active'] = 'active'
         }
         return newDict
       })
-      this.setState({jobInfo: jobs})
-      // console.log(this.state.jobInfo)
-      // console.log(jobs)
+      this.setState({
+        jobInfo: jobs,
+        overallStates: [{
+          title: 'Number of Clients',
+          value: '2' // TODO dummy data now
+        }, {
+          title: 'Number of Active Clients',
+          value: '2' // TODO dummy data now
+        }, {
+          title: 'Last Modification on',
+          value: 'Wthin 1 hour' // TODO dummy data now
+        }, {
+          title: 'Number of Scheduled Tasks',
+          value: countScheduled
+        }]
+      })
     })
   }
 

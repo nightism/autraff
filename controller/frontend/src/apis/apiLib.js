@@ -9,3 +9,7 @@ export const GET_NAMESERVER_CONTROLLER_INFO = API_HOME + '/controller/status'
 export const CONNECT_TO_CLIENT = API_HOME + '/connect'
 export const CONNECT_TO_ALL_CLIENTS = CONNECT_TO_CLIENT + '/all'
 export const CHECK_CLIENT_CONNECTION_STATUS = CONNECT_TO_CLIENT
+
+export const DB_CLIENT_API = API_HOME + '/client'
+
+export const DB_JOB_API = API_HOME + '/job'

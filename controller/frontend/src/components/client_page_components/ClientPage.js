@@ -22,17 +22,21 @@ class ClientPage extends Component {
     title: 'Name',
     dataIndex: 'name',
   }, {
-    title: 'Schedule ID',
+    title: 'Scheduled',
     dataIndex: 'schedule_id',
+    render: (text) => {
+      if (text === "" || text === undefined || text === null) {
+        return <Icon type="close"  />
+      } else {
+        return <Icon type="check"  />
+      }
+    }
   }, {
     title: 'Module',
     dataIndex: 'module',
   }, {
     title: 'Interval (seconds)',
     dataIndex: 'interval',
-  }, {
-    title: 'Start Time',
-    dataIndex: 'start'
   }, {
     title: 'Actions',
     render: (text, record) => <div style={{ textAlign: 'center' }}>
@@ -282,7 +286,7 @@ class ClientPage extends Component {
           bordered
           columns={this.jobInfoColumns}
           dataSource={this.state.jobInfo}
-          rowKey="key"
+          rowKey="name"
         />
       </div>
     );
