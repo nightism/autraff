@@ -158,7 +158,11 @@ def connect_to_client():
 
 @control_api.route("/connect/all", methods=["POST"])
 def connect_to_all_client():
-    # TODO
+    # from sqlite3 import connect
+    #
+    # conn = connect(os.path.join(basedir, 'database/autraffdata.db'))
+    # c = conn.cursor()
+
     return create_response({})
 
 

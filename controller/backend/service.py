@@ -2,11 +2,13 @@ from flask import Flask
 import os
 import datetime
 
+from utils.constants import BASE_DIR, DB_DIR
+
 
 app = Flask(__name__)
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-db_dir = os.path.join(basedir, 'database/autraffdata.db')
+basedir = BASE_DIR  # os.path.abspath(os.path.dirname(__file__))
+db_dir = DB_DIR  #os.path.join(basedir, 'database/autraffdata.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_dir
 
 
@@ -17,7 +19,7 @@ def convert_none_to_empty_str(obj):
         return str(obj)
 
 
-def run_service():
+def run_app_service():
 
     from database.db_schema import db, ma
     db.init_app(app)

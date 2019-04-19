@@ -4,7 +4,7 @@ import service
 
 
 def main():
-    service.run_service()
+    service.run_app_service()
 
 
 if __name__ == '__main__':
@@ -23,4 +23,4 @@ if __name__ == '__main__':
     job_conf = yaml.load(job_conf_file, Loader=yaml.FullLoader)
 
     service.init_backend_db(client_conf, job_conf)
-    service.run_service()
+    service.run_app_service()
