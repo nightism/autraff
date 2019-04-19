@@ -40,9 +40,9 @@ class ClientPage extends Component {
   }, {
     title: 'Actions',
     render: (text, record) => <div style={{ textAlign: 'center' }}>
-      <Button type="primary" value={record.key} onClick={this.scheduleJob}>schedule</Button>
+      <Button type="primary" value={record.name} onClick={this.scheduleJob}>schedule</Button>
       <span style={{ padding: 10 }}></span>
-      <Button type="danger" value={record.key} onClick={this.stopJob}>stop</Button>
+      <Button type="danger" value={record.name} onClick={this.stopJob}>stop</Button>
     </div>
   }];
 
@@ -69,7 +69,8 @@ class ClientPage extends Component {
         return
       }
       var schedule_request = {
-        "connection_name": targetJob.client + "_tcp_channel",
+        "client": targetJob.client,
+        "name": targetJob.name,
         "module": targetJob.module,
         "interval": targetJob.interval,
         "para": targetJob.arguments,
@@ -109,7 +110,7 @@ class ClientPage extends Component {
         return
       }
       var schedule_request = {
-        "connection_name": targetJob.client + "_tcp_channel",
+        "client": targetJob.client,
         "command": 'delete_task',
         "job_schedule_id": targetJob.schedule_id,
       }

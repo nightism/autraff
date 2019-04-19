@@ -17,6 +17,7 @@ class ClientManagement extends Component {
 
   state = {
     clients: [],
+    clientsLogs: [],
     clientsControl: []
   }
 
@@ -31,12 +32,21 @@ class ClientManagement extends Component {
           <Link to={"/client-management/" + client.ip + "/detail"}>{client.ip}</Link>
         </Menu.Item>)
       })
+
+      var clientLogs = data.map((client) => {
+        return (<Menu.Item key={ client.ip + '.log' }>
+          <Link to={"/client-management/" + client.ip + "/log"}>{client.ip}</Link>
+        </Menu.Item>)
+      })
+
       var clientControlMenu = data.map((client) => {
-        return (<Menu.Item key={ client.ip + ".control"}>
+        return (<Menu.Item key={ client.ip + ".control"} disabled>
+          {/* TODO to be developed */}
           <Link to={"/client-control/" + client.ip}>{client.ip}</Link>
         </Menu.Item>)
       })
       this.setState({clients: clientMenue})
+      this.setState({clientsLogs: clientLogs})
       this.setState({clientsControl: clientControlMenu})
     })
   }
@@ -68,12 +78,16 @@ class ClientManagement extends Component {
                   { this.state.clients }
                 </SubMenu>
 
-                <SubMenu key="control" title={<span><Icon type="laptop" />Remote Control</span>}>
-                  { this.state.clientsControl }
-                  <Menu.Item key="any.control">customised</Menu.Item>
+                <SubMenu key="log" title={<span><Icon type="file-text" />Retrieve Logs</span>}>
+                  { this.state.clientsLogs }
                 </SubMenu>
 
-                <MenuItem key="addclient">
+                <SubMenu key="control" title={<span><Icon type="robot" />Remote Control</span>}>
+                  { this.state.clientsControl }
+                  <Menu.Item key="any.control" disabled>any connect</Menu.Item>
+                </SubMenu>
+
+                <MenuItem key="addclient" disabled>
                   <Icon type="plus"/>
                   <span>Add New Clients</span>
                 </MenuItem>

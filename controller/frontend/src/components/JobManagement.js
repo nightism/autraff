@@ -39,7 +39,7 @@ const JobManagement = () => {
                 <Link to="/job-management/task-list-page"/>
               </MenuItem>
 
-              <MenuItem key="addjob">
+              <MenuItem key="addjob" disabled>
                 <Icon type="plus"/>
                 <span>Add Jobs</span>
               </MenuItem>

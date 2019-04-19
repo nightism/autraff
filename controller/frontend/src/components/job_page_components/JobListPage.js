@@ -97,7 +97,7 @@ class JobListPage extends Component {
           columns={this.jobInfoColumns}
           dataSource={this.state.jobInfo}
           expandedRowRender={this.nestedTableRendering}
-          rowKey="seq"
+          rowKey="name"
         />
       </div>
     );

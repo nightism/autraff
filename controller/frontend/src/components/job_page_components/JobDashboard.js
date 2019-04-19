@@ -101,7 +101,7 @@ class JobDashboard extends Component {
           bordered
           columns={this.jobInfoColumns}
           dataSource={this.state.jobInfo}
-          rowKey="id"
+          rowKey="name"
         />
       </div>
     );
