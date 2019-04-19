@@ -4,6 +4,7 @@ import { Button, Layout, Breadcrumb, Row, Col, Card, Alert } from 'antd';
 
 import 'antd/dist/antd.css';
 import { getNameserverAndControllerInfo, connectToNameserverAndController } from '../apis/controllerApis';
+import { CHECK_NAMESERVER_STATUS, CONNECT_TO_ALL_CLIENTS } from '../apis/apiLib';
 
 const { Content } = Layout;
 
@@ -18,11 +19,15 @@ class HomePage extends Component {
       serviceUpTime: 'UNKOWN',
       alertDisplay: {
         style: { display: 'None' }
+      },
+      loading: {
+        connectAllClients: false,
       }
     };
 
     // This binding is necessary to make `this` work in the callback
-    this.openConnection = this.openConnection.bind(this);
+    this.openConnection = this.openConnection.bind(this)
+    this.connectToAllClients = this.connectToAllClients.bind(this)
   }
 
   openConnection() {
@@ -41,12 +46,32 @@ class HomePage extends Component {
   }
 
   checkConnection() {
-    fetch('http://localhost:5000/check-connection', {
+    fetch(CHECK_NAMESERVER_STATUS, {
       method: 'POST',
     }).then((response) => {
       return response.json()
     }).then((data) => {
       alert(data.result)
+    })
+  }
+
+  connectToAllClients() {
+    this.setState({
+      loading: Object.assign({}, this.state.loading, {
+        connectAllClients: true
+      })
+    })
+    fetch(CONNECT_TO_ALL_CLIENTS, {
+      method: 'POST',
+    }).then((response) => {
+      return response.json()
+    }).then((data) => {
+      alert(data.result)
+      this.setState({
+        loading: Object.assign({}, this.state.loading, {
+          connectAllClients: false
+        })
+      })
     })
   }
 
@@ -114,17 +139,40 @@ class HomePage extends Component {
                 </Card>
               </Col>
               <Col span={15} style={{ textAlign: 'left', paddingTop: '40px' }}>
-                <h2>To run and connect to the nameserver:</h2>
-                <Button type="primary" onClick={ this.openConnection }>Connect to Nameserver</Button>
-                <div style={{ margin: '20px' }}></div>
-                <h2>To check the status of nameserver:</h2>
-                <Button onClick={ this.checkConnection } >Refresh Nameserver Status</Button>
-                <div style={{ margin: '20px' }}></div>
-                <h2>To shutdown all clients running on nameserver remotely:</h2>
-                <Button type="danger" onClick={ this.shutdownAllClients }>Shutdown Connected Clients</Button>
-                <div style={{ margin: '20px' }}></div>
-                <h2>To shutdown the nameserver and all other clients:</h2>
-                <Button type="danger" onClick={ this.shutdownNameserver }>Shutdown Connection</Button>
+                <Col span={12}>
+                  <h2>To run and connect to the nameserver:</h2>
+                  <Button type="primary" onClick={ this.openConnection }>Connect to Nameserver</Button>
+                  <div style={{ margin: '20px' }}></div>
+                </Col>
+
+                <Col span={12}>
+                  <h2>To check the status of nameserver:</h2>
+                  <Button onClick={ this.checkConnection } >Refresh Nameserver Status</Button>
+                  <div style={{ margin: '20px' }}></div>
+                </Col>
+
+                <Col span={24}>
+                  <h2>To establish communication channels for all clients:</h2>
+                  <Button
+                    type="primary"
+                    onClick={ this.connectToAllClients }
+                    loading={this.state.loading.connectAllClients}
+                  >
+                    Connect to All Clients
+                  </Button>
+                  <div style={{ margin: '20px' }}></div>
+                </Col>
+
+                <Col span={24}>
+                  <h2>To shutdown all clients running on nameserver remotely:</h2>
+                  <Button type="danger" onClick={ this.shutdownAllClients }>Shutdown Connected Clients</Button>
+                  <div style={{ margin: '20px' }}></div>
+                </Col>
+
+                <Col span={24}>
+                  <h2>To shutdown the nameserver and all connected clients:</h2>
+                  <Button type="danger" onClick={ this.shutdownNameserver }>Shutdown Connection</Button>
+                </Col>
               </Col>
               <Col span={1} />
             </Row>

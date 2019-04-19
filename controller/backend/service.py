@@ -2,13 +2,13 @@ from flask import Flask
 import os
 import datetime
 
-from utils.constants import BASE_DIR, DB_DIR
+from utils.constants import BASE_DIR, DB_PATH
 
 
 app = Flask(__name__)
 
 basedir = BASE_DIR  # os.path.abspath(os.path.dirname(__file__))
-db_dir = DB_DIR  #os.path.join(basedir, 'database/autraffdata.db')
+db_dir = DB_PATH  #os.path.join(basedir, 'database/autraffdata.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + db_dir
 
 

@@ -1,7 +1,7 @@
 import os
 
 BASE_DIR = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-DB_DIR = os.path.join(BASE_DIR, 'database/autraffdata.db')
+DB_PATH = os.path.join(BASE_DIR, 'database/autraffdata.db')
 
 NAMESERVER_ADDRESS = '127.0.0.1:26000'
 

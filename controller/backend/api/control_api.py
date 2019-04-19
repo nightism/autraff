@@ -122,6 +122,41 @@ def check_connection_naive():
     return resp
 
 
+@control_api.route("/connect/all", methods=["POST"])
+def connect_to_all_client():
+    try:
+        from sqlite3 import connect
+        from utils.constants import DB_PATH
+
+        conn = connect(DB_PATH)
+        c = conn.cursor()
+
+        result = c.execute('SELECT ip FROM client')
+
+        success = []
+
+        for client in result.fetchall():
+            try:
+                client_name = client[0]
+                req_addr = ns.proxy(CLIENT_PREFIX + client_name).addr(COMMUNICATION_CHANNEL)
+                connection_name = client_name + CONNECTION_SUFFIX
+                controller.connect(req_addr, connection_name)
+                success.append(client_name)
+            except Exception:
+                pass
+
+        return create_response({
+            "success": success,
+            "result": 'connected to clients: ' + str(success),
+        })
+    except Exception:
+        result = {
+            "result": "connection error."
+        }
+        resp = create_response(result)
+        return resp
+
+
 @control_api.route("/connect", methods=["POST"])
 def connect_to_client():
     try:
@@ -152,18 +187,6 @@ def connect_to_client():
         }
         resp = create_response(result)
         return resp
-
-    return connection_name
-
-
-@control_api.route("/connect/all", methods=["POST"])
-def connect_to_all_client():
-    # from sqlite3 import connect
-    #
-    # conn = connect(os.path.join(basedir, 'database/autraffdata.db'))
-    # c = conn.cursor()
-
-    return create_response({})
 
 
 @control_api.route("/connect/<client>", methods=["GET"])

@@ -71,7 +71,7 @@ class ClientPage extends Component {
         "para": targetJob.arguments,
         "command": 'schedule_task',
       }
-      fetch("http://localhost:5000/schedule-job", {
+      fetch("http://localhost:5000/scheduling/schedule", {
         method: "POST",
         body: JSON.stringify(schedule_request)
       }).then((response) => {
@@ -109,7 +109,7 @@ class ClientPage extends Component {
         "command": 'delete_task',
         "job_schedule_id": targetJob.schedule_id,
       }
-      fetch("http://localhost:5000/stop-job", {
+      fetch("http://localhost:5000/scheduling/stop", {
         method: "POST",
         body: JSON.stringify(schedule_request)
       }).then((response) => {
@@ -159,7 +159,7 @@ class ClientPage extends Component {
     // console.log(this.state.client)
     this.setState({status: 'connecting'})
 
-    fetch("http://localhost:5000/connect-to-client", {
+    fetch("http://localhost:5000/connect", {
       method: "POST",
       body: JSON.stringify({
         client: this.state.client
@@ -198,7 +198,7 @@ class ClientPage extends Component {
       })
       this.setState({'jobInfo': jobList})
 
-      fetch("http://localhost:5000/connect-to-client", {
+      fetch("http://localhost:5000/connect", {
         method: "POST",
         body: JSON.stringify({
           client: this.props.match.params.client
@@ -240,7 +240,7 @@ class ClientPage extends Component {
         })
         this.setState({'jobInfo': jobList})
 
-        fetch("http://localhost:5000/connect-to-client", {
+        fetch("http://localhost:5000/connect", {
           method: "POST",
           body: JSON.stringify({
             client: this.props.match.params.client
