@@ -145,6 +145,8 @@ def connect_to_all_client():
             except Exception:
                 pass
 
+        c.close()
+
         return create_response({
             "success": success,
             "result": 'connected to clients: ' + str(success),
@@ -222,6 +224,30 @@ def check_client_connection(client):
     return connection_name
 
 
+def create_job_obj(job_name):
+    from sqlite3 import connect
+    from utils.constants import DB_PATH
+
+    conn = connect(DB_PATH)
+    c = conn.cursor()
+
+    if job_name is None or job_name == "":
+        c.close()
+        return {}
+
+    c.execute('SELECT interval, module, arguments, success, failure FROM Job WHERE name = "' + job_name + '"')
+    job = c.fetchall()[0]
+
+    job_obj = {
+        "interval": job[0],
+        "module": job[1],
+        "arguments": eval(job[2]),
+        "success": create_job_obj(job[3]),
+        'failure': create_job_obj(job[4]),
+    }
+    return job_obj
+
+
 @control_api.route("/scheduling/schedule", methods=["POST"])
 def schedule_job():
     global ns
@@ -232,13 +258,24 @@ def schedule_job():
     if controller is None:
         controller = ns.proxy(CONTROLLER_ALIAS)
 
+    from sqlite3 import connect
+    from utils.constants import DB_PATH
+
+    conn = connect(DB_PATH)
+    c = conn.cursor()
+
     data = json.loads(request.data)
-    connection_name = data['connection_name']
+    connection_name = data['client'] + CONNECTION_SUFFIX
+    job_name = data['name']
+    job = create_job_obj(job_name)
+
     message = {
+        # TODO some redundant information to be removed
         'command': COMMAND_SCHEDULE_TASK,
         'interval': int(data['interval']),
         'module': data['module'],
         'para': eval(data['para']),
+        'job': job
     }
 
     controller.send(connection_name, message)
@@ -248,19 +285,22 @@ def schedule_job():
         'schedule_id': str(reply)
     }
 
-    resp = jsonify(result)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp = create_response(result)
     return resp
 
 
-@control_api.route("/stop-job", methods=["POST"])
+@control_api.route("/scheduling/stop", methods=["POST"])
 def stop_job():
-    ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
-    controller = ns.proxy(CONTROLLER_ALIAS)
+    global ns
+    global controller
 
+    if ns is None:
+        ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
+    if controller is None:
+        controller = ns.proxy(CONTROLLER_ALIAS)
     data = json.loads(request.data)
 
-    connection_name = data['connection_name']
+    connection_name = data['client'] + CONNECTION_SUFFIX
     message = {
         'command': COMMAND_DELETE_TASK,
         'job_id': data['job_schedule_id'],
@@ -273,6 +313,5 @@ def stop_job():
         'schedule_id': str(reply)
     }
 
-    resp = jsonify(result)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp = create_response(result)
     return resp
