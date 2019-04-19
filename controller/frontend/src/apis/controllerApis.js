@@ -1,9 +1,9 @@
-import { GET_NAMESERVER_CONTROLLER_INFOR, OPEN_NAMESERVER_CONTROLLER_CONNECTION } from './apiLib'
+import { GET_NAMESERVER_CONTROLLER_INFO, OPEN_NAMESERVER_CONTROLLER_CONNECTION } from './apiLib'
 import { GET_REQUEST_HEADER } from '../utils/requestHeaders'
 
 export function getNameserverAndControllerInfo() {
   return fetch(
-    GET_NAMESERVER_CONTROLLER_INFOR,
+    GET_NAMESERVER_CONTROLLER_INFO,
     {
       ...GET_REQUEST_HEADER,
     }

@@ -195,7 +195,7 @@ def check_client_connection(client):
     return connection_name
 
 
-@control_api.route("/schedule-job", methods=["POST"])
+@control_api.route("/scheduling/schedule", methods=["POST"])
 def schedule_job():
     global ns
     global controller

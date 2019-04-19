@@ -68,7 +68,7 @@ def init_backend_db(clients, jobs):
                 name + '", "' + module + '", "' + client + '", "' + interval + '", "' + start + '", "' + args + '", "' \
                 + success + '", "' + failure + '")'
         c.execute(query)
-        print(job)
+        # print(job)
 
     conn.commit()
     print('[Service DB] database re-initiated.')
