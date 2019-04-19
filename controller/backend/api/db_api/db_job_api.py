@@ -5,6 +5,8 @@ from flask import Blueprint
 
 from database import db_schema
 
+from utils.request_utils import create_response
+
 db_api = Blueprint('db_job_api', __name__)
 
 job_schema = db_schema.JobSchema()
@@ -14,6 +16,8 @@ jobs_schema = db_schema.JobSchema(many=True)
 # endpoint to add job
 @db_api.route("/job", methods=["POST"])
 def add_job():
+    # TODO this api is out of date, but it's ok for now since it is not used by front end
+
     data = json.loads(request.data)
 
     name = data['name']
@@ -24,15 +28,13 @@ def add_job():
     date_time = data['start']
     dt_obj = datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S')
 
-    # persona = data['persona']
     arguments = data['arguments']
 
     new_job = db_schema.Job(name, module, client, interval, dt_obj, arguments=arguments)
     db_schema.db.session.add(new_job)
     db_schema.db.session.commit()
 
-    resp = job_schema.jsonify(new_job)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp = create_response(job_schema.jsonify(new_job))
     return resp
 
 
@@ -42,18 +44,16 @@ def get_jobs():
     all_jobs = db_schema.Job.query.all()
     result = jobs_schema.dump(all_jobs)
 
-    resp = jsonify(result.data)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp = create_response(result.data)
     return resp
 
 
-# endpoint to show one job
+# endpoint to show the details of one job
 @db_api.route("/job/<seq>/detail", methods=["GET"])
 def get_a_single_job(seq):
     job = db_schema.Job.query.get(seq)
 
-    resp = job_schema.jsonify(job)
-    resp.headers.add('Access-Control-Allow-Origin', '*')
+    resp = create_response(job_schema.jsonify(job))
     return resp
 
 
