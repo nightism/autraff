@@ -133,8 +133,10 @@ def execute(args, driver=None):
                 util_wrapper.calculate_and_normalize_possibility_for_all_link(current_page, current_page_links)
 
             # click a link
-            while True:
+            counter = 100
+            while counter > 0:
                 try:
+                    counter -= 1
                     link_to_be_clicked = util_wrapper.get_a_random_link(current_page_links_with_normalized_distribution)
 
                     link_to_be_clicked['link'].click()
@@ -153,6 +155,8 @@ def execute(args, driver=None):
                     logger('New exception occurred: ' + str(e), header="[MODULE:HUMAN_WEB_BROWSING]")
                     continue
 
+            # TODO since we used a counter, here the mod may raise an Exception
+
             # To decide whether we are browsing the same theme
             theme_closeness = link_to_be_clicked['theme_closeness']
             util_wrapper.proceed_to_next_page(theme_closeness, current_page)
@@ -161,6 +165,7 @@ def execute(args, driver=None):
 
     except Exception as e:
         print("Error occurred: \"" + str(e))
+        logger("Error occurred: \"" + str(e), header="[MODULE:HUMAN_WEB_BROWSING]")
         raise e
 
 # if __name__ == '__main__':
