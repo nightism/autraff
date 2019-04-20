@@ -91,11 +91,10 @@ def update_a_job(seq):
 
     data = json.loads(request.data)
     job.name = data['name']
-    # job.persona = request.json['persona']
     job.interval = int(data['interval'])
     job.start = datetime.strptime(data['start'], '%Y-%m-%d %H:%M:%S')
     job.arguments = data['arguments']
-    print(job.arguments)
+    # print(job.arguments)
 
     db_schema.db.session.commit()
 
