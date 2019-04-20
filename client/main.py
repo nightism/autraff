@@ -7,7 +7,9 @@ import os
 from _datetime import datetime
 
 from modules import *
+from util.constants import BASE_DIR
 from util.constants import LOG_FILE
+from util.constants import DRIVER_LOG
 from util.log.general_logger import logger
 
 NAMESERVER_ADDRESS = '127.0.0.1:26000'
@@ -66,17 +68,23 @@ def receive_command(agent, message):
         logger("Stopping job " + mod_id, header="[Scheduler]")
         return "DEL"
 
-    elif command == 'retrieve_logs':
+    elif command == 'get_usage_logs':
         log_file = open('./geckodriver.log').read()
         return log_file
-
-    return "NAN"
+    elif command == 'get_driver_logs':
+        return ""
+    else:
+        return "INVALID_COMMAND"
 
 
 if __name__ == '__main__':
     if os.path.exists(LOG_FILE):
         file_time = datetime.fromtimestamp((os.path.getmtime(LOG_FILE))).strftime(".%Y%m%d.%H%M%S")
         os.rename(LOG_FILE, LOG_FILE + file_time)
+
+    if os.path.exists(DRIVER_LOG):
+        file_time = datetime.fromtimestamp((os.path.getmtime(DRIVER_LOG))).strftime(".%Y%m%d.%H%M%S")
+        os.rename(DRIVER_LOG, BASE_DIR + '/logs/driver.log' + file_time)
 
     try:
         # global scheduler
