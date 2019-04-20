@@ -5,6 +5,7 @@
 
 *env*
 *geckodriver.log*
+*.log*
 
 *template.yml*
 
