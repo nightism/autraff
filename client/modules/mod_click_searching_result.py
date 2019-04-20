@@ -7,7 +7,10 @@
 
 from util.util import stay
 
+from util.log.module_logger import log_module_execution
 
+
+@log_module_execution(__name__)
 def execute(args, driver=None):
     """
     This module will click a link in the searching result, cannot be used standalone

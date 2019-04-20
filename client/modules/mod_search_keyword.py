@@ -9,7 +9,10 @@ from util.util import get_driver
 from util.util import close_driver
 from util.util import stay
 
+from util.log.module_logger import log_module_execution
 
+
+@log_module_execution(__name__)
 def execute(args, driver=None):
     """
     This module will use a specific searching engine to search certain keyword using the driver given.

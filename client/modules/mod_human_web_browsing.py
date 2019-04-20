@@ -25,7 +25,10 @@ from modules.mod_click_searching_result import execute as click_result
 
 from selenium.common.exceptions import ElementNotInteractableException
 
+from util.log.module_logger import log_module_execution
 
+
+@log_module_execution(__name__)
 def execute(args, driver=None):
     """
     This module will continue browsing the web within certain amount of time.

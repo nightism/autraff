@@ -15,7 +15,10 @@ import csv
 import tempfile
 import json
 
+from util.log.module_logger import log_module_execution
 
+
+@log_module_execution(__name__)
 def execute(args):
     """
 

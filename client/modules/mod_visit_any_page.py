@@ -9,7 +9,7 @@ from util.util import get_driver
 from util.util import close_driver
 from util.util import stay
 
-from util.log.log_module_execution import log_module_execution
+from util.log.module_logger import log_module_execution
 
 
 @log_module_execution(__name__)
