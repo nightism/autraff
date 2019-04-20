@@ -28,7 +28,7 @@ def close_driver(should_close, driver):
     if should_close:
         res = driver.page_source
         driver.close()
-        print("test")
+        # print("test close_driver")
         return res
     else:
         return driver

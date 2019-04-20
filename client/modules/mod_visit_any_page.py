@@ -9,7 +9,10 @@ from util.util import get_driver
 from util.util import close_driver
 from util.util import stay
 
+from util.log.log_module_execution import log_module_execution
 
+
+@log_module_execution(__name__)
 def execute(args, driver=None):
     """
     This module will visit the specified web page using the driver given.

@@ -7,7 +7,7 @@ def log_module_execution(module_name, logfile=LOG_DIR+'log.txt'):
     def logging_decorator(func):
         @wraps(func)
         def wrapped_function(*args, **kwargs):
-            log_string = module_name + " was called"
+            log_string = "[Modules]" + module_name + " was called"
             print(log_string)
             # Open the logfile and append
             with open(logfile, 'a') as opened_file:
