@@ -1,8 +1,6 @@
 import datetime
 
-from util.constants import LOG_DIR
-
-LOG_FILE = LOG_DIR + 'log.txt'
+from util.constants import LOG_FILE
 
 
 def logger(msg, header="[INFO]", logfile=LOG_FILE):

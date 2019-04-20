@@ -2,15 +2,15 @@ from functools import wraps
 
 import datetime
 
-from util.constants import LOG_DIR
+from util.constants import LOG_FILE
 
 
-def log_module_execution(module_name, logfile=LOG_DIR+'log.txt'):
+def log_module_execution(module_name, logfile=LOG_FILE):
     def logging_decorator(func):
         @wraps(func)
         def wrapped_function(*args, **kwargs):
             current_time = "[" + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + "]"
-            log_string = current_time + "[Modules]" + module_name + " was called"
+            log_string = current_time + "[Modules] " + module_name + " was called"
             print(log_string)
             # Open the logfile and append
             with open(logfile, 'a') as opened_file:
