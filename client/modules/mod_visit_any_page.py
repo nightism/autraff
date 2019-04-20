@@ -42,5 +42,5 @@ def execute(args, driver=None):
         return close_driver(is_stand_alone, driver)
 
     except Exception as e:
-        print("Error occured: \"" + str(e))
+        print("Error occurred: \"" + str(e))
         raise e

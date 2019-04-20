@@ -152,19 +152,11 @@ def execute(args, driver=None):
         print("Error occurred: \"" + str(e))
         raise e
 
-
-if __name__ == '__main__':
-    # keyword = input()
-
-    execute({
-        # 'keyword': input(),
-        'url': 'http://www.bbc.com/',
-        'time': 100000
-    })
-
-
-
-
-
-
-
+# if __name__ == '__main__':
+#     # keyword = input()
+#
+#     execute({
+#         # 'keyword': input(),
+#         'url': 'http://www.bbc.com/',
+#         'time': 100000
+#     })

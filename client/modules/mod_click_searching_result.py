@@ -48,5 +48,5 @@ def execute(args, driver=None):
         return driver
 
     except Exception as e:
-        print("Error occured: \"" + str(e) + "\" Skipping to next command.")
+        print("Error occurred: \"" + str(e) + "\" Skipping to next command.")
         raise e

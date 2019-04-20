@@ -54,7 +54,7 @@ def execute(args, driver=None):
 
         except Exception as e:
             if counter == 0:
-                print("Error occured: \"" + str(e) + "\" Retrying one more time.")
+                print("Error occurred: \"" + str(e) + "\" Retrying one more time.")
             else:
-                print("Error occured: \"" + str(e) + "\" Skipping to next command.")
+                print("Error occurred: \"" + str(e) + "\" Skipping to next command.")
                 raise e
