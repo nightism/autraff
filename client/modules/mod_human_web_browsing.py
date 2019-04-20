@@ -24,8 +24,10 @@ from modules.mod_visit_any_page import execute as visit_page
 from modules.mod_click_searching_result import execute as click_result
 
 from selenium.common.exceptions import ElementNotInteractableException
+from selenium.common.exceptions import ElementClickInterceptedException
 
 from util.log.module_logger import log_module_execution
+from util.log.general_logger import logger
 
 
 @log_module_execution(__name__)
@@ -140,6 +142,15 @@ def execute(args, driver=None):
                 except ElementNotInteractableException:
                     # regenerate a random number and try again
                     # TODO may ended up as an infinite loop
+                    continue
+                except ElementClickInterceptedException:
+                    # regenerate a random number and try again
+                    # TODO may ended up as an infinite loop
+                    continue
+                except Exception as e:
+                    # regenerate a random number and try again
+                    # TODO may ended up as an infinite loop
+                    logger('New exception occurred: ' + str(e), header="[MODULE:HUMAN_WEB_BROWSING]")
                     continue
 
             # To decide whether we are browsing the same theme

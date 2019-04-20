@@ -68,7 +68,7 @@ def receive_command(agent, message):
         logger("Stopping job " + mod_id, header="[Scheduler]")
         return "DEL"
 
-    elif command == 'get_usage_logs':
+    elif command == 'get_usage_log':
         if not os.path.exists(LOG_FILE):
             return []
 
@@ -80,7 +80,7 @@ def receive_command(agent, message):
         log_file.close()
 
         return log_str_list
-    elif command == 'get_driver_logs':
+    elif command == 'get_driver_log':
         if not os.path.exists(DRIVER_LOG):
             return []
 
