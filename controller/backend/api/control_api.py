@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request
 from flask import Blueprint
 
 from osbrain import NSProxy
@@ -14,8 +14,6 @@ control_api = Blueprint('control_api', __name__)
 
 ns = run_nameserver(NAMESERVER_ADDRESS)
 controller = run_agent(CONTROLLER_ALIAS)
-
-# http://localhost:5000/open-connection
 
 
 @control_api.route("/open-connection", methods=["GET"])
@@ -313,6 +311,58 @@ def stop_job():
 
     result = {
         'schedule_id': str(reply)
+    }
+
+    resp = create_response(result)
+    return resp
+
+
+@control_api.route("/log/usage/<client>", methods=["GET"])
+def retrieve_client_usage_log(client):
+    global ns
+    global controller
+
+    if ns is None:
+        ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
+    if controller is None:
+        controller = ns.proxy(CONTROLLER_ALIAS)
+
+    connection_name = client + CONNECTION_SUFFIX
+    message = {
+        'command': COMMAND_GET_USAGE_LOG,
+    }
+
+    controller.send(connection_name, message)
+    reply = controller.recv(connection_name)
+
+    result = {
+        'usage_log': reply
+    }
+
+    resp = create_response(result)
+    return resp
+
+
+@control_api.route("/log/driver/<client>", methods=["GET"])
+def retrieve_client_driver_log(client):
+    global ns
+    global controller
+
+    if ns is None:
+        ns = NSProxy(nsaddr=NAMESERVER_ADDRESS)
+    if controller is None:
+        controller = ns.proxy(CONTROLLER_ALIAS)
+
+    connection_name = client + CONNECTION_SUFFIX
+    message = {
+        'command': COMMAND_GET_DRIVER_LOG,
+    }
+
+    controller.send(connection_name, message)
+    reply = controller.recv(connection_name)
+
+    result = {
+        'usage_log': reply
     }
 
     resp = create_response(result)
