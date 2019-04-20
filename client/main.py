@@ -6,7 +6,7 @@ from osbrain import run_agent
 import os
 from _datetime import datetime
 
-from modules import *
+from modules import *  # evaluated at run time, do not delete
 from util.constants import BASE_DIR
 from util.constants import LOG_FILE
 from util.constants import DRIVER_LOG
@@ -69,10 +69,29 @@ def receive_command(agent, message):
         return "DEL"
 
     elif command == 'get_usage_logs':
-        log_file = open('./geckodriver.log').read()
-        return log_file
+        if not os.path.exists(LOG_FILE):
+            return []
+
+        log_file = open(LOG_FILE)
+        log_str_list = []
+        for line in log_file:
+            log_str_list.append(line.strip())
+
+        log_file.close()
+
+        return log_str_list
     elif command == 'get_driver_logs':
-        return ""
+        if not os.path.exists(DRIVER_LOG):
+            return []
+
+        log_file = open(DRIVER_LOG)
+        log_str_list = []
+        for line in log_file:
+            log_str_list.append(line.strip())
+
+        log_file.close()
+
+        return log_str_list
     else:
         return "INVALID_COMMAND"
 
