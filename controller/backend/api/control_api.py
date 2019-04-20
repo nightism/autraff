@@ -362,7 +362,7 @@ def retrieve_client_driver_log(client):
     reply = controller.recv(connection_name)
 
     result = {
-        'usage_log': reply
+        'driver_log': reply
     }
 
     resp = create_response(result)
