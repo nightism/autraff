@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
-import { Table, List, Card, Row, Col } from 'antd';
+import {
+  Table,
+  Card,
+  Row,
+  Col
+} from 'antd';
 
 class ClientDashboard extends Component {
   state = {

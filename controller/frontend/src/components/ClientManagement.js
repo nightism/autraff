@@ -4,10 +4,11 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import 'antd/dist/antd.css';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
 import ClientDashboard from './client_page_components/ClientDashboard'
 import ClientPage from './client_page_components/ClientPage'
+import ClientLogPage from './client_page_components/ClientLogPage'
 import { DB_CLIENT_API } from '../apis/apiLib';
 
 const { SubMenu } = Menu;
@@ -96,8 +97,12 @@ class ClientManagement extends Component {
             </Sider>
             <Content style={{ padding: '0 24px', minHeight: '100%' }}>
               {/* {this.state.client} */}
-              <Route exact path='/client-management/dashboard' component={ ClientDashboard } />
-              <Route exact path='/client-management/:client/detail' component={ ClientPage } />
+              <Switch>
+                <Route exact path='/client-management/dashboard' component={ ClientDashboard } />
+                <Route exact path='/client-management/:client/detail' component={ ClientPage } />
+                <Route exact path='/client-management/:client/log' component={ ClientLogPage } />
+                <Redirect path='/client-management' to='/client-management/dashboard' />
+              </Switch>
             </Content>
           </Layout>
         </Router>
@@ -116,7 +121,7 @@ class ClientManagement extends Component {
 //       <Menu.Item key=".report">report</Menu.Item>
 //       <Menu.Item key=".control">control</Menu.Item>
 //     </SubMenu>
-
+//
 //   );
 // }
 

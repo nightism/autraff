@@ -4,7 +4,7 @@ import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import MenuItem from 'antd/lib/menu/MenuItem';
 import 'antd/dist/antd.css';
 
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
 import JobDashboard from './job_page_components/JobDashboard'
 import JobListPage from './job_page_components/JobListPage'
@@ -48,8 +48,11 @@ const JobManagement = () => {
           </Sider>
 
           <Content style={{ padding: '0 24px', minHeight: '100px' }}>
-            <Route exact path='/job-management/dashboard' component={JobDashboard} />
-            <Route exact path='/job-management/task-list-page' component={JobListPage} />
+            <Switch>
+              <Route exact path='/job-management/dashboard' component={JobDashboard} />
+              <Route exact path='/job-management/task-list-page' component={JobListPage} />
+              <Redirect path='/job-management' to='/job-management/dashboard' />
+            </Switch>
           </Content>
         </Layout>
       </Router>

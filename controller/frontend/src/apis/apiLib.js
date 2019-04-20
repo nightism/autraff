@@ -13,3 +13,4 @@ export const CHECK_CLIENT_CONNECTION_STATUS = CONNECT_TO_CLIENT
 export const DB_CLIENT_API = API_HOME + '/client'
 
 export const DB_JOB_API = API_HOME + '/job'
+export const DB_UPDATE_JOB_SCHEDULE_ID = DB_JOB_API + '/schedule/'

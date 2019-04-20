@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Table, List, Card } from 'antd';
+import { Table } from 'antd';
 
 
 class JobListPage extends Component {

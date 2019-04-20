@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { Table, List, Card, Button, Icon } from 'antd';
+import { Table, Button, Icon } from 'antd';
+import { DB_UPDATE_JOB_SCHEDULE_ID } from '../../apis/apiLib';
 
 class ClientPage extends Component {
   state = {
@@ -83,8 +84,8 @@ class ClientPage extends Component {
         return response.json()
       }).then((scheduling) => {
         console.log(scheduling.schedule_id)
-        // TODO\\\\\\\\\\\\\
-        fetch("http://localhost:5000/job/schedule/" + targetJob.seq, {
+
+        fetch(DB_UPDATE_JOB_SCHEDULE_ID + targetJob.name, {
           method: "POST",
           body: JSON.stringify({
             schedule_id: scheduling.schedule_id
@@ -121,10 +122,7 @@ class ClientPage extends Component {
       }).then((response) => {
         return response.json()
       }).then((data) => {
-        // if (data.result !== "DEL") {
-        //   alert('fail!')
-        // } else {
-        fetch("http://localhost:5000/job/schedule/" + targetJob.seq, {
+        fetch(DB_UPDATE_JOB_SCHEDULE_ID + targetJob.name, {
           method: "POST",
           body: JSON.stringify({
             schedule_id: ""
@@ -135,7 +133,6 @@ class ClientPage extends Component {
           alert("Job stopped.")
           this.updateTable()
         })
-        // }
       })
     })
   }
