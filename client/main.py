@@ -74,8 +74,8 @@ def receive_command(agent, message):
 
 
 if __name__ == '__main__':
-    if os.path.is_file(LOG_FILE):
-        file_time = datetime.fromisoformat(os.path.getmtime(LOG_FILE)).strftime(".%Y%m%d.%H%M%S")
+    if os.path.exists(LOG_FILE):
+        file_time = datetime.fromtimestamp((os.path.getmtime(LOG_FILE))).strftime(".%Y%m%d.%H%M%S")
         os.rename(LOG_FILE, LOG_FILE + file_time)
 
     try:
