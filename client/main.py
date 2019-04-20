@@ -3,9 +3,12 @@ from apscheduler.schedulers.base import STATE_STOPPED, STATE_PAUSED, STATE_RUNNI
 from osbrain import NSProxy
 from osbrain import run_agent
 
-import time
+import os
+from _datetime import datetime
 
 from modules import *
+from util.constants import LOG_FILE
+from util.log.general_logger import logger
 
 NAMESERVER_ADDRESS = '127.0.0.1:26000'
 CLIENT_RECEIVER_ADDRESS = '127.0.0.1:27000'
@@ -32,7 +35,7 @@ def receive_command(agent, message):
         if scheduler is None:
             scheduler = BackgroundScheduler()
             scheduler.start()
-            print('[Scheduler] Background Scheduler started, status ' + str(scheduler.state))
+            logger('Background Scheduler started, status ' + str(scheduler.state), header="[Scheduler]")
     except Exception as err:
         print(str(err))
 
@@ -42,19 +45,27 @@ def receive_command(agent, message):
     if command == 'schedule_task':
         mod_name = message['module']
         mod = eval(mod_name)
-        print("[Scheduler] Scheduling task " + mod_name)
+        logger("Scheduling module " + mod_name, header="[Scheduler]")
 
         interval = int(message['interval'])
         para = message['para']
 
         schedule_id = scheduler.add_job(lambda: mod.execute(para), 'interval', seconds=interval).id
+
         # print('Job scheduled: ' + str(id))
+        logger("Scheduled module " + mod_name + " with id " + schedule_id, header="[Scheduler]")
+
         return schedule_id
 
     elif command == 'delete_task':
         mod_id = message['job_id']
+
+        # TODO to check the return code rc
         rc = scheduler.remove_job(mod_id)
+
+        logger("Stopping job " + mod_id, header="[Scheduler]")
         return "DEL"
+
     elif command == 'retrieve_logs':
         log_file = open('./geckodriver.log').read()
         return log_file
@@ -63,6 +74,10 @@ def receive_command(agent, message):
 
 
 if __name__ == '__main__':
+    if os.path.is_file(LOG_FILE):
+        file_time = datetime.fromisoformat(os.path.getmtime(LOG_FILE)).strftime(".%Y%m%d.%H%M%S")
+        os.rename(LOG_FILE, LOG_FILE + file_time)
+
     try:
         # global scheduler
         # scheduler = BackgroundScheduler()
@@ -74,9 +89,10 @@ if __name__ == '__main__':
 
         client.bind('REP', alias="request_addr", handler=receive_command, transport='tcp',
                     addr=CLIENT_RECEIVER_ADDRESS)
+
     except Exception as e:
         print("Error occurred.")
         print(str(e))
         raise e
 
-    print("[General] client successfully initiated.")
+    logger("Client successfully initiated.")
