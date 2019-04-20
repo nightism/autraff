@@ -239,7 +239,7 @@ def create_job_obj(job_name):
     job = c.fetchall()[0]
     arguments = eval(job[2])
     arguments['success'] = create_job_obj(job[3])
-    arguments['failure'] = create_response(job[4])
+    arguments['failure'] = create_job_obj(job[4])
 
     job_obj = {
         "interval": job[0],

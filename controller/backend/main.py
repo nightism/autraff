@@ -3,10 +3,6 @@ import yaml
 import service
 
 
-def main():
-    service.run_app_service()
-
-
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Run Autraff controller backend.')
     parser.add_argument('-c', '--client', default='./template-client.yml',
