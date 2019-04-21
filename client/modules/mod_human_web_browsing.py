@@ -29,6 +29,12 @@ from selenium.common.exceptions import ElementClickInterceptedException
 from util.log.module_logger import log_module_execution
 from util.log.general_logger import logger
 
+# TODO
+# from modules.mod_send_email import execute as mod_send_email
+# from modules.mod_click_searching_result import execute as mod_click_searching_result
+# from modules.mod_search_keyword import execute as mod_search_keyword
+# from modules.mod_visit_any_page import execute as mod_visit_any_page
+
 
 @log_module_execution(__name__)
 def execute(args, driver=None):
@@ -163,10 +169,32 @@ def execute(args, driver=None):
 
         close_driver(is_stand_alone, driver)
 
+        success = args.get('success')
+        if success is not None:
+            success = args.get('success').get('module')
+            success_args = args.get('success').get('arguments')
+            from util.helper import execute_mod
+            execute_mod(success, success_args, driver)
+            # success = eval(success)
+            # success(success_args, driver=driver)
+
+        return driver
+
     except Exception as e:
         print("Error occurred: \"" + str(e))
         logger("Error occurred: \"" + str(e), header="[MODULE:HUMAN_WEB_BROWSING]")
-        raise e
+
+        failure = args.get('failure')
+        if failure is not None:
+            failure = args.get('failure').get('module')
+            failure_args = args.get('failure').get('arguments')
+            # eval("from modules import " + failure)
+            from util.helper import execute_mod
+            execute_mod(failure, failure_args, driver)
+            # failure = eval(failure)
+            # failure(failure_args)
+        else:
+            raise e
 
 # if __name__ == '__main__':
 #     # keyword = input()
