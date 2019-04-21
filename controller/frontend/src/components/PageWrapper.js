@@ -15,7 +15,7 @@ const { Content } = Layout;
 const PageWrapper = () => {
   return (
     <Router>
-      <Layout style={{ height:"100vh" }}>
+      <Layout style={{ minHeight:"100vh" }}>
         {/* TODO  display issue when resizing the window becomes (e.g. when the height becomes shorter) */}
         <Header className="header">
           {/* <div className="logo" /> */}

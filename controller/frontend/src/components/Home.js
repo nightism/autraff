@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Button, Layout, Breadcrumb, Row, Col, Card, Alert } from 'antd';
+import { Button, Layout, Breadcrumb, Row, Col, Card, Alert, message } from 'antd';
 
 import 'antd/dist/antd.css';
 import { getNameserverAndControllerInfo, connectToNameserverAndController } from '../apis/controllerApis';
@@ -16,7 +16,7 @@ class HomePage extends Component {
       status: 'initialze', // TODO useless state
       nameserverAddr: '',
       controllerAlias: '',
-      serviceUpTime: 'UNKOWN',
+      serviceUpTime: 'within 1 hour', //TODO dummy data
       alertDisplay: {
         style: { display: 'None' }
       },
@@ -39,7 +39,7 @@ class HomePage extends Component {
       this.setState({
         controllerAlias: data.controller,
         nameserverAddr: data.nameserver,
-        serviceUpTime: 'UNKOWN',
+        serviceUpTime: 'within 1 hour',
         alertDisplay: alertDisplay,
       })
     })
@@ -51,7 +51,7 @@ class HomePage extends Component {
     }).then((response) => {
       return response.json()
     }).then((data) => {
-      alert(data.result)
+      message.info(data.result)
     })
   }
 

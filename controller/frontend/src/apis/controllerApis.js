@@ -1,6 +1,8 @@
 import { GET_NAMESERVER_CONTROLLER_INFO, OPEN_NAMESERVER_CONTROLLER_CONNECTION } from './apiLib'
 import { GET_REQUEST_HEADER } from '../utils/requestHeaders'
 
+import { message } from 'antd'
+
 export function getNameserverAndControllerInfo() {
   return fetch(
     GET_NAMESERVER_CONTROLLER_INFO,
@@ -23,7 +25,11 @@ export function connectToNameserverAndController() {
   ).then((response) => {
     return response.json()
   }).then((data) => {
-    alert(data.result)
+    if (data.result === 'success') {
+      message.success('nameserver and controller is running.')
+    } else {
+      message.error(data.result)
+    }
     return data
   })
 }
