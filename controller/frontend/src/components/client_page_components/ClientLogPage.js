@@ -60,7 +60,7 @@ class ClientLogPage extends Component{
 
   downloadDriverLog = () => {
     const element = document.createElement("a");
-    const file = new Blob(this.state.driverLog, {type: 'text/plain'});
+    const file = new Blob([this.state.driverLog], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
     element.download = this.props.match.params.client + ".driver.log";
     document.body.appendChild(element); // Required for this to work in FireFox

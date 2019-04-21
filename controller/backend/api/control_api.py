@@ -239,6 +239,11 @@ def create_job_obj(job_name):
     arguments['success'] = create_job_obj(job[3])
     arguments['failure'] = create_job_obj(job[4])
 
+    # TODO not a good way
+    interval = job[0]
+    if interval is None:
+        interval = 100000000
+
     job_obj = {
         "interval": job[0],
         "module": job[1],
@@ -272,9 +277,9 @@ def schedule_job():
     message = {
         # TODO some redundant information to be removed
         'command': COMMAND_SCHEDULE_TASK,
-        'interval': int(data['interval']),
+        'interval': int(job['interval']),
         'module': data['module'],
-        'para': eval(data['para']),
+        'para': job['arguments'],
         'job': job
     }
 

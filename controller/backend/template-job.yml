@@ -8,34 +8,70 @@
   name: browsing_bbc_news_website
   module: mod_human_web_browsing
   start: now
-  interval: 10  # 10 seconds 
+  interval: 2400  # 40 minutes
   args:
     url: 'https://www.bbc.com/'
-    time: 1200 # duration, 20 minutes
+    time: 1200
+
+- client: 127.0.0.1
+  name: browsing_straitstimes_website
+  module: mod_human_web_browsing
+  args:
+    url: 'https://www.straitstimes.com/singapore'
+    time: 1200
 
 - client: 127.0.0.1
   name: visit_bbc_news_website
   module: mod_visit_any_page
-  interval: 10  # 10 seconds
+  interval: 1
   args:
     url: 'http://www.bbc.com/'
-    time: 5  # duration, 5 seconds
+    time: 1
+  success: email_success_to_admin
+  failure: email_failure_to_admin
+
+- client: 127.0.0.1
+  name: email_success_to_admin
+  module: mod_send_email
+  args:
+    from: sun.mingyang.shawn@gmail.com
+    password: XXXXXXXX
+    to:
+     - shawn.sun.mingyang@gmail.com
+    subject: BBC is alive
+    body: BBC is alive
+  success: browsing_straitstimes_website
+
+- client: 127.0.0.1
+  name: email_failure_to_admin
+  module: mod_send_email
+  args:
+    from: sun.mingyang.shawn@gmail.com
+    password: XXXXXXXX
+    to:
+      - shawn.sun.mingyang@gmail.com
+    subject: BBC is dead
+    body: BBC is dead
 
 
 - client: 10.0.26.5
   name: visit_ncl_website
   module: mod_visit_any_page
   start: 2019-06-01 12:01:30
-  interval: 1200  # 1200 seconds = 20 minutes
+  interval: 1200
   args:
     url: 'http://www.ncl.sg/'
-    time: 5  # duration, 5 seconds
+    time: 5
 
 - client: 10.0.26.5
-  name: send_email_to_admin
+  name: send_email_warning
   module: mod_send_email
   args:
-    addr: admin@ncl.org
+    from: sun.mingyang.shawn@gmail.com
+    password: XXXXXXXX
+    to:
+      - shawn.sun.mingyang@gmail.com
+    subject: NCL web is down
 
 - client: 10.0.26.5
   name: check_ncl_web_service
@@ -46,5 +82,5 @@
       - 'https://www.web1.ncl.org'
       - 'https://www.web2.ncl.org'
   success: visit_ncl_website
-  failure: send_email_to_admin
+  failure: send_email_warning
     
